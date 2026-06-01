@@ -4,25 +4,25 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.992 0.004 150);
-  --foreground: oklch(0.21 0.02 175);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.21 0.02 175);
+  --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.21 0.02 175);
-  --primary: oklch(0.6 0.12 175);
-  --primary-foreground: oklch(0.99 0.01 175);
-  --secondary: oklch(0.96 0.01 175);
-  --secondary-foreground: oklch(0.3 0.04 175);
-  --muted: oklch(0.96 0.008 175);
-  --muted-foreground: oklch(0.52 0.02 175);
-  --accent: oklch(0.95 0.04 175);
-  --accent-foreground: oklch(0.4 0.08 175);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.9 0.01 175);
-  --input: oklch(0.9 0.01 175);
-  --ring: oklch(0.6 0.12 175);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -75,8 +75,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-mono), ui-monospace, monospace;
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -121,74 +121,5 @@
   }
   body {
     @apply bg-background text-foreground;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
-@layer utilities {
-  .grid-pattern {
-    background-image: linear-gradient(
-        to right,
-        oklch(0.6 0.12 175 / 0.06) 1px,
-        transparent 1px
-      ),
-      linear-gradient(to bottom, oklch(0.6 0.12 175 / 0.06) 1px, transparent 1px);
-    background-size: 56px 56px;
-  }
-
-  .dot-pattern {
-    background-image: radial-gradient(
-      oklch(0.6 0.12 175 / 0.12) 1px,
-      transparent 1px
-    );
-    background-size: 22px 22px;
-  }
-
-  @keyframes reveal-up {
-    from {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .reveal {
-    opacity: 0;
-  }
-
-  .reveal.is-visible {
-    animation: reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  @keyframes float-slow {
-    0%,
-    100% {
-      transform: translateY(0) rotate(0deg);
-    }
-    50% {
-      transform: translateY(-14px) rotate(2deg);
-    }
-  }
-
-  .animate-float-slow {
-    animation: float-slow 7s ease-in-out infinite;
-  }
-
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
-  .animate-marquee {
-    animation: marquee 28s linear infinite;
   }
 }
