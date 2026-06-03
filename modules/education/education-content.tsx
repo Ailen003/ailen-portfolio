@@ -1,28 +1,7 @@
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
 import { GraduationCap, Award, BookOpen } from "lucide-react"
-
-const education = [
-  {
-    period: "2013 — 2017",
-    title: "B.Sc. in Computer Science",
-    org: "Polytechnic University of Catalonia",
-    detail: "Graduated with honors. Focus on distributed systems and human–computer interaction.",
-  },
-  {
-    period: "2016",
-    title: "Exchange Semester — Web Systems",
-    org: "TU Delft, Netherlands",
-    detail: "Research project on real-time collaborative editing and CRDTs.",
-  },
-]
-
-const certifications = [
-  { title: "AWS Certified Solutions Architect", org: "Amazon Web Services", year: "2023" },
-  { title: "Professional Scrum Developer", org: "Scrum.org", year: "2022" },
-  { title: "Advanced React & Performance", org: "Frontend Masters", year: "2021" },
-  { title: "Accessibility Specialist (CPACC)", org: "IAAP", year: "2020" },
-]
+import { educationEntries, certifications } from "./lib/data/education.data"
 
 export function Education() {
   return (
@@ -43,7 +22,7 @@ export function Education() {
               <h3 className="text-lg font-bold tracking-tight">Education</h3>
             </div>
             <div className="space-y-6">
-              {education.map((e) => (
+              {educationEntries.map((e) => (
                 <div key={e.title} className="border-l-2 border-border pl-5">
                   <span className="font-mono text-xs uppercase tracking-wide text-primary">{e.period}</span>
                   <h4 className="mt-1 font-semibold text-foreground">{e.title}</h4>

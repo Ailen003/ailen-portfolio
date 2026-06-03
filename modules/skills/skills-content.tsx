@@ -1,44 +1,6 @@
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
-import { Layout, Server, Database, Wrench } from "lucide-react"
-
-const categories = [
-  {
-    icon: Layout,
-    title: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Accessibility"],
-  },
-  {
-    icon: Server,
-    title: "Backend",
-    skills: ["Node.js", "Go", "GraphQL", "REST APIs", "tRPC", "Edge Functions"],
-  },
-  {
-    icon: Database,
-    title: "Data & Infra",
-    skills: ["PostgreSQL", "Redis", "Prisma", "Docker", "AWS", "Vercel"],
-  },
-  {
-    icon: Wrench,
-    title: "Tooling & Practices",
-    skills: ["Git", "CI/CD", "Vitest", "Playwright", "Design Systems", "Observability"],
-  },
-]
-
-const marquee = [
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Node.js",
-  "PostgreSQL",
-  "GraphQL",
-  "Tailwind CSS",
-  "Go",
-  "AWS",
-  "Docker",
-  "Redis",
-  "Vercel",
-]
+import { skillCategories, marqueeSkills } from "./lib/data/skills.data"
 
 export function Skills() {
   return (
@@ -51,7 +13,7 @@ export function Skills() {
         />
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((cat, i) => (
+          {skillCategories.map((cat, i) => (
             <Reveal key={cat.title} delay={i * 90}>
               <div className="group h-full rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
@@ -76,7 +38,7 @@ export function Skills() {
 
       <div className="relative mt-16 flex overflow-hidden">
         <div className="flex shrink-0 animate-marquee items-center gap-4 pr-4">
-          {[...marquee, ...marquee].map((item, i) => (
+          {[...marqueeSkills, ...marqueeSkills].map((item, i) => (
             <span
               key={`${item}-${i}`}
               className="whitespace-nowrap font-mono text-2xl font-semibold text-muted-foreground/40"

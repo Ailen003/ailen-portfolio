@@ -1,12 +1,12 @@
 import { Navbar } from "@/components/navbar"
-import { Hero } from "@/components/hero"
-import { About } from "@/components/about"
-import { Skills } from "@/components/skills"
-import { Projects } from "@/components/projects"
-import { Experience } from "@/components/experience"
-import { Education } from "@/components/education"
-import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
+import { Hero } from "@/modules/hero/hero-content"
+import { About } from "@/modules/about/about-content"
+import { Skills } from "@/modules/skills/skills-content"
+import { Projects } from "@/modules/projects/projects-content"
+import { Experience } from "@/modules/experience/experience-content"
+import { Education } from "@/modules/education/education-content"
+import { Contact } from "@/modules/contact/contact-content"
 
 export default function Page() {
   return (

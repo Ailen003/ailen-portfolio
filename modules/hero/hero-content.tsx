@@ -1,11 +1,6 @@
 import Image from "next/image"
-import { ArrowDownRight, Github, Linkedin, Mail, FileText } from "lucide-react"
-
-const socials = [
-  { label: "GitHub", href: "https://github.com", icon: Github },
-  { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
-  { label: "Email", href: "#contact", icon: Mail },
-]
+import { ArrowDownRight, FileText } from "lucide-react"
+import { heroSocials } from "./lib/data/hero.data"
 
 export function Hero() {
   return (
@@ -54,7 +49,7 @@ export function Hero() {
           </div>
 
           <div className="mt-10 flex items-center gap-3">
-            {socials.map((s) => (
+            {heroSocials.map((s) => (
               <a
                 key={s.label}
                 href={s.href}

@@ -1,71 +1,17 @@
 import Image from "next/image"
-import { SectionHeading } from "@/components/section-heading"
-import { Reveal } from "@/components/reveal"
 import { ArrowUpRight, Github, Star } from "lucide-react"
+import { Reveal } from "@/components/reveal"
+import type { FeaturedProject, Project, MiniProject } from "../lib/types/project.types"
 
-const featured = {
-  title: "FinFlow",
-  tagline: "Personal finance, reimagined",
-  description:
-    "A full-stack budgeting platform serving 40k+ users. I led the frontend architecture and design system, cut initial load time by 60%, and shipped real-time syncing across devices with optimistic UI.",
-  image: "/project-finflow.png",
-  tags: ["Next.js", "TypeScript", "PostgreSQL", "tRPC", "Tailwind"],
-  demo: "https://example.com",
-  source: "https://github.com",
+interface ProjectsListPresentationalProps {
+  featured: FeaturedProject
+  projects: Project[]
+  more: MiniProject[]
 }
 
-const projects = [
-  {
-    title: "Pulse",
-    description:
-      "Real-time analytics for developer teams. Streaming metrics, anomaly alerts, and a query builder built for speed.",
-    image: "/project-pulse.png",
-    tags: ["React", "Go", "Redis", "WebSockets"],
-    demo: "https://example.com",
-    source: "https://github.com",
-  },
-  {
-    title: "Atlas UI",
-    description:
-      "An open-source, accessible component library and design system adopted across multiple product teams.",
-    image: "/project-atlas.png",
-    tags: ["React", "TypeScript", "Storybook", "a11y"],
-    demo: "https://example.com",
-    source: "https://github.com",
-  },
-]
-
-const more = [
-  {
-    title: "Cartographer",
-    description: "Interactive data-viz toolkit for geospatial dashboards.",
-    tags: ["D3", "Mapbox", "Next.js"],
-    source: "https://github.com",
-  },
-  {
-    title: "Inbox Zero",
-    description: "AI email triage assistant with smart summarization.",
-    tags: ["AI SDK", "Edge", "React"],
-    source: "https://github.com",
-  },
-  {
-    title: "Ledger CLI",
-    description: "A fast, scriptable command-line tool for plain-text accounting.",
-    tags: ["Go", "CLI", "SQLite"],
-    source: "https://github.com",
-  },
-]
-
-export function Projects() {
+export function ProjectsListPresentational({ featured, projects, more }: ProjectsListPresentationalProps) {
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
-      <SectionHeading
-        index="03"
-        title="Selected projects"
-        subtitle="A few things I've designed, built, and shipped end to end."
-      />
-
-      {/* Featured project */}
+    <>
       <Reveal>
         <article className="group grid overflow-hidden rounded-3xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10 lg:grid-cols-2">
           <div className="relative aspect-[4/3] overflow-hidden lg:aspect-auto">
@@ -118,7 +64,6 @@ export function Projects() {
         </article>
       </Reveal>
 
-      {/* Secondary projects */}
       <div className="mt-6 grid gap-6 md:grid-cols-2">
         {projects.map((p, i) => (
           <Reveal key={p.title} delay={i * 100}>
@@ -169,7 +114,6 @@ export function Projects() {
         ))}
       </div>
 
-      {/* More projects */}
       <Reveal className="mt-6">
         <div className="grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-3">
           {more.map((p) => (
@@ -196,6 +140,6 @@ export function Projects() {
           ))}
         </div>
       </Reveal>
-    </section>
+    </>
   )
 }
