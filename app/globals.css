@@ -146,6 +146,14 @@
     background-size: 22px 22px;
   }
 
+  .dot-grid-pattern {
+    background-image: radial-gradient(
+      oklch(0.6 0.12 175 / 0.16) 1.5px,
+      transparent 1.5px
+    );
+    background-size: 56px 56px;
+  }
+
   @keyframes reveal-up {
     from {
       opacity: 0;
@@ -190,6 +198,63 @@
 
   .animate-marquee {
     animation: marquee 28s linear infinite;
+  }
+
+  .wave-stripe-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='50'%3E%3Cpath d='M0 25 Q50 5 100 25 Q150 45 200 25' fill='none' stroke='%2328a88d' stroke-width='1.5' stroke-opacity='0.09'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 50px;
+  }
+
+  .diagonal-stripe-pattern {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent 0,
+      transparent 18px,
+      oklch(0.6 0.12 175 / 0.07) 18px,
+      oklch(0.6 0.12 175 / 0.07) 19px
+    );
+  }
+
+  .topo-pattern {
+    background-image:
+      repeating-radial-gradient(
+        ellipse at 28% 55%,
+        transparent 0,
+        transparent 36px,
+        oklch(0.6 0.12 175 / 0.06) 36px,
+        oklch(0.6 0.12 175 / 0.06) 37px
+      ),
+      repeating-radial-gradient(
+        ellipse at 72% 40%,
+        transparent 0,
+        transparent 42px,
+        oklch(0.6 0.12 175 / 0.045) 42px,
+        oklch(0.6 0.12 175 / 0.045) 43px
+      );
+  }
+
+  .crosshatch-pattern {
+    background-image:
+      linear-gradient(oklch(0.6 0.12 175 / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.6 0.12 175 / 0.07) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .circuit-dot-pattern {
+    background-image:
+      radial-gradient(oklch(0.6 0.12 175 / 0.15) 1.5px, transparent 1.5px),
+      radial-gradient(oklch(0.6 0.12 175 / 0.15) 1.5px, transparent 1.5px);
+    background-size: 44px 44px;
+    background-position: 0 0, 22px 22px;
+  }
+
+  .radial-spotlight {
+    background-image: radial-gradient(
+      ellipse 90% 55% at 50% 0%,
+      oklch(0.6 0.12 175 / 0.13) 0%,
+      transparent 70%
+    );
   }
 
   @keyframes blink {

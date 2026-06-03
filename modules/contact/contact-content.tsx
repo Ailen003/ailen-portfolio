@@ -5,8 +5,11 @@ import { ContactFormContainer } from "./form/contact-form-container"
 
 export function Contact() {
   return (
-    <section id="contact" className="border-t border-border bg-secondary/40 py-24">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+    <section id="contact" className="relative overflow-hidden border-t border-border bg-secondary/60 dot-pattern py-24">
+      <div className="pointer-events-none absolute inset-0 radial-spotlight" />
+      <div className="pointer-events-none absolute left-1/2 -top-20 h-80 w-80 -translate-x-1/2 rounded-full bg-primary/12 blur-3xl" />
+      <div className="pointer-events-none absolute -right-16 bottom-0 h-64 w-64 rounded-full bg-primary/8 blur-3xl" />
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading
           index="06"
           title="Let's build something"

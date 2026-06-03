@@ -4,8 +4,10 @@ import { skillCategories, marqueeSkills } from "./lib/data/skills.data"
 
 export function Skills() {
   return (
-    <section id="skills" className="relative overflow-hidden border-y border-border bg-secondary/40 py-24">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+    <section id="skills" className="relative overflow-hidden border-y border-border bg-secondary/60 diagonal-stripe-pattern py-24">
+      <div className="pointer-events-none absolute -left-16 top-0 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-16 bottom-0 h-80 w-80 rounded-full bg-primary/8 blur-3xl" />
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 relative">
         <SectionHeading
           index="02"
           title="Technical skills"

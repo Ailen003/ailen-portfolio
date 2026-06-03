@@ -63,8 +63,17 @@ export function Hero() {
 
   return (
     <section id="home" className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 grid-pattern opacity-70" />
-      <div className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 grid-pattern opacity-80" />
+
+      <svg className="pointer-events-none absolute right-0 top-0 h-[420px] w-[420px] opacity-[0.07]" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="420" cy="0" r="180" stroke="oklch(0.6 0.12 175)" strokeWidth="1.5" fill="none" />
+        <circle cx="420" cy="0" r="280" stroke="oklch(0.6 0.12 175)" strokeWidth="1" fill="none" />
+        <circle cx="420" cy="0" r="380" stroke="oklch(0.6 0.12 175)" strokeWidth="0.75" fill="none" />
+      </svg>
+
+      <div className="pointer-events-none absolute -right-28 top-0 h-96 w-96 rounded-full bg-primary/15 blur-3xl" />
+      <div className="pointer-events-none absolute -left-24 bottom-10 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
+      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/30 blur-3xl" />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 pb-20 pt-32 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:pb-28 lg:pt-40">
         <div>

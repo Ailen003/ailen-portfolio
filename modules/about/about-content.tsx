@@ -4,7 +4,20 @@ import { aboutValues, aboutFacts } from "./lib/data/about.data"
 
 export function About() {
   return (
-    <section id="about" className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
+    <section id="about" className="relative overflow-hidden py-24">
+      <div className="pointer-events-none absolute inset-0 dot-grid-pattern opacity-70" />
+
+      <svg className="pointer-events-none absolute bottom-0 right-0 h-[400px] w-[400px] opacity-[0.06]" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="400" cy="400" r="160" stroke="oklch(0.6 0.12 175)" strokeWidth="1.5" fill="none" />
+        <circle cx="400" cy="400" r="260" stroke="oklch(0.6 0.12 175)" strokeWidth="1" fill="none" />
+        <circle cx="400" cy="400" r="360" stroke="oklch(0.6 0.12 175)" strokeWidth="0.75" fill="none" />
+      </svg>
+
+      <div className="pointer-events-none absolute -left-24 -top-8 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-20 top-1/3 h-72 w-72 rounded-full bg-primary/[0.08] blur-3xl" />
+      <div className="pointer-events-none absolute left-1/3 -bottom-8 h-72 w-72 rounded-full bg-accent/30 blur-3xl" />
+
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
       <SectionHeading index="01" title="About me" />
 
       <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
@@ -50,6 +63,7 @@ export function About() {
             </Reveal>
           ))}
         </div>
+      </div>
       </div>
     </section>
   )
