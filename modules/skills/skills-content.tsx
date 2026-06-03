@@ -1,50 +1,62 @@
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
-import { skillCategories, marqueeSkills } from "./lib/data/skills.data"
+import { marqueeSkills, skillCategories } from "./lib/data/skills.data"
+import { SkillIcon } from "./components/skill-icon"
+
 
 export function Skills() {
   return (
-    <section id="skills" className="relative overflow-hidden border-y border-border bg-secondary/60 diagonal-stripe-pattern py-24">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8 relative">
+    <section
+      id="skills"
+      className="relative overflow-hidden border-y border-border bg-secondary/30 diagonal-stripe-pattern py-24"
+    >
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading
           index="02"
           title="Technical skills"
-          subtitle="A toolkit refined across products and teams — chosen for reliability, not hype."
+          subtitle="A toolkit refined across products and teams — chosen for reliability, not hype. Hover any icon to see what it is."
         />
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-2">
           {skillCategories.map((cat, i) => (
             <Reveal key={cat.title} delay={i * 90}>
-              <div className="group h-full rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                  <cat.icon className="h-6 w-6" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground">{cat.title}</h3>
-                <ul className="mt-4 flex flex-wrap gap-2">
+              <article className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 sm:p-7">
+                {/* subtle glow that follows the card on hover */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-primary/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+                />
+
+                <header className="mb-6 flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-accent text-primary transition-colors duration-300 group-hover:border-primary/40">
+                    <cat.icon className="h-6 w-6" aria-hidden />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground">{cat.title}</h3>
+                    <p className="text-sm text-muted-foreground">{cat.tagline}</p>
+                  </div>
+                </header>
+
+                <ul className="grid grid-cols-3 gap-4 sm:grid-cols-6 lg:grid-cols-3 xl:grid-cols-6">
                   {cat.skills.map((skill) => (
-                    <li
-                      key={skill}
-                      className="rounded-full border border-border bg-secondary px-3 py-1 font-mono text-xs text-secondary-foreground"
-                    >
-                      {skill}
-                    </li>
+                    <SkillIcon key={skill.name} skill={skill} />
                   ))}
                 </ul>
-              </div>
+              </article>
             </Reveal>
           ))}
         </div>
       </div>
 
-      <div className="relative mt-16 flex overflow-hidden">
-        <div className="flex shrink-0 animate-marquee items-center gap-4 pr-4">
+      {/* Marquee strip of brand icons */}
+      <div className="group/marquee relative mt-16 flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+        <div className="flex shrink-0 animate-marquee items-center gap-10 pr-10">
           {[...marqueeSkills, ...marqueeSkills].map((item, i) => (
-            <span
-              key={`${item}-${i}`}
-              className="whitespace-nowrap font-mono text-2xl font-semibold text-muted-foreground/40"
-            >
-              {item}
-              <span className="px-4 text-primary/40">/</span>
+            <span key={`${item.name}-${i}`} className="flex items-center gap-3" title={item.name}>
+              <item.Icon className="h-7 w-7 text-muted-foreground/50" aria-hidden />
+              <span className="whitespace-nowrap font-mono text-sm font-medium text-muted-foreground/40">
+                {item.name}
+              </span>
             </span>
           ))}
         </div>
