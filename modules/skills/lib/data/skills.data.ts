@@ -36,6 +36,7 @@ import { SkillCategory } from "../types/skills.types";
 export const skillCategories: SkillCategory[] = [
   {
     icon: Layout,
+    color: "#3B82F6",
     title: "Frontend",
     tagline: "Interfaces that feel fast and effortless.",
     skills: [
@@ -151,6 +152,7 @@ Uso \`axe-core\`, Lighthouse y pruebas con lectores de pantalla (VoiceOver, NVDA
   },
   {
     icon: Server,
+    color: "#10B981",
     title: "Backend",
     tagline: "APIs and services built to scale.",
     skills: [
@@ -268,6 +270,7 @@ El Edge Runtime tiene un subset de APIs de Node.js. No todo lo que funciona en N
   },
   {
     icon: Database,
+    color: "#F59E0B",
     title: "Data & Infra",
     tagline: "Reliable storage and deployment.",
     skills: [
@@ -385,6 +388,7 @@ Manejo \`vercel.json\` para rewrites, headers de caché personalizados y configu
   },
   {
     icon: Wrench,
+    color: "#8B5CF6",
     title: "Tooling & Practices",
     tagline: "The craft behind shipping with confidence.",
     skills: [

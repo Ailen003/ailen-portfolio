@@ -35,7 +35,7 @@ export function SkillLevelIndicator({
             starSize,
             "transition-colors duration-150",
             i < stars
-              ? "fill-primary text-primary"
+              ? "fill-yellow-400 text-yellow-400"
               : "fill-transparent text-muted-foreground/30"
           )}
         />

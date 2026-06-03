@@ -33,7 +33,7 @@ export function SkillIcon({ skill }: SkillIconProps) {
           {/* Icon */}
           <div className="flex h-10 w-10 items-center justify-center">
             <Icon
-              className="h-6 w-6 grayscale transition-all duration-300 group-hover/sk:scale-110 group-hover/sk:grayscale-0 group-focus-within/sk:scale-110 group-focus-within/sk:grayscale-0"
+              className="h-6 w-6 transition-transform duration-300 group-hover/sk:scale-110 group-focus-within/sk:scale-110"
               style={{ color }}
               aria-hidden
             />

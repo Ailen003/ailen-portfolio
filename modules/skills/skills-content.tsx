@@ -55,8 +55,8 @@ export function Skills() {
         <div className="flex shrink-0 animate-marquee items-center gap-10 pr-10">
           {[...marqueeSkills, ...marqueeSkills].map((item, i) => (
             <span key={`${item.name}-${i}`} className="flex items-center gap-3" title={item.name}>
-              <item.Icon className="h-7 w-7 text-muted-foreground/50" aria-hidden />
-              <span className="whitespace-nowrap font-mono text-sm font-medium text-muted-foreground/40">
+              <item.Icon className="h-7 w-7" style={{ color: item.color }} aria-hidden />
+              <span className="whitespace-nowrap font-mono text-sm font-medium text-foreground/60">
                 {item.name}
               </span>
             </span>

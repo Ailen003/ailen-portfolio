@@ -37,6 +37,8 @@ export interface Skill {
 export interface SkillCategory {
   /** Lucide icon representing the category */
   icon: IconType
+  /** Accent color for the category icon and card glow (hex) */
+  color: string
   title: string
   /** Short tagline shown under the category title */
   tagline: string
