@@ -1,8 +1,66 @@
+"use client"
+
 import Image from "next/image"
 import { ArrowDownRight, FileText } from "lucide-react"
-import { heroSocials } from "./lib/data/hero.data"
+import { useEffect, useState } from "react"
+import { heroSocials, ROLES } from "./lib/data/hero.data"
+
+function useTypewriter(
+  words: string[],
+  typeSpeed = 80,
+  deleteSpeed = 40,
+  pause = 1400,
+  cycle = true,
+  startDelay = 0,
+) {
+  const [text, setText] = useState("")
+  const [wordIndex, setWordIndex] = useState(0)
+  const [deleting, setDeleting] = useState(false)
+  const [started, setStarted] = useState(false)
+  const [isTyping, setIsTyping] = useState(false)
+
+  useEffect(() => {
+    const startTimeout = setTimeout(() => {
+      setStarted(true)
+    }, startDelay)
+
+    return () => clearTimeout(startTimeout)
+  }, [startDelay])
+
+  useEffect(() => {
+    if (!started) return
+
+    const current = words[wordIndex % words.length]
+    let timeout: ReturnType<typeof setTimeout>
+
+    if (!deleting && text === current) {
+      setIsTyping(false)
+      if (cycle) {
+        timeout = setTimeout(() => setDeleting(true), pause)
+      }
+    } else if (deleting && text === "") {
+      setDeleting(false)
+      setWordIndex((i) => (i + 1) % words.length)
+    } else {
+      setIsTyping(true)
+      timeout = setTimeout(
+        () => {
+          setText((prev) =>
+            deleting ? current.substring(0, prev.length - 1) : current.substring(0, prev.length + 1),
+          )
+        },
+        deleting ? deleteSpeed : typeSpeed,
+      )
+    }
+    return () => clearTimeout(timeout)
+  }, [text, deleting, wordIndex, words, typeSpeed, deleteSpeed, pause, cycle, started])
+
+  return { text, isTyping }
+}
 
 export function Hero() {
+  const { text: role, isTyping: roleTyping } = useTypewriter(ROLES, 80, 40, 2000, true, 0)
+
   return (
     <section id="home" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 grid-pattern opacity-70" />
@@ -22,8 +80,12 @@ export function Hero() {
           <h1 className="text-balance text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
             Elena Vargas
           </h1>
-          <h2 className="mt-3 text-2xl font-semibold text-muted-foreground sm:text-3xl">
-            Senior Software Engineer
+          <h2
+            className="mt-3 text-2xl font-semibold text-muted-foreground sm:text-3xl"
+            style={{ minHeight: "1.5em" }}
+          >
+            {role}
+            <span className={`caret ${!roleTyping ? "blinking" : ""}`}>|</span>
           </h2>
 
           <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
