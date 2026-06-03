@@ -5,7 +5,7 @@ import { ContactFormContainer } from "./form/contact-form-container"
 
 export function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden border-t border-border bg-secondary/60 dot-pattern py-24">
+    <section id="contact" className="relative overflow-hidden border-t border-border bg-secondary/30 dot-pattern py-24">
       <div className="pointer-events-none absolute inset-0 radial-spotlight" />
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
