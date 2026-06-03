@@ -13,9 +13,6 @@ export function About() {
         <circle cx="400" cy="400" r="360" stroke="oklch(0.6 0.12 175)" strokeWidth="0.75" fill="none" />
       </svg>
 
-      <div className="pointer-events-none absolute -left-24 -top-8 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 top-1/3 h-72 w-72 rounded-full bg-primary/[0.08] blur-3xl" />
-      <div className="pointer-events-none absolute left-1/3 -bottom-8 h-72 w-72 rounded-full bg-accent/30 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
       <SectionHeading index="01" title="About me" />

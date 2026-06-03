@@ -6,7 +6,7 @@ export function Experience() {
   return (
     <section id="experience" className="relative overflow-hidden border-y border-border bg-secondary/50 crosshatch-pattern py-24">
       <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-linear-to-b from-transparent via-primary/30 to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-primary/8 blur-3xl" />
+
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading
           index="04"

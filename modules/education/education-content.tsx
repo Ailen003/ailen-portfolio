@@ -8,8 +8,7 @@ export function Education() {
     <section id="education" className="relative overflow-hidden py-24">
       <div className="pointer-events-none absolute inset-0 circuit-dot-pattern" />
       <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-accent/20 via-transparent to-transparent" />
-      <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 bottom-10 h-64 w-64 rounded-full bg-primary/8 blur-3xl" />
+
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
       <SectionHeading
