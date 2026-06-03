@@ -1,3 +1,5 @@
+"use client"
+
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
 import { marqueeSkills, skillCategories } from "./lib/data/skills.data"
@@ -14,7 +16,7 @@ export function Skills() {
         <SectionHeading
           index="02"
           title="Technical skills"
-          subtitle="A toolkit refined across products and teams — chosen for reliability, not hype. Hover any icon to see what it is."
+          subtitle="A toolkit refined across products and teams. Click any skill to see my experience in detail."
         />
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-2">
@@ -37,7 +39,7 @@ export function Skills() {
                   </div>
                 </header>
 
-                <ul className="grid grid-cols-3 gap-4 sm:grid-cols-6 lg:grid-cols-3 xl:grid-cols-6">
+                <ul className="grid grid-cols-3 gap-3">
                   {cat.skills.map((skill) => (
                     <SkillIcon key={skill.name} skill={skill} />
                   ))}
