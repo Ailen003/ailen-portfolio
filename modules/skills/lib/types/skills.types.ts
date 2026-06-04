@@ -22,6 +22,37 @@ export const SKILL_LEVEL_META: Record<SkillLevel, SkillLevelMeta> = {
 /** Total number of stars rendered for any skill */
 export const SKILL_MAX_STARS = 3
 
+/** Fine-grained technology category tags (a skill can have multiple) */
+export type SkillCategoryTag =
+  | "language"
+  | "framework"
+  | "library"
+  | "tool"
+  | "database"
+  | "cloud"
+  | "testing"
+  | "design"
+  | "practice"
+
+export interface SkillCategoryTagMeta {
+  /** Human-readable label for the tag */
+  label: string
+  /** Accent color for the tag badge */
+  color: string
+}
+
+export const SKILL_CATEGORY_TAG_META: Record<SkillCategoryTag, SkillCategoryTagMeta> = {
+  language:  { label: "Lenguaje",      color: "#F59E0B" },
+  framework: { label: "Framework",     color: "#3B82F6" },
+  library:   { label: "Librería",      color: "#8B5CF6" },
+  tool:      { label: "Herramienta",   color: "#10B981" },
+  database:  { label: "Base de datos", color: "#EF4444" },
+  cloud:     { label: "Cloud / Infra", color: "#06B6D4" },
+  testing:   { label: "Testing",       color: "#F472B6" },
+  design:    { label: "Diseño",        color: "#F97316" },
+  practice:  { label: "Práctica",      color: "#6366F1" },
+}
+
 export interface Skill {
   name: string
   /** Brand/logo icon for the technology */
@@ -32,6 +63,10 @@ export interface Skill {
   level: SkillLevel
   /** Detailed experience description, written in Markdown */
   description: string
+  /** Fine-grained category tags for filtering in the galaxy view */
+  categories: SkillCategoryTag[]
+  /** Origin group title, injected by getAllSkills() — not set in raw data */
+  group?: string
 }
 
 export interface SkillCategory {

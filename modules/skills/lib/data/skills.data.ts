@@ -57,6 +57,7 @@ Mi tecnología principal desde hace varios años. Trabajo con React a diario con
 
 ### Proyectos destacados
 He construido dashboards analíticos en tiempo real, sistemas de diseño completos y aplicaciones e-commerce con millones de usuarios, todo sobre React.`,
+        categories: ["framework", "library"],
       },
       {
         name: "Next.js",
@@ -75,6 +76,7 @@ Framework de elección para cualquier proyecto web serio. Llevo usando Next.js d
 
 ### Experiencia real
 Desde landing pages ultra-rápidas con 100/100 en Lighthouse hasta plataformas SaaS complejas con autenticación, multi-tenancy y dashboards de datos en tiempo real.`,
+        categories: ["framework"],
       },
       {
         name: "TypeScript",
@@ -93,6 +95,7 @@ No concibo arrancar un proyecto nuevo sin TypeScript. Lo uso en todos mis proyec
 
 ### Por qué lo valoro
 TypeScript me ha salvado incontables horas de debugging. Los errores aparecen en el editor, no en producción a las 3am.`,
+        categories: ["language"],
       },
       {
         name: "Tailwind CSS",
@@ -111,6 +114,7 @@ Mi herramienta de estilos preferida. Desde Tailwind v2 hasta v4, he visto evoluc
 
 ### Ventaja clave
 La colocación de estilos junto al markup elimina el cambio de contexto y hace que el código sea más legible y mantenible.`,
+        categories: ["library", "design"],
       },
       {
         name: "Framer Motion",
@@ -129,6 +133,7 @@ Biblioteca que uso para añadir animaciones de calidad a mis interfaces sin sacr
 
 ### Filosofía
 Uso animaciones con intención: deben comunicar algo, no solo decorar. Siempre respeto \`prefers-reduced-motion\`.`,
+        categories: ["library"],
       },
       {
         name: "Accessibility",
@@ -147,6 +152,7 @@ La accesibilidad no es una feature adicional, es parte de hacer bien el trabajo.
 
 ### Herramientas
 Uso \`axe-core\`, Lighthouse y pruebas con lectores de pantalla (VoiceOver, NVDA) para validar.`,
+        categories: ["practice", "design"],
       },
     ],
   },
@@ -173,6 +179,7 @@ Mi runtime de servidor principal. He construido desde scripts de automatización
 
 ### Buenas prácticas
 Diseño mis servicios con manejo de errores estructurado, logging con \`pino\`, y validación de input en cada capa.`,
+        categories: ["framework"],
       },
       {
         name: "Go",
@@ -190,6 +197,7 @@ Lenguaje que he explorado para microservicios de alto rendimiento donde Node.js 
 
 ### Aprendizaje en curso
 Sigo profundizando en los patrones de concurrencia de Go (channels, select, context cancellation) y en el ecosistema de testing nativo.`,
+        categories: ["language"],
       },
       {
         name: "GraphQL",
@@ -211,6 +219,7 @@ He trabajado con GraphQL tanto del lado del servidor como del cliente, en proyec
 
 ### Cuándo lo elijo
 GraphQL brilla cuando múltiples clientes (web, móvil) necesitan datos distintos del mismo backend.`,
+        categories: ["tool", "practice"],
       },
       {
         name: "REST APIs",
@@ -229,6 +238,7 @@ El diseño de APIs REST es algo en lo que pongo especial atención: que sean int
 
 ### Documentación
 Uso OpenAPI/Swagger para documentar contratos de API, con validación automática de requests vía Zod.`,
+        categories: ["practice"],
       },
       {
         name: "tRPC",
@@ -247,6 +257,7 @@ Una de mis tecnologías favoritas de los últimos años. Elimina la fricción en
 
 ### Por qué lo recomiendo
 Con tRPC, un cambio de firma en el backend produce un error de TypeScript en el frontend al instante. No más contratos rotos en runtime.`,
+        categories: ["library", "tool"],
       },
       {
         name: "Edge Functions",
@@ -265,6 +276,7 @@ Compute distribuido que corre cerca del usuario. Lo uso para reducir latencia en
 
 ### Limitaciones a tener en cuenta
 El Edge Runtime tiene un subset de APIs de Node.js. No todo lo que funciona en Node.js funciona en Edge.`,
+        categories: ["cloud", "practice"],
       },
     ],
   },
@@ -291,6 +303,7 @@ Mi base de datos relacional de referencia. Elijo Postgres casi siempre por su fi
 
 ### Extensiones favoritas
 \`pgvector\` para búsqueda semántica, \`PostGIS\` para datos geoespaciales, \`pg_cron\` para tareas programadas.`,
+        categories: ["database"],
       },
       {
         name: "Redis",
@@ -309,6 +322,7 @@ Lo uso como capa de caché y como broker de mensajes en arquitecturas donde la l
 
 ### Servicios usados
 Upstash Redis (serverless), Redis Cloud y Redis local vía Docker en desarrollo.`,
+        categories: ["database", "tool"],
       },
       {
         name: "Prisma",
@@ -329,6 +343,7 @@ ORM que ha transformado cómo trabajo con bases de datos. La combinación de sch
 - **Middleware** de Prisma para logging, soft-deletes y auditoría.
 - **Raw queries** con \`$queryRawUnsafe\` cuando el query planner necesita una pista.
 - Integración con Zod via \`zod-prisma-types\` para validación automática.`,
+        categories: ["library", "tool"],
       },
       {
         name: "Docker",
@@ -346,6 +361,7 @@ Herramienta indispensable para tener entornos de desarrollo reproducibles y para
 
 ### En producción
 He desplegado contenedores en ECS (Fargate), Railway y Fly.io. La consistencia entre entornos que ofrece Docker es su mayor valor.`,
+        categories: ["tool", "cloud"],
       },
       {
         name: "AWS",
@@ -365,6 +381,7 @@ He trabajado con los servicios de AWS más comunes en proyectos de mediana escal
 
 ### Herramientas
 AWS CDK para infraestructura como código, y AWS Console para monitoreo y troubleshooting.`,
+        categories: ["cloud"],
       },
       {
         name: "Vercel",
@@ -383,6 +400,7 @@ Mi plataforma de despliegue preferida para proyectos Next.js. La integración es
 
 ### Configuración avanzada
 Manejo \`vercel.json\` para rewrites, headers de caché personalizados y configuración de funciones por región.`,
+        categories: ["cloud", "tool"],
       },
     ],
   },
@@ -409,6 +427,7 @@ Más allá de \`commit\`, \`push\` y \`pull\`. Git es una herramienta de comunic
 
 ### Flujos de trabajo
 He trabajado con GitHub Flow (deployments continuos) y variantes de Gitflow (releases versionados) según el contexto del proyecto.`,
+        categories: ["tool", "practice"],
       },
       {
         name: "CI/CD",
@@ -427,6 +446,7 @@ Pipelines de integración y despliegue continuo que garantizan que el código qu
 
 ### Plataformas
 Principalmente **GitHub Actions**, también he usado GitLab CI y CircleCI. Conozco las mejores prácticas de seguridad: secretos en vault, permisos mínimos en tokens.`,
+        categories: ["tool", "practice"],
       },
       {
         name: "Vitest",
@@ -444,6 +464,7 @@ Mi framework de testing para proyectos modernos con Vite/Next.js. Extremadamente
 
 ### Filosofía de testing
 No persigo el 100% de cobertura ciegamente. Me enfoco en testear comportamiento observable, no implementación interna.`,
+        categories: ["testing", "tool"],
       },
       {
         name: "Playwright",
@@ -461,6 +482,7 @@ Framework de testing end-to-end que uso para validar los flujos críticos de usu
 
 ### Integración en CI
 Los tests de Playwright corren en GitHub Actions en paralelo, con artifacts de screenshots y videos cuando fallan para facilitar el debugging.`,
+        categories: ["testing", "tool"],
       },
       {
         name: "Design Systems",
@@ -479,6 +501,7 @@ He construido y mantenido sistemas de diseño desde cero, así como he integrado
 
 ### Valor real
 Un buen design system multiplica la velocidad del equipo y garantiza consistencia visual sin esfuerzo extra.`,
+        categories: ["design", "practice"],
       },
       {
         name: "Observability",
@@ -496,10 +519,17 @@ La diferencia entre saber que algo está roto cuando el usuario llama, y saberlo
 
 ### Alertas
 Configuro alertas con umbrales sensatos (no demasiado ruidosas, no demasiado silenciosas) para los SLOs más críticos del servicio.`,
+        categories: ["practice", "tool"],
       },
     ],
   },
 ]
+
+export function getAllSkills(): (typeof skillCategories[number]["skills"][number] & { group: string })[] {
+  return skillCategories.flatMap((cat) =>
+    cat.skills.map((skill) => ({ ...skill, group: cat.title }))
+  )
+}
 
 export const marqueeSkills: { name: string; Icon: SkillCategory["skills"][number]["Icon"]; color: string }[] = [
   { name: "TypeScript", Icon: SiTypescript, color: "#3178C6" },
