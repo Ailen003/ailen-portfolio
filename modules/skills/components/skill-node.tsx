@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import {
   motion,
   useMotionValue,
@@ -10,25 +10,22 @@ import {
 } from "framer-motion"
 import { SKILL_LEVEL_META, type Skill } from "../lib/types/skills.types"
 
-const LEVEL_CONFIG = {
-  expert:       { size: 64, iconSize: "h-7 w-7", glow: 32 },
-  intermediate: { size: 52, iconSize: "h-6 w-6", glow: 22 },
-  basic:        { size: 42, iconSize: "h-5 w-5", glow: 14 },
-} as const
+const NODE_SIZE = 52
+const HALF = NODE_SIZE / 2
 
 interface SkillNodeProps {
   skill: Skill & { group: string }
-  xPct: number
-  yPct: number
-  index: number
+  orbitCx: number
+  orbitCy: number
+  orbitRx: number
+  orbitRy: number
+  baseAngle: number
+  orbitAngle: MotionValue<number>
   mouseX: MotionValue<number>
   mouseY: MotionValue<number>
-  containerWidth: number
-  containerHeight: number
   isDimmed: boolean
   isHovered: boolean
   isAnyHovered: boolean
-  prefersReduced: boolean
   onHover: () => void
   onHoverEnd: () => void
   onSelect: () => void
@@ -36,45 +33,39 @@ interface SkillNodeProps {
 
 export function SkillNode({
   skill,
-  xPct,
-  yPct,
-  index,
+  orbitCx,
+  orbitCy,
+  orbitRx,
+  orbitRy,
+  baseAngle,
+  orbitAngle,
   mouseX,
   mouseY,
-  containerWidth,
-  containerHeight,
   isDimmed,
   isHovered,
   isAnyHovered,
-  prefersReduced,
   onHover,
   onHoverEnd,
   onSelect,
 }: SkillNodeProps) {
   const { name, Icon, color, level } = skill
-  const cfg = LEVEL_CONFIG[level]
 
-  // ─── Drift ──────────────────────────────────────────────────────────────────
-  const driftX = useMotionValue(0)
-  const driftY = useMotionValue(0)
-
+  // ─── Orbital position ────────────────────────────────────────────────────────
+  // Keep orbit params in a ref so the transform closure always reads the latest
+  // values even after a canvas resize triggers a re-render.
+  const orbitRef = useRef({ cx: orbitCx, cy: orbitCy, rx: orbitRx, ry: orbitRy, base: baseAngle })
   useEffect(() => {
-    if (prefersReduced || containerWidth === 0) return
-    let frameId: number
-    let tick = index * 47
-    const speed = 0.00040 + (index % 7) * 0.00010
-    const phase = (index * 137.508 * Math.PI) / 180
-    const amp = 3 + (index % 4) * 2
+    orbitRef.current = { cx: orbitCx, cy: orbitCy, rx: orbitRx, ry: orbitRy, base: baseAngle }
+  }, [orbitCx, orbitCy, orbitRx, orbitRy, baseAngle])
 
-    const loop = () => {
-      tick++
-      driftX.set(Math.sin(tick * speed + phase) * amp)
-      driftY.set(Math.cos(tick * speed * 0.71 + phase + 1.1) * amp)
-      frameId = requestAnimationFrame(loop)
-    }
-    frameId = requestAnimationFrame(loop)
-    return () => cancelAnimationFrame(frameId)
-  }, [driftX, driftY, index, prefersReduced, containerWidth])
+  const nodeX = useTransform(orbitAngle, (a) => {
+    const { cx, rx, base } = orbitRef.current
+    return cx + Math.cos(base + a) * rx
+  })
+  const nodeY = useTransform(orbitAngle, (a) => {
+    const { cy, ry, base } = orbitRef.current
+    return cy + Math.sin(base + a) * ry
+  })
 
   // ─── Gravity ─────────────────────────────────────────────────────────────────
   const rawGX = useMotionValue(0)
@@ -83,15 +74,14 @@ export function SkillNode({
   const gY = useSpring(rawGY, { stiffness: 52, damping: 22, mass: 0.55 })
 
   useEffect(() => {
-    if (containerWidth === 0) return
     const unsub = mouseX.on("change", (mx) => {
-      if (!isFinite(mx) || mx > containerWidth * 2) {
+      if (!isFinite(mx)) {
         rawGX.set(0)
         rawGY.set(0)
         return
       }
-      const nx = xPct * containerWidth
-      const ny = yPct * containerHeight
+      const nx = nodeX.get()
+      const ny = nodeY.get()
       const my = mouseY.get()
       const dx = mx - nx
       const dy = my - ny
@@ -109,16 +99,16 @@ export function SkillNode({
       }
     })
     return unsub
-  }, [xPct, yPct, containerWidth, containerHeight, mouseX, mouseY, rawGX, rawGY])
+  }, [mouseX, mouseY, rawGX, rawGY, nodeX, nodeY])
 
-  // ─── Combine drift + gravity ──────────────────────────────────────────────────
-  const combinedX = useTransform(
-    [driftX, gX] as MotionValue<number>[],
-    ([d, g]: number[]) => d + g
+  // ─── Final position: top-left corner of node (center + gravity − half-size) ──
+  const finalLeft = useTransform(
+    [nodeX, gX] as MotionValue<number>[],
+    ([n, g]: number[]) => n + g - HALF
   )
-  const combinedY = useTransform(
-    [driftY, gY] as MotionValue<number>[],
-    ([d, g]: number[]) => d + g
+  const finalTop = useTransform(
+    [nodeY, gY] as MotionValue<number>[],
+    ([n, g]: number[]) => n + g - HALF
   )
 
   const targetOpacity = isDimmed
@@ -128,20 +118,17 @@ export function SkillNode({
     : 1
 
   return (
-    <div
+    <motion.div
       className="absolute pointer-events-none"
       style={{
-        left: `${xPct * 100}%`,
-        top: `${yPct * 100}%`,
-        transform: "translate(-50%, -50%)",
+        left: finalLeft,
+        top: finalTop,
+        width: NODE_SIZE,
+        height: NODE_SIZE,
         zIndex: isHovered ? 30 : 1,
       }}
     >
-      {/* Drift + gravity layer */}
-      <motion.div
-        className="pointer-events-auto"
-        style={{ x: combinedX, y: combinedY }}
-      >
+      <div className="pointer-events-auto relative w-full h-full">
         {/* Ambient glow bloom — expands on hover */}
         <motion.div
           className="absolute inset-0 rounded-2xl pointer-events-none"
@@ -171,20 +158,20 @@ export function SkillNode({
           transition={{ duration: 0.2, ease: "easeOut" }}
           className="relative flex items-center justify-center rounded-2xl border border-border bg-secondary/80 outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-ring"
           style={{
-            width: cfg.size,
-            height: cfg.size,
+            width: NODE_SIZE,
+            height: NODE_SIZE,
             boxShadow: isHovered
-              ? `0 0 ${cfg.glow}px ${color}80, 0 0 ${cfg.glow * 2}px ${color}25`
-              : `0 0 ${cfg.glow / 3}px ${color}35`,
+              ? `0 0 28px ${color}80, 0 0 56px ${color}25`
+              : `0 0 10px ${color}35`,
           }}
         >
           <Icon
-            className={cfg.iconSize}
+            className="h-6 w-6"
             style={{ color }}
             aria-hidden
           />
         </motion.button>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   )
 }

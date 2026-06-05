@@ -7,50 +7,20 @@ import { SkillNode } from "./skill-node"
 import { SkillModal } from "./skill-modal"
 import type { SkillCategoryTag } from "../lib/types/skills.types"
 
-// ─── Collision-free grid layout ────────────────────────────────────────────
-// Splits the canvas into a dynamic hex-staggered grid based on actual px width.
-// Each cell is sized so the largest node (64px) + drift (±7px) + gap never overlaps.
-function computeLayout(w: number, h: number, count: number) {
-  const CANVAS_W = Math.max(w, 640)   // enforce minimum canvas width
-  const CANVAS_H = h > 0 ? h : 520
-
-  const CELL_MIN_W = 118   // px: node 64 + 2×drift 7 + 2×gap 20
-  const CELL_MIN_H = 100   // px: node 64 + 2×drift 7 + 2×gap 11
-
-  const cols = Math.max(4, Math.floor(CANVAS_W / CELL_MIN_W))
-  const rows = Math.ceil(count / cols)
-
-  const xPad = 0.05
-  const yPad = Math.max(0.07, (1 - (CELL_MIN_H * rows) / CANVAS_H) / 2)
-  const cellW = (1 - 2 * xPad) / cols
-  const cellH = (1 - 2 * yPad) / rows
-
-  return Array.from({ length: count }, (_, i) => {
-    const col = i % cols
-    const row = Math.floor(i / cols)
-    // Hex stagger: odd rows shift right by half a cell (skip last col to stay in bounds)
-    const stagger = row % 2 === 1 && col < cols - 1 ? cellW * 0.5 : 0
-
-    const baseX = xPad + cellW * (col + 0.5) + stagger
-    const baseY = yPad + cellH * (row + 0.5)
-
-    // Tiny deterministic jitter ±5% of cell — keeps nodes visually organic
-    const jX = (((i * 73 + 31) % 100) / 100 - 0.5) * cellW * 0.10
-    const jY = (((i * 53 + 17) % 100) / 100 - 0.5) * cellH * 0.10
-
-    return {
-      xPct: Math.max(0.03, Math.min(0.97, baseX + jX)),
-      yPct: Math.max(0.04, Math.min(0.96, baseY + jY)),
-    }
-  })
-}
-
-// Decorative concentric orbit rings (SVG, purely visual)
-const ORBIT_RINGS = [
-  { rx: "18%", ry: "16%", opacity: 0.06 },
-  { rx: "31%", ry: "27%", opacity: 0.05 },
-  { rx: "44%", ry: "38%", opacity: 0.04 },
-  { rx: "58%", ry: "49%", opacity: 0.03 },
+// ─── Concentric orbit ring configuration ────────────────────────────────────
+// One ring per skill group (4 groups × 6 skills = 24 nodes total).
+// rxPct/ryPct are fractions of canvas width/height respectively.
+const RING_CONFIG: Array<{
+  group: string
+  rxPct: number
+  ryPct: number
+  speed: number  // seconds per full revolution
+  cw: boolean    // clockwise direction
+}> = [
+  { group: "Frontend",            rxPct: 0.148, ryPct: 0.150, speed: 28, cw: true  },
+  { group: "Backend",             rxPct: 0.250, ryPct: 0.252, speed: 42, cw: false },
+  { group: "Data & Infra",        rxPct: 0.352, ryPct: 0.352, speed: 58, cw: true  },
+  { group: "Tooling & Practices", rxPct: 0.448, ryPct: 0.447, speed: 72, cw: false },
 ]
 
 interface SkillsGalaxyProps {
@@ -58,22 +28,21 @@ interface SkillsGalaxyProps {
 }
 
 export function SkillsGalaxy({ activeFilters }: SkillsGalaxyProps) {
-  const wrapperRef = useRef<HTMLDivElement>(null)
-  const canvasRef  = useRef<HTMLDivElement>(null)
+  const canvasRef = useRef<HTMLDivElement>(null)
   const [dims, setDims] = useState({ w: 0, h: 0 })
   const prefersReduced = useReducedMotion() ?? false
 
   const mouseX = useMotionValue(Infinity)
   const mouseY = useMotionValue(Infinity)
 
-  const allSkills = getAllSkills()
+  const allSkills = useMemo(() => getAllSkills(), [])
   type GalaxySkill = ReturnType<typeof getAllSkills>[number]
   const [selectedSkill, setSelectedSkill] = useState<GalaxySkill | null>(null)
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [hoveredSkillName, setHoveredSkillName] = useState<string | null>(null)
 
   const isFiltered = activeFilters.length > 0
 
-  // Measure the scrollable inner canvas (not the outer wrapper)
+  // Measure canvas
   useEffect(() => {
     const el = canvasRef.current
     if (!el) return
@@ -84,19 +53,52 @@ export function SkillsGalaxy({ activeFilters }: SkillsGalaxyProps) {
     return () => obs.disconnect()
   }, [])
 
-  // Recompute positions only when canvas size changes
-  const positions = useMemo(
-    () => computeLayout(dims.w, dims.h, allSkills.length),
-    [dims.w, dims.h, allSkills.length]
+  // Group skills by group name (preserves order from skillCategories)
+  const skillsByGroup = useMemo(() => {
+    const map = new Map<string, GalaxySkill[]>()
+    for (const skill of allSkills) {
+      if (!map.has(skill.group)) map.set(skill.group, [])
+      map.get(skill.group)!.push(skill)
+    }
+    return map
+  }, [allSkills])
+
+  // One rotation angle MotionValue per ring — updated each rAF frame
+  const angle0 = useMotionValue(0)
+  const angle1 = useMotionValue(0)
+  const angle2 = useMotionValue(0)
+  const angle3 = useMotionValue(0)
+  const ringAngles = useMemo(
+    () => [angle0, angle1, angle2, angle3],
+    [angle0, angle1, angle2, angle3]
   )
+
+  // Animation loop — drives all 4 orbit rings, respects reduced-motion
+  useEffect(() => {
+    if (prefersReduced) return
+    let frameId: number
+    let startTime: number | null = null
+
+    const loop = (time: number) => {
+      if (startTime === null) startTime = time
+      const elapsed = (time - startTime) / 1000
+      RING_CONFIG.forEach((cfg, i) => {
+        const dir = cfg.cw ? 1 : -1
+        ringAngles[i].set(dir * elapsed * ((2 * Math.PI) / cfg.speed))
+      })
+      frameId = requestAnimationFrame(loop)
+    }
+    frameId = requestAnimationFrame(loop)
+    return () => cancelAnimationFrame(frameId)
+  }, [prefersReduced, ringAngles])
 
   return (
     <>
       {/* Outer wrapper: clips + enables horizontal scroll on narrow screens */}
-      <div ref={wrapperRef} className="w-full overflow-x-auto rounded-3xl">
+      <div className="w-full overflow-x-auto rounded-3xl">
         <div
           ref={canvasRef}
-          className="relative h-[520px] min-w-[640px] w-full select-none rounded-3xl border border-border"
+          className="relative h-[600px] min-w-[640px] w-full select-none rounded-3xl border border-border"
           style={{ background: "hsl(var(--card))" }}
           onPointerMove={(e) => {
             const rect = canvasRef.current?.getBoundingClientRect()
@@ -119,58 +121,69 @@ export function SkillsGalaxy({ activeFilters }: SkillsGalaxyProps) {
             }}
           />
 
-          {/* ── Decorative orbit rings ──────────────────────────────────── */}
-          <svg
-            className="pointer-events-none absolute inset-0 h-full w-full"
-            aria-hidden
-          >
-            {ORBIT_RINGS.map((ring, i) => (
-              <ellipse
-                key={i}
-                cx="50%"
-                cy="50%"
-                rx={ring.rx}
-                ry={ring.ry}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1"
-                opacity={ring.opacity}
-              />
-            ))}
-          </svg>
+          {/* ── Decorative orbit ellipses — aligned with actual ring radii ── */}
+          {dims.w > 0 && (
+            <svg
+              className="pointer-events-none absolute inset-0 h-full w-full"
+              aria-hidden
+            >
+              {RING_CONFIG.map((cfg, i) => (
+                <ellipse
+                  key={i}
+                  cx={dims.w / 2}
+                  cy={dims.h / 2}
+                  rx={dims.w * cfg.rxPct}
+                  ry={dims.h * cfg.ryPct}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  opacity={0.07 - i * 0.01}
+                />
+              ))}
+            </svg>
+          )}
 
           {/* ── Skill nodes ─────────────────────────────────────────────── */}
-          {allSkills.map((skill, i) => {
-            const pos = positions[i] ?? { xPct: 0.5, yPct: 0.5 }
-            const isDimmed =
-              isFiltered && !skill.categories.some((c) => activeFilters.includes(c))
+          {dims.w > 0 && RING_CONFIG.map((cfg, ringIdx) => {
+            const group = skillsByGroup.get(cfg.group) ?? []
+            const cx = dims.w / 2
+            const cy = dims.h / 2
+            const rx = dims.w * cfg.rxPct
+            const ry = dims.h * cfg.ryPct
 
-            return (
-              <SkillNode
-                key={skill.name}
-                skill={skill}
-                xPct={pos.xPct}
-                yPct={pos.yPct}
-                index={i}
-                mouseX={mouseX}
-                mouseY={mouseY}
-                containerWidth={dims.w}
-                containerHeight={dims.h}
-                isDimmed={isDimmed}
-                isHovered={hoveredIndex === i}
-                isAnyHovered={hoveredIndex !== null}
-                prefersReduced={prefersReduced}
-                onHover={() => setHoveredIndex(i)}
-                onHoverEnd={() => setHoveredIndex(null)}
-                onSelect={() => setSelectedSkill(skill)}
-              />
-            )
+            return group.map((skill, j) => {
+              const baseAngle = (j / group.length) * 2 * Math.PI
+              const isDimmed =
+                isFiltered && !skill.categories.some((c) => activeFilters.includes(c))
+
+              return (
+                <SkillNode
+                  key={skill.name}
+                  skill={skill}
+                  orbitCx={cx}
+                  orbitCy={cy}
+                  orbitRx={rx}
+                  orbitRy={ry}
+                  baseAngle={baseAngle}
+                  orbitAngle={ringAngles[ringIdx]}
+                  mouseX={mouseX}
+                  mouseY={mouseY}
+                  isDimmed={isDimmed}
+                  isHovered={hoveredSkillName === skill.name}
+                  isAnyHovered={hoveredSkillName !== null}
+                  onHover={() => setHoveredSkillName(skill.name)}
+                  onHoverEnd={() => setHoveredSkillName(null)}
+                  onSelect={() => setSelectedSkill(skill)}
+                />
+              )
+            })
           })}
 
           {/* ── Hover info bar ──────────────────────────────────────────── */}
           <AnimatePresence>
-            {hoveredIndex !== null && (() => {
-              const s = allSkills[hoveredIndex]
+            {hoveredSkillName !== null && (() => {
+              const s = allSkills.find((sk) => sk.name === hoveredSkillName)
+              if (!s) return null
               return (
                 <motion.div
                   key={s.name}
@@ -189,7 +202,7 @@ export function SkillsGalaxy({ activeFilters }: SkillsGalaxyProps) {
 
           {/* ── Interaction hint ────────────────────────────────────────── */}
           <AnimatePresence>
-            {hoveredIndex === null && (
+            {hoveredSkillName === null && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
