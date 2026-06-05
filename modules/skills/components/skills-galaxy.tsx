@@ -211,7 +211,7 @@ export function SkillsGalaxy({ activeFilters }: SkillsGalaxyProps) {
                 className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2"
               >
                 <span className="font-mono text-[10px] tracking-wide text-muted-foreground/40">
-                  Mueve el cursor · Toca para explorar
+                  Move cursor · Tap to explore
                 </span>
               </motion.div>
             )}

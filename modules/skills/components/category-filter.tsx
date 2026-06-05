@@ -36,7 +36,7 @@ export function CategoryFilter({
             : "border-border bg-secondary/30 text-muted-foreground hover:border-border hover:text-foreground"
         )}
       >
-        Todas
+All
         {hasFilters && <X className="h-3 w-3 opacity-70" />}
       </button>
 

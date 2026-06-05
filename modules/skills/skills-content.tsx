@@ -41,15 +41,15 @@ export function Skills() {
                 className="flex items-center gap-1.5 rounded-lg px-3 text-sm data-[state=active]:font-semibold"
               >
                 <LayoutGrid className="h-4 w-4" />
-                <span className="hidden sm:inline">Por categorías</span>
-                <span className="sm:hidden">Categorías</span>
+                <span className="hidden sm:inline">By categories</span>
+                <span className="sm:hidden">Categories</span>
               </TabsTrigger>
               <TabsTrigger
                 value="galaxy"
                 className="flex items-center gap-1.5 rounded-lg px-3 text-sm data-[state=active]:font-semibold"
               >
                 <Sparkles className="h-4 w-4" />
-                Órbita
+Orbit
               </TabsTrigger>
             </TabsList>
           </div>

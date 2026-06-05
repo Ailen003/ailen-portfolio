@@ -14,9 +14,9 @@ export interface SkillLevelMeta {
 
 /** Maps each level to its display label + star count */
 export const SKILL_LEVEL_META: Record<SkillLevel, SkillLevelMeta> = {
-  basic: { label: "Básico", stars: 1 },
-  intermediate: { label: "Intermedio", stars: 2 },
-  expert: { label: "Experto", stars: 3 },
+  basic: { label: "Basic", stars: 1 },
+  intermediate: { label: "Intermediate", stars: 2 },
+  expert: { label: "Expert", stars: 3 },
 }
 
 /** Total number of stars rendered for any skill */
@@ -42,15 +42,15 @@ export interface SkillCategoryTagMeta {
 }
 
 export const SKILL_CATEGORY_TAG_META: Record<SkillCategoryTag, SkillCategoryTagMeta> = {
-  language:  { label: "Lenguaje",      color: "#F59E0B" },
+  language:  { label: "Language",      color: "#F59E0B" },
   framework: { label: "Framework",     color: "#3B82F6" },
-  library:   { label: "Librería",      color: "#8B5CF6" },
-  tool:      { label: "Herramienta",   color: "#10B981" },
-  database:  { label: "Base de datos", color: "#EF4444" },
+  library:   { label: "Library",       color: "#8B5CF6" },
+  tool:      { label: "Tool",          color: "#10B981" },
+  database:  { label: "Database",      color: "#EF4444" },
   cloud:     { label: "Cloud / Infra", color: "#06B6D4" },
   testing:   { label: "Testing",       color: "#F472B6" },
-  design:    { label: "Diseño",        color: "#F97316" },
-  practice:  { label: "Práctica",      color: "#6366F1" },
+  design:    { label: "Design",        color: "#F97316" },
+  practice:  { label: "Practice",      color: "#6366F1" },
 }
 
 export interface Skill {

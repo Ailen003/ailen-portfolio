@@ -25,7 +25,7 @@ export function SkillLevelIndicator({
   return (
     <span
       className={cn("flex items-center gap-1", className)}
-      aria-label={`Nivel: ${label}`}
+      aria-label={`Level: ${label}`}
     >
       {Array.from({ length: SKILL_MAX_STARS }, (_, i) => (
         <Star

@@ -27,7 +27,7 @@ export function SkillIcon({ skill }: SkillIconProps) {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          aria-label={`Ver detalles de ${name}`}
+          aria-label={`View details of ${name}`}
           className="relative flex w-full flex-col items-center gap-2 rounded-2xl border border-border bg-secondary/40 p-3 outline-none transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:bg-secondary hover:shadow-md focus-visible:-translate-y-1 focus-visible:ring-2 focus-visible:ring-ring"
         >
           {/* Icon */}

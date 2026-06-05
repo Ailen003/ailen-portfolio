@@ -47,16 +47,16 @@ export const skillCategories: SkillCategory[] = [
         level: "expert",
         description: `## React
 
-Mi tecnología principal desde hace varios años. Trabajo con React a diario construyendo aplicaciones de producción de mediana y gran escala.
+My primary technology for several years. I work with React daily building medium and large-scale production applications.
 
-### Lo que domino
-- **Hooks avanzados**: \`useReducer\`, \`useContext\`, \`useTransition\`, \`useDeferredValue\`, y hooks personalizados complejos.
-- **Patrones de composición**: render props, compound components, controlled/uncontrolled components.
-- **Optimización de rendimiento**: \`React.memo\`, \`useMemo\`, \`useCallback\`, code splitting con \`Suspense\` y \`lazy\`.
-- **Server Components** (React 19) y el nuevo modelo de renderizado concurrente.
+### What I master
+- **Advanced hooks**: \`useReducer\`, \`useContext\`, \`useTransition\`, \`useDeferredValue\`, and complex custom hooks.
+- **Composition patterns**: render props, compound components, controlled/uncontrolled components.
+- **Performance optimization**: \`React.memo\`, \`useMemo\`, \`useCallback\`, code splitting with \`Suspense\` and \`lazy\`.
+- **Server Components** (React 19) and the new concurrent rendering model.
 
-### Proyectos destacados
-He construido dashboards analíticos en tiempo real, sistemas de diseño completos y aplicaciones e-commerce con millones de usuarios, todo sobre React.`,
+### Featured projects
+I've built real-time analytical dashboards, complete design systems, and e-commerce applications with millions of users, all on React.`,
         categories: ["framework", "library"],
       },
       {
@@ -66,16 +66,16 @@ He construido dashboards analíticos en tiempo real, sistemas de diseño complet
         level: "expert",
         description: `## Next.js
 
-Framework de elección para cualquier proyecto web serio. Llevo usando Next.js desde la versión 12 y he migrado proyectos a través de cada versión mayor.
+Framework of choice for any serious web project. I've been using Next.js since version 12 and have migrated projects through each major version.
 
-### Áreas de dominio
-- **App Router**: layouts anidados, route groups, Server vs Client Components.
-- **Rendering strategies**: SSG, SSR, ISR y Partial Pre-rendering (PPR).
-- **Optimizaciones integradas**: \`next/image\`, \`next/font\`, metadata API.
-- **Middleware** y Edge Runtime para autenticación y A/B testing.
+### Areas of expertise
+- **App Router**: nested layouts, route groups, Server vs Client Components.
+- **Rendering strategies**: SSG, SSR, ISR and Partial Pre-rendering (PPR).
+- **Built-in optimizations**: \`next/image\`, \`next/font\`, metadata API.
+- **Middleware** and Edge Runtime for authentication and A/B testing.
 
-### Experiencia real
-Desde landing pages ultra-rápidas con 100/100 en Lighthouse hasta plataformas SaaS complejas con autenticación, multi-tenancy y dashboards de datos en tiempo real.`,
+### Real experience
+From ultra-fast landing pages with 100/100 Lighthouse scores to complex SaaS platforms with authentication, multi-tenancy, and real-time data dashboards.`,
         categories: ["framework"],
       },
       {
@@ -85,16 +85,16 @@ Desde landing pages ultra-rápidas con 100/100 en Lighthouse hasta plataformas S
         level: "expert",
         description: `## TypeScript
 
-No concibo arrancar un proyecto nuevo sin TypeScript. Lo uso en todos mis proyectos, tanto en frontend como en backend.
+I can't imagine starting a new project without TypeScript. I use it in all my projects, both frontend and backend.
 
-### Lo que aporto
-- **Tipado avanzado**: generics, conditional types, mapped types, template literal types.
-- **Type inference** que reduce boilerplate sin perder seguridad.
-- **Integración** con Zod, tRPC y Prisma para un type-safety end-to-end sin fricción.
-- Configuración estricta de \`tsconfig\` adaptada a cada proyecto.
+### What I bring
+- **Advanced typing**: generics, conditional types, mapped types, template literal types.
+- **Type inference** that reduces boilerplate without losing safety.
+- **Integration** with Zod, tRPC and Prisma for frictionless end-to-end type-safety.
+- Strict \`tsconfig\` configuration tailored to each project.
 
-### Por qué lo valoro
-TypeScript me ha salvado incontables horas de debugging. Los errores aparecen en el editor, no en producción a las 3am.`,
+### Why I value it
+TypeScript has saved me countless hours of debugging. Errors appear in the editor, not in production at 3am.`,
         categories: ["language"],
       },
       {
@@ -104,16 +104,16 @@ TypeScript me ha salvado incontables horas de debugging. Los errores aparecen en
         level: "expert",
         description: `## Tailwind CSS
 
-Mi herramienta de estilos preferida. Desde Tailwind v2 hasta v4, he visto evolucionar el framework y he adoptado sus mejoras en cada iteración.
+My preferred styling tool. From Tailwind v2 to v4, I've seen the framework evolve and adopted its improvements in each iteration.
 
-### Cómo lo uso
-- **Design tokens** personalizados integrados con el sistema de diseño del proyecto.
-- **Variantes** con \`cva\` (class-variance-authority) para componentes polimórficos.
-- **Animaciones** con \`tw-animate-css\` y transiciones CSS nativas.
-- Optimización automática de bundle: solo las clases usadas en producción.
+### How I use it
+- **Custom design tokens** integrated with the project's design system.
+- **Variants** with \`cva\` (class-variance-authority) for polymorphic components.
+- **Animations** with \`tw-animate-css\` and native CSS transitions.
+- Automatic bundle optimization: only used classes in production.
 
-### Ventaja clave
-La colocación de estilos junto al markup elimina el cambio de contexto y hace que el código sea más legible y mantenible.`,
+### Key advantage
+Placing styles alongside markup eliminates context switching and makes code more readable and maintainable.`,
         categories: ["library", "design"],
       },
       {
@@ -123,16 +123,16 @@ La colocación de estilos junto al markup elimina el cambio de contexto y hace q
         level: "intermediate",
         description: `## Framer Motion
 
-Biblioteca que uso para añadir animaciones de calidad a mis interfaces sin sacrificar el rendimiento ni la accesibilidad.
+Library I use to add quality animations to my interfaces without sacrificing performance or accessibility.
 
-### Casos de uso frecuentes
-- **Page transitions** suaves con layout animations.
-- **Micro-interacciones**: hover states, press feedback, loading skeletons animados.
-- **Scroll-driven animations** con \`useScroll\` y \`useTransform\`.
-- **Gesture handling** para interfaces móviles (drag, swipe).
+### Frequent use cases
+- **Smooth page transitions** with layout animations.
+- **Micro-interactions**: hover states, press feedback, animated loading skeletons.
+- **Scroll-driven animations** with \`useScroll\` and \`useTransform\`.
+- **Gesture handling** for mobile interfaces (drag, swipe).
 
-### Filosofía
-Uso animaciones con intención: deben comunicar algo, no solo decorar. Siempre respeto \`prefers-reduced-motion\`.`,
+### Philosophy
+I use animations with intention: they should communicate something, not just decorate. I always respect \`prefers-reduced-motion\`.`,
         categories: ["library"],
       },
       {
@@ -140,18 +140,18 @@ Uso animaciones con intención: deben comunicar algo, no solo decorar. Siempre r
         Icon: Accessibility,
         color: "#34D399",
         level: "intermediate",
-        description: `## Accesibilidad Web
+        description: `## Web Accessibility
 
-La accesibilidad no es una feature adicional, es parte de hacer bien el trabajo. La tengo integrada como parte de mi flujo de desarrollo.
+Accessibility is not an additional feature, it's part of doing the job right. I have it integrated as part of my development workflow.
 
-### Prácticas que aplico
-- **Semántica HTML**: uso los elementos correctos (\`button\`, \`nav\`, \`main\`, \`dialog\`, etc.).
-- **Teclado**: toda interacción es operable sin ratón, con foco visible y orden lógico.
-- **ARIA**: atributos \`aria-label\`, \`aria-expanded\`, \`aria-live\` donde el HTML semántico no es suficiente.
-- **Contraste**: verifico ratios WCAG AA/AAA para texto e íconos interactivos.
+### Practices I apply
+- **HTML semantics**: I use the correct elements (\`button\`, \`nav\`, \`main\`, \`dialog\`, etc.).
+- **Keyboard**: all interactions are operable without a mouse, with visible focus and logical order.
+- **ARIA**: attributes \`aria-label\`, \`aria-expanded\`, \`aria-live\` where semantic HTML is not sufficient.
+- **Contrast**: I verify WCAG AA/AAA ratios for text and interactive icons.
 
-### Herramientas
-Uso \`axe-core\`, Lighthouse y pruebas con lectores de pantalla (VoiceOver, NVDA) para validar.`,
+### Tools
+I use \`axe-core\`, Lighthouse and screen reader testing (VoiceOver, NVDA) to validate.`,
         categories: ["practice", "design"],
       },
     ],
@@ -169,16 +169,16 @@ Uso \`axe-core\`, Lighthouse y pruebas con lectores de pantalla (VoiceOver, NVDA
         level: "expert",
         description: `## Node.js
 
-Mi runtime de servidor principal. He construido desde scripts de automatización simples hasta APIs de alto tráfico procesando miles de requests por segundo.
+My main server runtime. I've built everything from simple automation scripts to high-traffic APIs processing thousands of requests per second.
 
-### Stack habitual
+### Typical stack
 - **Frameworks**: Express, Fastify, Hono (Edge-compatible).
-- **Streaming**: Node.js Streams para procesamiento de archivos y datos grandes.
-- **Workers**: \`worker_threads\` para tareas CPU-intensivas sin bloquear el event loop.
-- **Monitoreo**: integración con OpenTelemetry para trazas distribuidas.
+- **Streaming**: Node.js Streams for file and large data processing.
+- **Workers**: \`worker_threads\` for CPU-intensive tasks without blocking the event loop.
+- **Monitoring**: integration with OpenTelemetry for distributed tracing.
 
-### Buenas prácticas
-Diseño mis servicios con manejo de errores estructurado, logging con \`pino\`, y validación de input en cada capa.`,
+### Best practices
+I design my services with structured error handling, logging with \`pino\`, and input validation at each layer.`,
         categories: ["framework"],
       },
       {
@@ -188,15 +188,15 @@ Diseño mis servicios con manejo de errores estructurado, logging con \`pino\`, 
         level: "basic",
         description: `## Go
 
-Lenguaje que he explorado para microservicios de alto rendimiento donde Node.js no era suficiente. Me enamoré de su simplicidad y sus goroutines.
+Language I've explored for high-performance microservices where Node.js wasn't sufficient. I fell in love with its simplicity and goroutines.
 
-### Lo que he construido
-- Microservicio de procesamiento de imágenes con concurrencia paralela vía goroutines.
-- CLI tools internas para automatización de deployments.
-- APIs REST con \`net/http\` + \`chi\` router.
+### What I've built
+- Image processing microservice with parallel concurrency via goroutines.
+- Internal CLI tools for deployment automation.
+- REST APIs with \`net/http\` + \`chi\` router.
 
-### Aprendizaje en curso
-Sigo profundizando en los patrones de concurrencia de Go (channels, select, context cancellation) y en el ecosistema de testing nativo.`,
+### Learning in progress
+I continue to deepen my understanding of Go concurrency patterns (channels, select, context cancellation) and the native testing ecosystem.`,
         categories: ["language"],
       },
       {
@@ -206,19 +206,19 @@ Sigo profundizando en los patrones de concurrencia de Go (channels, select, cont
         level: "intermediate",
         description: `## GraphQL
 
-He trabajado con GraphQL tanto del lado del servidor como del cliente, en proyectos donde la flexibilidad de queries era un requisito.
+I've worked with GraphQL both on the server and client side, in projects where query flexibility was a requirement.
 
-### Experiencia servidor
-- Schemas con resolvers en Node.js usando Apollo Server y graphql-yoga.
-- **DataLoader** para resolver el problema N+1 de manera eficiente.
-- Autenticación con directives personalizadas (\`@auth\`, \`@hasRole\`).
+### Server experience
+- Schemas with resolvers in Node.js using Apollo Server and graphql-yoga.
+- **DataLoader** to efficiently solve the N+1 problem.
+- Authentication with custom directives (\`@auth\`, \`@hasRole\`).
 
-### Experiencia cliente
-- Apollo Client con cache normalizado y optimistic updates.
-- Code generation con \`graphql-codegen\` para types TypeScript automáticos.
+### Client experience
+- Apollo Client with normalized cache and optimistic updates.
+- Code generation with \`graphql-codegen\` for automatic TypeScript types.
 
-### Cuándo lo elijo
-GraphQL brilla cuando múltiples clientes (web, móvil) necesitan datos distintos del mismo backend.`,
+### When I choose it
+GraphQL shines when multiple clients (web, mobile) need different data from the same backend.`,
         categories: ["tool", "practice"],
       },
       {
@@ -228,16 +228,16 @@ GraphQL brilla cuando múltiples clientes (web, móvil) necesitan datos distinto
         level: "expert",
         description: `## REST APIs
 
-El diseño de APIs REST es algo en lo que pongo especial atención: que sean intuitivas, predecibles y bien documentadas.
+REST API design is something I pay special attention to: making them intuitive, predictable, and well-documented.
 
-### Principios que sigo
-- **Recursos bien nombrados** y verbos HTTP usados correctamente.
-- **Versionado** de API (\`/v1/\`, \`/v2/\`) para no romper clientes existentes.
-- **Errores estructurados**: siempre devuelvo un body con \`code\`, \`message\` y opcionalmente \`details\`.
-- **Paginación**: cursor-based para listas grandes, page-based para dashboards.
+### Principles I follow
+- **Well-named resources** and HTTP verbs used correctly.
+- **API versioning** (\`/v1/\`, \`/v2/\`) to avoid breaking existing clients.
+- **Structured errors**: I always return a body with \`code\`, \`message\` and optionally \`details\`.
+- **Pagination**: cursor-based for large lists, page-based for dashboards.
 
-### Documentación
-Uso OpenAPI/Swagger para documentar contratos de API, con validación automática de requests vía Zod.`,
+### Documentation
+I use OpenAPI/Swagger to document API contracts, with automatic request validation via Zod.`,
         categories: ["practice"],
       },
       {
@@ -247,16 +247,16 @@ Uso OpenAPI/Swagger para documentar contratos de API, con validación automátic
         level: "intermediate",
         description: `## tRPC
 
-Una de mis tecnologías favoritas de los últimos años. Elimina la fricción entre frontend y backend con type-safety end-to-end real.
+One of my favorite technologies in recent years. It eliminates friction between frontend and backend with real end-to-end type-safety.
 
-### Cómo lo uso
-- **Monorepos** con Next.js: el router de tRPC vive en el App Router con Route Handlers.
-- **Middleware** para autenticación e inyección de contexto (sesión, base de datos).
-- **Subscriptions** con SSE para feeds en tiempo real.
-- Input validation con Zod en cada procedimiento.
+### How I use it
+- **Monorepos** with Next.js: the tRPC router lives in the App Router with Route Handlers.
+- **Middleware** for authentication and context injection (session, database).
+- **Subscriptions** with SSE for real-time feeds.
+- Input validation with Zod in each procedure.
 
-### Por qué lo recomiendo
-Con tRPC, un cambio de firma en el backend produce un error de TypeScript en el frontend al instante. No más contratos rotos en runtime.`,
+### Why I recommend it
+With tRPC, a signature change in the backend produces a TypeScript error in the frontend instantly. No more broken contracts at runtime.`,
         categories: ["library", "tool"],
       },
       {
@@ -266,16 +266,16 @@ Con tRPC, un cambio de firma en el backend produce un error de TypeScript en el 
         level: "intermediate",
         description: `## Edge Functions
 
-Compute distribuido que corre cerca del usuario. Lo uso para reducir latencia en features que no necesitan acceder a una base de datos central.
+Distributed compute that runs close to the user. I use it to reduce latency in features that don't need to access a central database.
 
-### Casos de uso que he implementado
-- **Middleware de autenticación** en Vercel Edge: verificación de JWT sin cold start.
-- **A/B testing**: redireccionamiento de variantes sin que el usuario vea un flash.
-- **Geo-routing**: servir contenido distinto según la región del usuario.
-- **Rate limiting** ligero con contadores en Upstash Redis.
+### Use cases I've implemented
+- **Authentication middleware** on Vercel Edge: JWT verification without cold start.
+- **A/B testing**: variant redirection without the user seeing a flash.
+- **Geo-routing**: serving different content based on user region.
+- **Lightweight rate limiting** with counters in Upstash Redis.
 
-### Limitaciones a tener en cuenta
-El Edge Runtime tiene un subset de APIs de Node.js. No todo lo que funciona en Node.js funciona en Edge.`,
+### Limitations to keep in mind
+The Edge Runtime has a subset of Node.js APIs. Not everything that works in Node.js works on Edge.`,
         categories: ["cloud", "practice"],
       },
     ],
@@ -293,16 +293,16 @@ El Edge Runtime tiene un subset de APIs de Node.js. No todo lo que funciona en N
         level: "intermediate",
         description: `## PostgreSQL
 
-Mi base de datos relacional de referencia. Elijo Postgres casi siempre por su fiabilidad, su potente query planner y sus extensiones.
+My reference relational database. I choose Postgres almost always for its reliability, powerful query planner, and extensions.
 
-### Lo que manejo con soltura
-- **Diseño de esquemas**: normalización, relaciones, constraints e índices estratégicos.
-- **Queries avanzadas**: CTEs, window functions, JSON aggregation, full-text search.
-- **Migraciones**: gestión con Prisma Migrate o Flyway en proyectos legacy.
-- **Conexión pooling** con PgBouncer o Neon's built-in pooler.
+### What I handle with ease
+- **Schema design**: normalization, relationships, constraints, and strategic indexes.
+- **Advanced queries**: CTEs, window functions, JSON aggregation, full-text search.
+- **Migrations**: management with Prisma Migrate or Flyway in legacy projects.
+- **Connection pooling** with PgBouncer or Neon's built-in pooler.
 
-### Extensiones favoritas
-\`pgvector\` para búsqueda semántica, \`PostGIS\` para datos geoespaciales, \`pg_cron\` para tareas programadas.`,
+### Favorite extensions
+\`pgvector\` for semantic search, \`PostGIS\` for geospatial data, \`pg_cron\` for scheduled tasks.`,
         categories: ["database"],
       },
       {
@@ -312,16 +312,16 @@ Mi base de datos relacional de referencia. Elijo Postgres casi siempre por su fi
         level: "intermediate",
         description: `## Redis
 
-Lo uso como capa de caché y como broker de mensajes en arquitecturas donde la latencia importa.
+I use it as a cache layer and message broker in architectures where latency matters.
 
-### Casos de uso aplicados
-- **Caché de API responses**: reducción de carga en la base de datos con TTL dinámico.
-- **Session store**: almacenamiento de sesiones de usuario con expiración automática.
-- **Rate limiting**: contadores por IP/usuario con \`INCR\` + \`EXPIRE\`.
-- **Job queues**: con BullMQ para procesar tareas en background (emails, webhooks).
+### Applied use cases
+- **API response cache**: reducing database load with dynamic TTL.
+- **Session store**: storing user sessions with automatic expiration.
+- **Rate limiting**: counters per IP/user with \`INCR\` + \`EXPIRE\`.
+- **Job queues**: with BullMQ to process background tasks (emails, webhooks).
 
-### Servicios usados
-Upstash Redis (serverless), Redis Cloud y Redis local vía Docker en desarrollo.`,
+### Services used
+Upstash Redis (serverless), Redis Cloud and local Redis via Docker in development.`,
         categories: ["database", "tool"],
       },
       {
@@ -331,18 +331,18 @@ Upstash Redis (serverless), Redis Cloud y Redis local vía Docker en desarrollo.
         level: "expert",
         description: `## Prisma
 
-ORM que ha transformado cómo trabajo con bases de datos. La combinación de schema declarativo + tipos generados automáticamente es imbatible.
+ORM that has transformed how I work with databases. The combination of declarative schema + automatically generated types is unbeatable.
 
-### Flujo de trabajo
-1. Defino el schema en \`schema.prisma\` con modelos y relaciones.
-2. \`prisma migrate dev\` genera y aplica la migración SQL.
-3. El cliente generado tiene tipos 100% correctos, sin necesidad de escribirlos a mano.
+### Workflow
+1. I define the schema in \`schema.prisma\` with models and relationships.
+2. \`prisma migrate dev\` generates and applies the SQL migration.
+3. The generated client has 100% correct types, no need to write them manually.
 
-### Funcionalidades avanzadas
-- **Transacciones** interactivas con \`prisma.$transaction\`.
-- **Middleware** de Prisma para logging, soft-deletes y auditoría.
-- **Raw queries** con \`$queryRawUnsafe\` cuando el query planner necesita una pista.
-- Integración con Zod via \`zod-prisma-types\` para validación automática.`,
+### Advanced features
+- **Interactive transactions** with \`prisma.$transaction\`.
+- **Prisma middleware** for logging, soft-deletes and auditing.
+- **Raw queries** with \`$queryRawUnsafe\` when the query planner needs a hint.
+- Integration with Zod via \`zod-prisma-types\` for automatic validation.`,
         categories: ["library", "tool"],
       },
       {
@@ -352,15 +352,15 @@ ORM que ha transformado cómo trabajo con bases de datos. La combinación de sch
         level: "intermediate",
         description: `## Docker
 
-Herramienta indispensable para tener entornos de desarrollo reproducibles y para empaquetar aplicaciones de forma consistente.
+Indispensable tool for having reproducible development environments and packaging applications consistently.
 
-### Uso diario
-- **docker-compose** para levantar stacks locales: Postgres, Redis, servicios propios.
-- **Multi-stage builds** para imágenes de producción pequeñas y seguras.
-- **.dockerignore** y capas optimizadas para builds rápidos en CI.
+### Daily use
+- **docker-compose** to spin up local stacks: Postgres, Redis, custom services.
+- **Multi-stage builds** for small and secure production images.
+- **.dockerignore** and optimized layers for fast CI builds.
 
-### En producción
-He desplegado contenedores en ECS (Fargate), Railway y Fly.io. La consistencia entre entornos que ofrece Docker es su mayor valor.`,
+### In production
+I've deployed containers on ECS (Fargate), Railway and Fly.io. The consistency between environments that Docker offers is its greatest value.`,
         categories: ["tool", "cloud"],
       },
       {
@@ -370,17 +370,17 @@ He desplegado contenedores en ECS (Fargate), Railway y Fly.io. La consistencia e
         level: "basic",
         description: `## AWS
 
-He trabajado con los servicios de AWS más comunes en proyectos de mediana escala, sin ser un arquitecto cloud dedicado.
+I've worked with the most common AWS services in medium-scale projects, without being a dedicated cloud architect.
 
-### Servicios que he usado
-- **S3**: almacenamiento de assets, uploads de usuario y backups.
-- **CloudFront**: CDN frente a S3 y orígenes personalizados.
-- **ECS / Fargate**: despliegue de contenedores sin gestionar servidores.
-- **SES**: envío de emails transaccionales a escala.
-- **Lambda**: funciones serverless para webhooks y procesamiento asíncrono.
+### Services I've used
+- **S3**: asset storage, user uploads and backups.
+- **CloudFront**: CDN in front of S3 and custom origins.
+- **ECS / Fargate**: container deployment without managing servers.
+- **SES**: sending transactional emails at scale.
+- **Lambda**: serverless functions for webhooks and async processing.
 
-### Herramientas
-AWS CDK para infraestructura como código, y AWS Console para monitoreo y troubleshooting.`,
+### Tools
+AWS CDK for infrastructure as code, and AWS Console for monitoring and troubleshooting.`,
         categories: ["cloud"],
       },
       {
@@ -390,16 +390,16 @@ AWS CDK para infraestructura como código, y AWS Console para monitoreo y troubl
         level: "expert",
         description: `## Vercel
 
-Mi plataforma de despliegue preferida para proyectos Next.js. La integración es tan fluida que el deployment casi no se siente.
+My preferred deployment platform for Next.js projects. The integration is so fluid that deployment almost feels invisible.
 
-### Lo que aprovecho
-- **Preview Deployments**: cada PR tiene su propio ambiente. Los stakeholders pueden revisar antes de mergear.
-- **Edge Network**: assets y Edge Functions en más de 100 puntos de presencia.
-- **Analytics y Speed Insights**: métricas reales de Core Web Vitals.
-- **Cron Jobs**: tareas programadas sin necesidad de un servidor dedicado.
+### What I leverage
+- **Preview Deployments**: each PR has its own environment. Stakeholders can review before merging.
+- **Edge Network**: assets and Edge Functions in over 100 points of presence.
+- **Analytics and Speed Insights**: real metrics of Core Web Vitals.
+- **Cron Jobs**: scheduled tasks without needing a dedicated server.
 
-### Configuración avanzada
-Manejo \`vercel.json\` para rewrites, headers de caché personalizados y configuración de funciones por región.`,
+### Advanced configuration
+I handle \`vercel.json\` for rewrites, custom cache headers and per-region function configuration.`,
         categories: ["cloud", "tool"],
       },
     ],
@@ -417,16 +417,16 @@ Manejo \`vercel.json\` para rewrites, headers de caché personalizados y configu
         level: "expert",
         description: `## Git
 
-Más allá de \`commit\`, \`push\` y \`pull\`. Git es una herramienta de comunicación y colaboración cuando se usa bien.
+Beyond \`commit\`, \`push\` and \`pull\`. Git is a communication and collaboration tool when used well.
 
-### Prácticas que aplico
-- **Conventional Commits**: mensajes estructurados que permiten changelogs automáticos.
-- **Feature branches** con PRs pequeños y enfocados, fáciles de revisar.
-- **Rebase interactivo**: historial limpio y lineal antes de mergear.
-- **Git hooks** con Husky: lint y tests automáticos en pre-commit y pre-push.
+### Practices I apply
+- **Conventional Commits**: structured messages that enable automatic changelogs.
+- **Feature branches** with small, focused PRs that are easy to review.
+- **Interactive rebase**: clean and linear history before merging.
+- **Git hooks** with Husky: automatic lint and tests on pre-commit and pre-push.
 
-### Flujos de trabajo
-He trabajado con GitHub Flow (deployments continuos) y variantes de Gitflow (releases versionados) según el contexto del proyecto.`,
+### Workflows
+I've worked with GitHub Flow (continuous deployments) and variants of Gitflow (versioned releases) depending on project context.`,
         categories: ["tool", "practice"],
       },
       {
@@ -436,16 +436,16 @@ He trabajado con GitHub Flow (deployments continuos) y variantes de Gitflow (rel
         level: "intermediate",
         description: `## CI/CD
 
-Pipelines de integración y despliegue continuo que garantizan que el código que llega a producción siempre pasa por las verificaciones necesarias.
+Continuous integration and deployment pipelines that ensure code reaching production always passes necessary checks.
 
-### Lo que configuro en mis pipelines
-- **Lint + type check** en cada PR para bloquear código con errores.
-- **Test suite** (unit + integration) con reporte de cobertura.
-- **Build + deploy** automático a staging en cada merge a \`main\`.
-- **Release automático** a producción con aprobación manual o automática.
+### What I configure in my pipelines
+- **Lint + type check** on each PR to block code with errors.
+- **Test suite** (unit + integration) with coverage report.
+- **Build + deploy** automatic to staging on each merge to \`main\`.
+- **Automatic release** to production with manual or automatic approval.
 
-### Plataformas
-Principalmente **GitHub Actions**, también he usado GitLab CI y CircleCI. Conozco las mejores prácticas de seguridad: secretos en vault, permisos mínimos en tokens.`,
+### Platforms
+Primarily **GitHub Actions**, I've also used GitLab CI and CircleCI. I know security best practices: secrets in vault, minimum permissions on tokens.`,
         categories: ["tool", "practice"],
       },
       {
@@ -455,15 +455,15 @@ Principalmente **GitHub Actions**, también he usado GitLab CI y CircleCI. Conoz
         level: "intermediate",
         description: `## Vitest
 
-Mi framework de testing para proyectos modernos con Vite/Next.js. Extremadamente rápido gracias al HMR y la compatibilidad nativa con ESM.
+My testing framework for modern projects with Vite/Next.js. Extremely fast thanks to HMR and native ESM compatibility.
 
-### Cómo estructuro los tests
-- **Unit tests**: funciones puras, hooks y utilities con cobertura alta.
-- **Component tests**: con \`@testing-library/react\` para validar comportamiento de UI.
-- **Mocking**: \`vi.mock\` para aislar dependencias externas (APIs, módulos del sistema).
+### How I structure tests
+- **Unit tests**: pure functions, hooks and utilities with high coverage.
+- **Component tests**: with \`@testing-library/react\` to validate UI behavior.
+- **Mocking**: \`vi.mock\` to isolate external dependencies (APIs, system modules).
 
-### Filosofía de testing
-No persigo el 100% de cobertura ciegamente. Me enfoco en testear comportamiento observable, no implementación interna.`,
+### Testing philosophy
+I don't blindly pursue 100% coverage. I focus on testing observable behavior, not internal implementation.`,
         categories: ["testing", "tool"],
       },
       {
@@ -473,15 +473,15 @@ No persigo el 100% de cobertura ciegamente. Me enfoco en testear comportamiento 
         level: "basic",
         description: `## Playwright
 
-Framework de testing end-to-end que uso para validar los flujos críticos de usuario antes de cada release.
+End-to-end testing framework I use to validate critical user flows before each release.
 
-### Tests que implemento con Playwright
-- **Flujos de autenticación**: signup, login, recuperación de contraseña.
-- **Flujos de negocio críticos**: checkout, creación de recursos, exportación de datos.
-- **Cross-browser**: Chrome, Firefox y WebKit en el mismo test suite.
+### Tests I implement with Playwright
+- **Authentication flows**: signup, login, password recovery.
+- **Critical business flows**: checkout, resource creation, data export.
+- **Cross-browser**: Chrome, Firefox and WebKit in the same test suite.
 
-### Integración en CI
-Los tests de Playwright corren en GitHub Actions en paralelo, con artifacts de screenshots y videos cuando fallan para facilitar el debugging.`,
+### CI integration
+Playwright tests run in GitHub Actions in parallel, with screenshot and video artifacts when they fail to facilitate debugging.`,
         categories: ["testing", "tool"],
       },
       {
@@ -491,16 +491,16 @@ Los tests de Playwright corren en GitHub Actions en paralelo, con artifacts de s
         level: "intermediate",
         description: `## Design Systems
 
-He construido y mantenido sistemas de diseño desde cero, así como he integrado sistemas existentes (shadcn/ui, Radix, Material) en proyectos reales.
+I've built and maintained design systems from scratch, as well as integrated existing systems (shadcn/ui, Radix, Material) in real projects.
 
-### Lo que implica para mí
-- **Tokens de diseño**: colores, tipografía, espaciado y radios como variables CSS o Tailwind config.
-- **Componentes polimórficos**: \`Button\`, \`Input\`, \`Dialog\` que se adaptan a cualquier contexto.
-- **Documentación**: historias en Storybook + MDX para que diseñadores y devs hablen el mismo idioma.
-- **Versionado**: publicación de paquetes internos con semantic versioning.
+### What it means to me
+- **Design tokens**: colors, typography, spacing and radii as CSS variables or Tailwind config.
+- **Polymorphic components**: \`Button\`, \`Input\`, \`Dialog\` that adapt to any context.
+- **Documentation**: stories in Storybook + MDX so designers and devs speak the same language.
+- **Versioning**: publishing internal packages with semantic versioning.
 
-### Valor real
-Un buen design system multiplica la velocidad del equipo y garantiza consistencia visual sin esfuerzo extra.`,
+### Real value
+A good design system multiplies team speed and guarantees visual consistency without extra effort.`,
         categories: ["design", "practice"],
       },
       {
@@ -508,17 +508,17 @@ Un buen design system multiplica la velocidad del equipo y garantiza consistenci
         Icon: Activity,
         color: "#34D399",
         level: "basic",
-        description: `## Observabilidad
+        description: `## Observability
 
 La diferencia entre saber que algo está roto cuando el usuario llama, y saberlo antes de que afecte a alguien.
 
-### Las tres patas
-- **Logs**: logging estructurado en JSON con \`pino\`, centralizado en Datadog o Loki.
-- **Métricas**: latencia de APIs, tasa de errores y saturación. Dashboards en Grafana.
-- **Trazas**: distributed tracing con OpenTelemetry para entender el flujo entre servicios.
+### The three pillars
+- **Logs**: structured JSON logging with \`pino\`, centralized in Datadog or Loki.
+- **Metrics**: API latency, error rate and saturation. Dashboards in Grafana.
+- **Traces**: distributed tracing with OpenTelemetry to understand flow between services.
 
-### Alertas
-Configuro alertas con umbrales sensatos (no demasiado ruidosas, no demasiado silenciosas) para los SLOs más críticos del servicio.`,
+### Alerts
+I configure alerts with sensible thresholds (not too noisy, not too quiet) for the service's most critical SLOs.`,
         categories: ["practice", "tool"],
       },
     ],
