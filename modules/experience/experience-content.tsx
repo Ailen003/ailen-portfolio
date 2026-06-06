@@ -21,7 +21,7 @@ export function Experience() {
               <div className="relative md:pl-12">
                 <span className="absolute left-0 top-6 hidden h-4 w-4 -translate-x-1/2 rounded-full border-2 border-primary bg-background md:block" />
                 <div className="rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 sm:p-7">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3">
                     <AvatarContainer
                       image={r.logo}
                       fallback={r.company.charAt(0)}
