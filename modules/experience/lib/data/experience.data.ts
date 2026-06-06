@@ -5,7 +5,7 @@ export const experienceRoles: ExperienceRole[] = [
     period: "2022 — Present",
     role: "Senior Software Engineer",
     company: "Northwind Labs",
-    logo: "/placeholder-logo.png",
+    logo: "/images/experiences/eti-logo.jpg",
     summary:
       "Lead frontend engineer for the core platform used by 40k+ customers. Own architecture decisions and mentor a team of five.",
     achievements: [
