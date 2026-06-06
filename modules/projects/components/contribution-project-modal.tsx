@@ -22,9 +22,9 @@ export function ContributionProjectModal({ project, open, onOpenChange }: Contri
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[88dvh] max-w-xl overflow-hidden flex flex-col gap-0 p-0">
+      <DialogContent className="flex max-h-[92dvh] w-[calc(100%-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-h-[88dvh] sm:max-w-xl">
         {/* Header */}
-        <div className="relative rounded-t-lg border-b border-border bg-card px-6 pb-5 pt-6">
+        <div className="relative rounded-t-lg border-b border-border bg-card px-4 pb-4 pt-5 sm:px-6 sm:pb-5 sm:pt-6">
           <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden rounded-t-lg">
             <div
               className="absolute -left-8 -top-8 h-36 w-36 rounded-full opacity-20 blur-3xl"
@@ -88,7 +88,7 @@ export function ContributionProjectModal({ project, open, onOpenChange }: Contri
         </div>
 
         {/* Scrollable body */}
-        <div className="flex-1 space-y-5 overflow-y-auto px-6 py-5">
+        <div className="flex-1 space-y-5 overflow-y-auto px-4 py-4 sm:px-6 sm:py-5">
           {/* Description */}
           <p className="text-sm leading-relaxed text-muted-foreground">{project.description}</p>
 
@@ -144,7 +144,7 @@ export function ContributionProjectModal({ project, open, onOpenChange }: Contri
           )}
 
           {/* Footer links */}
-          <div className="flex items-center gap-3 pt-1">
+          <div className="flex flex-wrap items-center gap-3 pt-1">
             <a
               href={project.source}
               target="_blank"

@@ -30,9 +30,9 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[88dvh] max-w-2xl overflow-hidden flex flex-col gap-0 p-0">
+      <DialogContent className="flex max-h-[92dvh] w-[calc(100%-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-h-[88dvh] sm:max-w-2xl">
         {/* Header */}
-        <div className="relative rounded-t-lg border-b border-border bg-card px-6 pb-5 pt-6">
+        <div className="relative rounded-t-lg border-b border-border bg-card px-4 pb-4 pt-5 sm:px-6 sm:pb-5 sm:pt-6">
           <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden rounded-t-lg">
             <div
               className="absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-25 blur-3xl"
@@ -40,7 +40,7 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
             />
           </div>
           <DialogHeader className="relative">
-            <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div className="min-w-0 flex-1">
                 <div className="mb-2 flex flex-wrap items-center gap-2">
                   {statusMeta && (
@@ -69,12 +69,12 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
                     </span>
                   )}
                 </div>
-                <DialogTitle className="text-2xl font-bold leading-tight text-foreground">
+                <DialogTitle className="text-xl font-bold leading-tight text-foreground sm:text-2xl">
                   {project.title}
                 </DialogTitle>
                 <p className="mt-1 text-sm font-medium text-primary">{project.tagline}</p>
               </div>
-              <div className="flex shrink-0 items-center gap-2">
+              <div className="flex shrink-0 items-center gap-2 sm:self-start">
                 <a
                   href={project.source}
                   target="_blank"
@@ -128,7 +128,7 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
         </div>
 
         {/* Scrollable body */}
-        <div className="flex-1 space-y-6 overflow-y-auto px-6 py-5">
+        <div className="flex-1 space-y-5 overflow-y-auto px-4 py-4 sm:px-6 sm:py-5">
           {/* Description */}
           <p className="text-sm leading-relaxed text-muted-foreground">{project.description}</p>
 

@@ -45,7 +45,7 @@ export function ProjectImageLightbox({ images, projectTitle }: ProjectImageLight
             ? "grid-cols-1"
             : images.length === 2
             ? "grid-cols-2"
-            : "grid-cols-3"
+            : "grid-cols-2 sm:grid-cols-3"
         }`}
       >
         {images.map((src, i) => (
@@ -74,7 +74,7 @@ export function ProjectImageLightbox({ images, projectTitle }: ProjectImageLight
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-100 flex items-center justify-center bg-black/90 p-4"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-black/90 p-3 sm:p-6"
             onClick={closeLightbox}
           >
             <button
@@ -100,7 +100,7 @@ export function ProjectImageLightbox({ images, projectTitle }: ProjectImageLight
                   type="button"
                   onClick={(e) => { e.stopPropagation(); next() }}
                   aria-label="Next image"
-                  className="absolute right-16 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20 sm:right-16"
                 >
                   <ChevronRight className="h-5 w-5" />
                 </button>
@@ -113,7 +113,7 @@ export function ProjectImageLightbox({ images, projectTitle }: ProjectImageLight
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.18 }}
-              className="relative max-h-[85vh] max-w-5xl w-full"
+              className="relative mx-auto w-full max-w-5xl px-12 sm:px-16"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative aspect-video w-full overflow-hidden rounded-xl">
