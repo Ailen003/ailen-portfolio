@@ -26,5 +26,326 @@
       "projectsLabel": "Projects shipped"
     },
     "portraitAlt": "Portrait of Elena Vargas"
+  },
+  "about": {
+    "title": "About me",
+    "p1": "I'm a senior software engineer who loves turning complex problems into simple, reliable products. My favorite work lives at the intersection of design and engineering — interfaces that feel effortless and are built to scale.",
+    "p2": "Over the past eight years I've worked across startups and product studios, leading frontend architecture, building design systems, and shipping features used by millions. I believe the best engineering is invisible: fast, accessible, and dependable.",
+    "p3": "When I'm not coding, you'll find me sketching UI ideas, contributing to open source, or running along the coast with a good podcast.",
+    "values": {
+      "productMinded": {
+        "title": "Product-minded",
+        "description": "I think beyond tickets — about the user, the business, and the long-term health of the codebase."
+      },
+      "craftQuality": {
+        "title": "Craft & quality",
+        "description": "Clean architecture, strong typing, and tests. The details are where good products are made."
+      },
+      "collaborative": {
+        "title": "Collaborative",
+        "description": "I work closely with design and product, mentor engineers, and document decisions clearly."
+      },
+      "alwaysLearning": {
+        "title": "Always learning",
+        "description": "From distributed systems to design systems — I stay curious and share what I learn."
+      }
+    },
+    "facts": {
+      "basedIn": { "label": "Based in", "value": "Barcelona, ES" },
+      "experience": { "label": "Experience", "value": "8+ years" },
+      "focus": { "label": "Focus", "value": "Full-stack web" },
+      "languages": { "label": "Languages", "value": "EN · ES · CA" }
+    }
+  },
+  "skills": {
+    "title": "Technical skills",
+    "subtitle": "A toolkit refined across products and teams. Click any skill to see my experience in detail.",
+    "tabs": {
+      "grid": "By categories",
+      "gridMobile": "Categories",
+      "galaxy": "Orbit"
+    },
+    "filter": { "all": "All" },
+    "levels": {
+      "basic": "Basic",
+      "intermediate": "Intermediate",
+      "expert": "Expert"
+    },
+    "categoryTags": {
+      "language": "Language",
+      "framework": "Framework",
+      "library": "Library",
+      "tool": "Tool",
+      "database": "Database",
+      "cloud": "Cloud / Infra",
+      "testing": "Testing",
+      "design": "Design",
+      "practice": "Practice"
+    },
+    "categories": {
+      "frontend": { "title": "Frontend", "tagline": "Interfaces that feel fast and effortless." },
+      "backend": { "title": "Backend", "tagline": "APIs and services built to scale." },
+      "dataInfra": { "title": "Data & Infra", "tagline": "Reliable storage and deployment." },
+      "toolingPractices": { "title": "Tooling & Practices", "tagline": "The craft behind shipping with confidence." }
+    },
+    "skillDescriptions": {
+      "React": "## React\n\nMy primary technology for several years. I work with React daily building medium and large-scale production applications.\n\n### What I master\n- **Advanced hooks**: `useReducer`, `useContext`, `useTransition`, `useDeferredValue`, and complex custom hooks.\n- **Composition patterns**: render props, compound components, controlled/uncontrolled components.\n- **Performance optimization**: `React.memo`, `useMemo`, `useCallback`, code splitting with `Suspense` and `lazy`.\n- **Server Components** (React 19) and the new concurrent rendering model.\n\n### Featured projects\nI've built real-time analytical dashboards, complete design systems, and e-commerce applications with millions of users, all on React.",
+      "Nextjs": "## Next.js\n\nFramework of choice for any serious web project. I've been using Next.js since version 12 and have migrated projects through each major version.\n\n### Areas of expertise\n- **App Router**: nested layouts, route groups, Server vs Client Components.\n- **Rendering strategies**: SSG, SSR, ISR and Partial Pre-rendering (PPR).\n- **Built-in optimizations**: `next/image`, `next/font`, metadata API.\n- **Middleware** and Edge Runtime for authentication and A/B testing.\n\n### Real experience\nFrom ultra-fast landing pages with 100/100 Lighthouse scores to complex SaaS platforms with authentication, multi-tenancy, and real-time data dashboards.",
+      "TypeScript": "## TypeScript\n\nI can't imagine starting a new project without TypeScript. I use it in all my projects, both frontend and backend.\n\n### What I bring\n- **Advanced typing**: generics, conditional types, mapped types, template literal types.\n- **Type inference** that reduces boilerplate without losing safety.\n- **Integration** with Zod, tRPC and Prisma for frictionless end-to-end type-safety.\n- Strict `tsconfig` configuration tailored to each project.\n\n### Why I value it\nTypeScript has saved me countless hours of debugging. Errors appear in the editor, not in production at 3am.",
+      "TailwindCSS": "## Tailwind CSS\n\nMy preferred styling tool. From Tailwind v2 to v4, I've seen the framework evolve and adopted its improvements in each iteration.\n\n### How I use it\n- **Custom design tokens** integrated with the project's design system.\n- **Variants** with `cva` (class-variance-authority) for polymorphic components.\n- **Animations** with `tw-animate-css` and native CSS transitions.\n- Automatic bundle optimization: only used classes in production.\n\n### Key advantage\nPlacing styles alongside markup eliminates context switching and makes code more readable and maintainable.",
+      "FramerMotion": "## Framer Motion\n\nLibrary I use to add quality animations to my interfaces without sacrificing performance or accessibility.\n\n### Frequent use cases\n- **Smooth page transitions** with layout animations.\n- **Micro-interactions**: hover states, press feedback, animated loading skeletons.\n- **Scroll-driven animations** with `useScroll` and `useTransform`.\n- **Gesture handling** for mobile interfaces (drag, swipe).\n\n### Philosophy\nI use animations with intention: they should communicate something, not just decorate. I always respect `prefers-reduced-motion`.",
+      "Accessibility": "## Web Accessibility\n\nAccessibility is not an additional feature, it's part of doing the job right. I have it integrated as part of my development workflow.\n\n### Practices I apply\n- **HTML semantics**: I use the correct elements (`button`, `nav`, `main`, `dialog`, etc.).\n- **Keyboard**: all interactions are operable without a mouse, with visible focus and logical order.\n- **ARIA**: attributes `aria-label`, `aria-expanded`, `aria-live` where semantic HTML is not sufficient.\n- **Contrast**: I verify WCAG AA/AAA ratios for text and interactive icons.\n\n### Tools\nI use `axe-core`, Lighthouse and screen reader testing (VoiceOver, NVDA) to validate.",
+      "Nodejs": "## Node.js\n\nMy main server runtime. I've built everything from simple automation scripts to high-traffic APIs processing thousands of requests per second.\n\n### Typical stack\n- **Frameworks**: Express, Fastify, Hono (Edge-compatible).\n- **Streaming**: Node.js Streams for file and large data processing.\n- **Workers**: `worker_threads` for CPU-intensive tasks without blocking the event loop.\n- **Monitoring**: integration with OpenTelemetry for distributed tracing.\n\n### Best practices\nI design my services with structured error handling, logging with `pino`, and input validation at each layer.",
+      "Go": "## Go\n\nLanguage I've explored for high-performance microservices where Node.js wasn't sufficient. I fell in love with its simplicity and goroutines.\n\n### What I've built\n- Image processing microservice with parallel concurrency via goroutines.\n- Internal CLI tools for deployment automation.\n- REST APIs with `net/http` + `chi` router.\n\n### Learning in progress\nI continue to deepen my understanding of Go concurrency patterns (channels, select, context cancellation) and the native testing ecosystem.",
+      "GraphQL": "## GraphQL\n\nI've worked with GraphQL both on the server and client side, in projects where query flexibility was a requirement.\n\n### Server experience\n- Schemas with resolvers in Node.js using Apollo Server and graphql-yoga.\n- **DataLoader** to efficiently solve the N+1 problem.\n- Authentication with custom directives (`@auth`, `@hasRole`).\n\n### Client experience\n- Apollo Client with normalized cache and optimistic updates.\n- Code generation with `graphql-codegen` for automatic TypeScript types.\n\n### When I choose it\nGraphQL shines when multiple clients (web, mobile) need different data from the same backend.",
+      "RESTAPIs": "## REST APIs\n\nREST API design is something I pay special attention to: making them intuitive, predictable, and well-documented.\n\n### Principles I follow\n- **Well-named resources** and HTTP verbs used correctly.\n- **API versioning** (`/v1/`, `/v2/`) to avoid breaking existing clients.\n- **Structured errors**: I always return a body with `code`, `message` and optionally `details`.\n- **Pagination**: cursor-based for large lists, page-based for dashboards.\n\n### Documentation\nI use OpenAPI/Swagger to document API contracts, with automatic request validation via Zod.",
+      "tRPC": "## tRPC\n\nOne of my favorite technologies in recent years. It eliminates friction between frontend and backend with real end-to-end type-safety.\n\n### How I use it\n- **Monorepos** with Next.js: the tRPC router lives in the App Router with Route Handlers.\n- **Middleware** for authentication and context injection (session, database).\n- **Subscriptions** with SSE for real-time feeds.\n- Input validation with Zod in each procedure.\n\n### Why I recommend it\nWith tRPC, a signature change in the backend produces a TypeScript error in the frontend instantly. No more broken contracts at runtime.",
+      "EdgeFunctions": "## Edge Functions\n\nDistributed compute that runs close to the user. I use it to reduce latency in features that don't need to access a central database.\n\n### Use cases I've implemented\n- **Authentication middleware** on Vercel Edge: JWT verification without cold start.\n- **A/B testing**: variant redirection without the user seeing a flash.\n- **Geo-routing**: serving different content based on user region.\n- **Lightweight rate limiting** with counters in Upstash Redis.\n\n### Limitations to keep in mind\nThe Edge Runtime has a subset of Node.js APIs. Not everything that works in Node.js works on Edge.",
+      "PostgreSQL": "## PostgreSQL\n\nMy reference relational database. I choose Postgres almost always for its reliability, powerful query planner, and extensions.\n\n### What I handle with ease\n- **Schema design**: normalization, relationships, constraints, and strategic indexes.\n- **Advanced queries**: CTEs, window functions, JSON aggregation, full-text search.\n- **Migrations**: management with Prisma Migrate or Flyway in legacy projects.\n- **Connection pooling** with PgBouncer or Neon's built-in pooler.\n\n### Favorite extensions\n`pgvector` for semantic search, `PostGIS` for geospatial data, `pg_cron` for scheduled tasks.",
+      "Redis": "## Redis\n\nI use it as a cache layer and message broker in architectures where latency matters.\n\n### Applied use cases\n- **API response cache**: reducing database load with dynamic TTL.\n- **Session store**: storing user sessions with automatic expiration.\n- **Rate limiting**: counters per IP/user with `INCR` + `EXPIRE`.\n- **Job queues**: with BullMQ to process background tasks (emails, webhooks).\n\n### Services used\nUpstash Redis (serverless), Redis Cloud and local Redis via Docker in development.",
+      "Prisma": "## Prisma\n\nORM that has transformed how I work with databases. The combination of declarative schema + automatically generated types is unbeatable.\n\n### Workflow\n1. I define the schema in `schema.prisma` with models and relationships.\n2. `prisma migrate dev` generates and applies the SQL migration.\n3. The generated client has 100% correct types, no need to write them manually.\n\n### Advanced features\n- **Interactive transactions** with `prisma.$transaction`.\n- **Prisma middleware** for logging, soft-deletes and auditing.\n- **Raw queries** with `$queryRawUnsafe` when the query planner needs a hint.\n- Integration with Zod via `zod-prisma-types` for automatic validation.",
+      "Docker": "## Docker\n\nIndispensable tool for having reproducible development environments and packaging applications consistently.\n\n### Daily use\n- **docker-compose** to spin up local stacks: Postgres, Redis, custom services.\n- **Multi-stage builds** for small and secure production images.\n- **.dockerignore** and optimized layers for fast CI builds.\n\n### In production\nI've deployed containers on ECS (Fargate), Railway and Fly.io. The consistency between environments that Docker offers is its greatest value.",
+      "AWS": "## AWS\n\nI've worked with the most common AWS services in medium-scale projects, without being a dedicated cloud architect.\n\n### Services I've used\n- **S3**: asset storage, user uploads and backups.\n- **CloudFront**: CDN in front of S3 and custom origins.\n- **ECS / Fargate**: container deployment without managing servers.\n- **SES**: sending transactional emails at scale.\n- **Lambda**: serverless functions for webhooks and async processing.\n\n### Tools\nAWS CDK for infrastructure as code, and AWS Console for monitoring and troubleshooting.",
+      "Vercel": "## Vercel\n\nMy preferred deployment platform for Next.js projects. The integration is so fluid that deployment almost feels invisible.\n\n### What I leverage\n- **Preview Deployments**: each PR has its own environment. Stakeholders can review before merging.\n- **Edge Network**: assets and Edge Functions in over 100 points of presence.\n- **Analytics and Speed Insights**: real metrics of Core Web Vitals.\n- **Cron Jobs**: scheduled tasks without needing a dedicated server.\n\n### Advanced configuration\nI handle `vercel.json` for rewrites, custom cache headers and per-region function configuration.",
+      "Git": "## Git\n\nBeyond `commit`, `push` and `pull`. Git is a communication and collaboration tool when used well.\n\n### Practices I apply\n- **Conventional Commits**: structured messages that enable automatic changelogs.\n- **Feature branches** with small, focused PRs that are easy to review.\n- **Interactive rebase**: clean and linear history before merging.\n- **Git hooks** with Husky: automatic lint and tests on pre-commit and pre-push.\n\n### Workflows\nI've worked with GitHub Flow (continuous deployments) and variants of Gitflow (versioned releases) depending on project context.",
+      "CICD": "## CI/CD\n\nContinuous integration and deployment pipelines that ensure code reaching production always passes necessary checks.\n\n### What I configure in my pipelines\n- **Lint + type check** on each PR to block code with errors.\n- **Test suite** (unit + integration) with coverage report.\n- **Build + deploy** automatic to staging on each merge to `main`.\n- **Automatic release** to production with manual or automatic approval.\n\n### Platforms\nPrimarily **GitHub Actions**, I've also used GitLab CI and CircleCI. I know security best practices: secrets in vault, minimum permissions on tokens.",
+      "Vitest": "## Vitest\n\nMy testing framework for modern projects with Vite/Next.js. Extremely fast thanks to HMR and native ESM compatibility.\n\n### How I structure tests\n- **Unit tests**: pure functions, hooks and utilities with high coverage.\n- **Component tests**: with `@testing-library/react` to validate UI behavior.\n- **Mocking**: `vi.mock` to isolate external dependencies (APIs, system modules).\n\n### Testing philosophy\nI don't blindly pursue 100% coverage. I focus on testing observable behavior, not internal implementation.",
+      "Playwright": "## Playwright\n\nEnd-to-end testing framework I use to validate critical user flows before each release.\n\n### Tests I implement with Playwright\n- **Authentication flows**: signup, login, password recovery.\n- **Critical business flows**: checkout, resource creation, data export.\n- **Cross-browser**: Chrome, Firefox and WebKit in the same test suite.\n\n### CI integration\nPlaywright tests run in GitHub Actions in parallel, with screenshot and video artifacts when they fail to facilitate debugging.",
+      "DesignSystems": "## Design Systems\n\nI've built and maintained design systems from scratch, as well as integrated existing systems (shadcn/ui, Radix, Material) in real projects.\n\n### What it means to me\n- **Design tokens**: colors, typography, spacing and radii as CSS variables or Tailwind config.\n- **Polymorphic components**: `Button`, `Input`, `Dialog` that adapt to any context.\n- **Documentation**: stories in Storybook + MDX so designers and devs speak the same language.\n- **Versioning**: publishing internal packages with semantic versioning.\n\n### Real value\nA good design system multiplies team speed and guarantees visual consistency without extra effort.",
+      "Observability": "## Observability\n\nThe difference between knowing something is broken when a user calls, and knowing it before it affects anyone.\n\n### The three pillars\n- **Logs**: structured JSON logging with `pino`, centralized in Datadog or Loki.\n- **Metrics**: API latency, error rate and saturation. Dashboards in Grafana.\n- **Traces**: distributed tracing with OpenTelemetry to understand flow between services.\n\n### Alerts\nI configure alerts with sensible thresholds (not too noisy, not too quiet) for the service's most critical SLOs."
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "Where I've worked and the impact I've made along the way.",
+    "roles": [
+      {
+        "role": "Senior Software Engineer",
+        "summary": "Lead frontend engineer for the core platform used by 40k+ customers. Own architecture decisions and mentor a team of five.",
+        "achievements": [
+          "Rebuilt the design system, reducing UI bugs by 35% and accelerating feature delivery.",
+          "Cut Largest Contentful Paint by 60% through streaming and edge rendering.",
+          "Introduced end-to-end testing that brought production regressions near zero."
+        ]
+      },
+      {
+        "role": "Software Engineer",
+        "summary": "Built client products end to end — from marketing sites to complex dashboards — across a fast-moving product agency.",
+        "achievements": [
+          "Shipped 20+ production apps for startups and enterprise clients.",
+          "Established the company's reusable component toolkit and CI pipeline.",
+          "Collaborated directly with designers to deliver pixel-perfect, accessible UIs."
+        ]
+      },
+      {
+        "role": "Frontend Developer",
+        "summary": "Joined as the second engineer and helped grow the product from prototype to its first thousand users.",
+        "achievements": [
+          "Implemented the initial component library and styling conventions.",
+          "Owned the public-facing web app and improved Lighthouse scores across the board."
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "Education & certifications",
+    "subtitle": "Formal training and the credentials I've earned to keep my craft sharp.",
+    "sectionEducation": "Education",
+    "sectionCertifications": "Certifications",
+    "entries": [
+      {
+        "title": "B.Sc. in Computer Science",
+        "detail": "Graduated with honors. Focus on distributed systems and human–computer interaction."
+      },
+      {
+        "title": "Exchange Semester — Web Systems",
+        "detail": "Research project on real-time collaborative editing and CRDTs."
+      }
+    ],
+    "certifications": [
+      { "title": "AWS Certified Solutions Architect" },
+      { "title": "Professional Scrum Developer" },
+      { "title": "Advanced React & Performance" },
+      { "title": "Accessibility Specialist (CPACC)" }
+    ]
+  },
+  "projects": {
+    "title": "Selected projects",
+    "subtitle": "A few things I've designed, built, and shipped end to end.",
+    "filter": { "all": "All" },
+    "noResults": "No projects match the current filter.",
+    "categoryLabels": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "fullstack": "Full-Stack",
+      "ai": "AI / ML",
+      "devtools": "Dev Tools",
+      "mobile": "Mobile",
+      "ux": "UX / Design"
+    },
+    "sections": {
+      "endToEnd": {
+        "title": "End-to-End Projects",
+        "description": "Projects where I owned the full cycle — from architecture and design to deployment and maintenance."
+      },
+      "contribution": {
+        "title": "Projects with Contribution",
+        "description": "Work done as part of a team — open-source contributions, collaborative builds, and contract work."
+      },
+      "research": {
+        "title": "Research & Studies",
+        "description": "Explorations, POCs, and deep dives — demonstrating technical curiosity and continuous learning."
+      }
+    },
+    "badges": {
+      "featured": "Featured",
+      "live": "Live",
+      "wip": "In progress",
+      "archived": "Archived",
+      "ongoing": "Ongoing",
+      "completed": "Completed"
+    },
+    "actions": {
+      "liveDemo": "Live demo",
+      "viewRepository": "View repository",
+      "viewProject": "View project"
+    },
+    "ariaLabels": {
+      "sourceCode": "Source code",
+      "preview": "{title} preview",
+      "source": "{title} source",
+      "liveDemo": "{title} live demo",
+      "link": "{title} link"
+    },
+    "modal": {
+      "screenshots": "Screenshots",
+      "highlights": "Highlights",
+      "technicalNotes": "Technical notes",
+      "keyFindings": "Key findings",
+      "notes": "Notes",
+      "references": "References",
+      "pullRequests": "Pull requests & issues"
+    },
+    "researchTypes": {
+      "POC": "POC",
+      "Study": "Study",
+      "DeepDive": "Deep Dive",
+      "Concept": "Concept"
+    },
+    "statusLabels": {
+      "live": "Live",
+      "wip": "In progress",
+      "archived": "Archived"
+    },
+    "endToEnd": [
+      {
+        "tagline": "Personal finance, reimagined",
+        "description": "A full-stack budgeting platform serving 40k+ users. I led the frontend architecture and design system, cut initial load time by 60%, and shipped real-time syncing across devices with optimistic UI.",
+        "highlights": [
+          "Serves 40k+ active users with 99.9% uptime",
+          "Cut initial load time by 60% via code-splitting and edge caching",
+          "Real-time sync across devices using optimistic UI and WebSockets",
+          "Custom design system with 30+ accessible components"
+        ],
+        "technicalNotes": "## Architecture\n\nThe frontend is built on **Next.js App Router** with a strict separation between server and client components. Data fetching happens on the server via **tRPC** procedures, keeping the client bundle lean.\n\n## Key decisions\n\n- **Optimistic UI**: All mutations update local state immediately and roll back on error, making the app feel instantaneous even on slow connections.\n- **Edge caching**: Static routes are cached at the CDN edge; dynamic user data is served from a regional PostgreSQL read replica.\n- **Design system**: Built on Radix UI primitives with a custom token layer — supports light/dark mode and meets WCAG AA contrast ratios throughout.\n\n## Challenges\n\nThe biggest challenge was real-time budget reconciliation across browser tabs. Solved this using a `BroadcastChannel` + server-sent events fallback for environments that don't support it."
+      },
+      {
+        "tagline": "Metrics at the speed of thought",
+        "description": "Real-time analytics for developer teams. Streaming metrics, anomaly alerts, and a query builder built for speed.",
+        "highlights": [
+          "Sub-100ms latency for metric streaming via Redis Pub/Sub",
+          "Anomaly detection engine processing 10k+ events/sec",
+          "Visual query builder with zero SQL knowledge required"
+        ],
+        "technicalNotes": "## Streaming pipeline\n\nMetrics are ingested by a **Go** backend into **Redis Streams**, then fanned out to connected browser clients via WebSocket. The Go service handles backpressure automatically — slow clients get a compressed snapshot instead of a raw stream.\n\n## Query builder\n\nThe query builder generates a subset of PromQL. The AST is built client-side in React, serialized to JSON, and interpreted server-side. This keeps the UI completely decoupled from the query language internals.\n\n## Anomaly detection\n\nUses a sliding window Z-score algorithm — simple but effective for developer dashboards where spikes are the main concern."
+      },
+      {
+        "tagline": "Design systems done right",
+        "description": "An open-source, accessible component library and design system adopted across multiple product teams.",
+        "highlights": [
+          "40+ accessible components used across 3 product teams",
+          "Full WCAG AA compliance verified with automated axe-core tests",
+          "Comprehensive Storybook docs with interaction tests",
+          "Tree-shakeable ESM build — zero runtime dependencies"
+        ],
+        "technicalNotes": "## Design tokens\n\nAll design decisions are encoded as CSS custom properties following the W3C Design Token spec draft. This allows teams to theme the library without forking it.\n\n## Accessibility first\n\nEvery interactive component is built on **Radix UI** primitives, which handle focus management, keyboard navigation, and ARIA attributes. Tests run `axe-core` in jsdom on every CI push.\n\n## Bundle size\n\nThe library is built with **tsup** to produce both ESM and CJS outputs. Each component is a separate entry point, so teams only ship what they use."
+      }
+    ],
+    "contributions": [
+      {
+        "description": "Contributed streaming improvements and new provider adapters to the official Vercel AI SDK, improving edge-runtime compatibility.",
+        "role": "Open-source contributor",
+        "impact": "Reduced streaming latency by ~30% on edge runtimes across all provider adapters.",
+        "technicalNotes": "## What I contributed\n\nThe Vercel AI SDK's streaming layer used Node.js `Readable` streams internally, which aren't available on edge runtimes (Cloudflare Workers, Vercel Edge). I refactored the core streaming abstraction to use the **Web Streams API** (`ReadableStream`) as the primary interface, with a Node.js compatibility shim.\n\n## Provider adapter\n\nAdded a new adapter for **Anthropic's Messages API**, including support for tool-use streaming and prompt caching headers."
+      },
+      {
+        "description": "Fixed accessibility regressions in Dialog and Tooltip components, added keyboard-navigation spec tests, and improved WAI-ARIA compliance.",
+        "role": "Bug fixes & a11y",
+        "impact": "Resolved 3 long-standing WCAG violations affecting screen reader users across all Radix consumers.",
+        "technicalNotes": "## Focus management bug\n\nOn iOS Safari, `Dialog` was not restoring focus to the trigger after close because the browser's focus behavior differs from the spec. Fixed by explicitly storing the trigger ref and calling `.focus()` in a `requestAnimationFrame` callback after the close animation completes.\n\n## ARIA cleanup\n\n`Tooltip` was keeping the `aria-describedby` attribute on the anchor even after the tooltip unmounted, causing screen readers to reference a non-existent element. Added a cleanup effect tied to the tooltip's portal lifecycle."
+      },
+      {
+        "description": "Joined an existing design-system team to ship a dark-mode token layer and migrate 30+ components from class-based to functional patterns.",
+        "role": "Frontend Engineer (contract)",
+        "impact": "Enabled dark mode across 4 product surfaces in a single release, zero regression on existing consumers.",
+        "technicalNotes": "## Token layer\n\nThe existing system used hardcoded hex values scattered across component files. Introduced a semantic token layer with `data-theme` attribute switching — light/dark themes are swapped without JavaScript by toggling a single attribute on `<html>`.\n\n## Migration strategy\n\nClass-based components were migrated incrementally using a codemods-first approach. Wrote a custom AST transform with `jscodeshift` to automate the boilerplate conversion, then manually reviewed each component's lifecycle methods."
+      }
+    ],
+    "research": [
+      {
+        "description": "Interactive data-viz toolkit for geospatial dashboards — exploring D3 + WebGL rendering boundaries.",
+        "findings": [
+          "WebGL canvas outperforms SVG by 10× at 50k+ data points",
+          "D3's projection math can be offloaded to a Web Worker without visual delay",
+          "Mapbox GL's custom layer API is sufficient for most data-viz overlays"
+        ],
+        "technicalNotes": "## Goal\n\nDetermine the practical rendering ceiling for browser-based geospatial dashboards and identify the best D3/WebGL integration point.\n\n## Approach\n\nBuilt a series of progressively complex visualizations — choropleth → point cloud → animated flow lines — and profiled each in Chrome DevTools. Compared SVG, Canvas 2D, and WebGL rendering for each case.\n\n## Conclusion\n\nFor dashboards with < 5k features, SVG + D3 is the right choice (easy debugging, accessibility). Beyond that, Canvas 2D or WebGL is necessary. The `deck.gl` + Mapbox combination offers the best ergonomics for production use."
+      },
+      {
+        "description": "Prototype AI email triage assistant with smart summarization using function-calling pipelines.",
+        "findings": [
+          "Function-calling pipelines outperform prompt-only classification for structured extraction",
+          "Edge streaming cuts perceived latency by ~50% vs. waiting for full response",
+          "GPT-4o-mini is cost-effective enough for per-email processing at scale"
+        ],
+        "technicalNotes": "## Pipeline design\n\nEach email passes through a 3-step function-calling pipeline:\n1. **Classify** — label (action/info/promo/spam) + urgency score\n2. **Summarize** — extract subject, sender intent, and required action\n3. **Draft** — optional one-click reply draft\n\nAll steps run on Vercel Edge Functions with streaming so the UI updates progressively.\n\n## Cost analysis\n\nAt GPT-4o-mini pricing, processing 100 emails/day costs ~$0.02. Acceptable for personal use; production would need batching + caching for repeated senders."
+      },
+      {
+        "description": "A fast, scriptable command-line tool for plain-text accounting. Study in Go CLI design patterns.",
+        "findings": [
+          "Go's stdlib is sufficient for most CLI tooling — cobra adds ergonomics, not capability",
+          "SQLite with WAL mode handles concurrent reads with zero configuration",
+          "Plain-text ledger format (hledger-compatible) is surprisingly robust for parsing"
+        ],
+        "technicalNotes": "## Motivation\n\nStudied Go CLI architecture patterns by building a real tool I actually use — a plain-text accounting CLI compatible with the hledger format.\n\n## Design decisions\n\n- **cobra** for command routing and flag parsing\n- **SQLite** (via `modernc.org/sqlite`) for the internal index — no CGo dependency\n- **bubbletea** for the interactive TUI report viewer\n\n## Learnings\n\nGo's approach to CLI tooling is refreshingly pragmatic. The biggest lesson was around error handling — Go forces you to handle errors explicitly, which results in much more resilient CLI tools than equivalent Node.js scripts."
+      },
+      {
+        "description": "Hands-on exploration of RSC architecture: streaming, Suspense boundaries, and partial hydration tradeoffs.",
+        "findings": [
+          "RSC eliminates client-side data-fetching waterfalls for deeply nested component trees",
+          "Suspense boundaries are the key unit of streaming — placement matters more than quantity",
+          "The RSC payload format is compact but adds non-trivial complexity to the build pipeline",
+          "Partial hydration via `use client` boundaries is the most impactful performance lever"
+        ],
+        "technicalNotes": "## Scope\n\nBuilt a series of increasingly complex Next.js App Router demos to stress-test RSC boundaries, streaming behavior, and the interop between server and client components.\n\n## Key experiments\n\n**Experiment 1 — Streaming waterfall elimination**: Replaced a deeply nested component tree that had 4 sequential `useEffect` fetches with RSC `async/await`. Result: 0 client-side waterfalls, ~40% reduction in TTI.\n\n**Experiment 2 — Suspense placement**: Tested 3 different Suspense boundary configurations for the same UI. Found that coarse-grained boundaries (one per route segment) outperform fine-grained ones in practice because they reduce layout shifts.\n\n**Experiment 3 — Client island size**: Measured JS bundle size as `use client` boundaries moved progressively closer to the leaves. Every level down reduced the hydrated JS by ~15–20%.\n\n## Ongoing\n\nStill exploring the cache invalidation model (`revalidatePath` vs `revalidateTag`) and its interaction with CDN-level caching."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Let's build something",
+    "subtitle": "Have a project in mind or just want to say hello? My inbox is always open.",
+    "description": "Whether you're looking for an engineer to join your team or need help shipping a product, I'd love to hear about it. I usually reply within a day.",
+    "channels": {
+      "email": { "label": "Email" },
+      "location": { "label": "Location" }
+    },
+    "form": {
+      "name": { "label": "Name", "placeholder": "Jane Doe" },
+      "email": { "label": "Email", "placeholder": "jane@company.com" },
+      "subject": { "label": "Subject", "placeholder": "Project inquiry" },
+      "message": { "label": "Message", "placeholder": "Tell me a little about what you're working on..." },
+      "send": "Send message",
+      "sent": "Message sent"
+    }
   }
 }
