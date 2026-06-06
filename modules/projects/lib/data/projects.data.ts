@@ -106,7 +106,7 @@ export const contributionProjects: ContributionProject[] = [
     title: "Vercel AI SDK",
     description:
       "Contributed streaming improvements and new provider adapters to the official Vercel AI SDK, improving edge-runtime compatibility.",
-    image: "/project-vercel-ai.png",
+    image: "/project-finflow.png",
     role: "Open-source contributor",
     tags: ["TypeScript", "Edge Runtime", "Streaming"],
     categories: ["ai", "devtools"],
@@ -131,10 +131,11 @@ Added a new adapter for **Anthropic's Messages API**, including support for tool
     title: "Radix UI Primitives",
     description:
       "Fixed accessibility regressions in Dialog and Tooltip components, added keyboard-navigation spec tests, and improved WAI-ARIA compliance.",
+    image: "/project-finflow.png",
     role: "Bug fixes & a11y",
     tags: ["React", "TypeScript", "a11y", "Jest"],
     categories: ["frontend", "ux"],
-    source: "https://github.com",
+    source: "/project-finflow.png",
     year: 2023,
     impact: "Resolved 3 long-standing WCAG violations affecting screen reader users across all Radix consumers.",
     prLinks: [
@@ -154,7 +155,7 @@ On iOS Safari, \`Dialog\` was not restoring focus to the trigger after close bec
     title: "Internal Design System @ Corp",
     description:
       "Joined an existing design-system team to ship a dark-mode token layer and migrate 30+ components from class-based to functional patterns.",
-    image: "/project-ds.png",
+    image: "/project-finflow.png",
     role: "Frontend Engineer (contract)",
     tags: ["React", "CSS Variables", "Storybook"],
     categories: ["frontend", "ux"],
