@@ -5,6 +5,7 @@ export const experienceRoles: ExperienceRole[] = [
     period: "2022 — Present",
     role: "Senior Software Engineer",
     company: "Northwind Labs",
+    logo: "/placeholder-logo.png",
     summary:
       "Lead frontend engineer for the core platform used by 40k+ customers. Own architecture decisions and mentor a team of five.",
     achievements: [
@@ -18,6 +19,7 @@ export const experienceRoles: ExperienceRole[] = [
     period: "2019 — 2022",
     role: "Software Engineer",
     company: "Lumen Studio",
+    logo: "/placeholder-logo.png",
     summary:
       "Built client products end to end — from marketing sites to complex dashboards — across a fast-moving product agency.",
     achievements: [
@@ -31,6 +33,7 @@ export const experienceRoles: ExperienceRole[] = [
     period: "2017 — 2019",
     role: "Frontend Developer",
     company: "Cobalt Interactive",
+    logo: "/placeholder-logo.png",
     summary:
       "Joined as the second engineer and helped grow the product from prototype to its first thousand users.",
     achievements: [

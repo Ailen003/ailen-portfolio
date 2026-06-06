@@ -1,6 +1,7 @@
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
 import { experienceRoles } from "./lib/data/experience.data"
+import AvatarContainer from "@/components/ui/avatar-container"
 
 export function Experience() {
   return (
@@ -20,13 +21,21 @@ export function Experience() {
               <div className="relative md:pl-12">
                 <span className="absolute left-0 top-6 hidden h-4 w-4 -translate-x-1/2 rounded-full border-2 border-primary bg-background md:block" />
                 <div className="rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 sm:p-7">
-                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                    <h3 className="text-lg font-bold tracking-tight">
-                      {r.role} <span className="text-primary">· {r.company}</span>
-                    </h3>
-                    <span className="font-mono text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                      {r.period}
-                    </span>
+                  <div className="flex items-center gap-4">
+                    <AvatarContainer
+                      image={r.logo}
+                      fallback={r.company.charAt(0)}
+                      className="h-10 w-10 shrink-0 rounded-lg border border-border bg-secondary"
+                      avatarFallbackClassName="rounded-lg text-sm font-bold"
+                    />
+                    <div className="flex min-w-0 flex-1 flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                      <h3 className="text-lg font-bold tracking-tight">
+                        {r.role} <span className="text-primary">· {r.company}</span>
+                      </h3>
+                      <span className="font-mono text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                        {r.period}
+                      </span>
+                    </div>
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{r.summary}</p>
                   <ul className="mt-4 space-y-2">
