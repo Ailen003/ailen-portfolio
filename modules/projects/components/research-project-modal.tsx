@@ -37,12 +37,13 @@ export function ResearchProjectModal({ project, open, onOpenChange }: ResearchPr
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[88dvh] max-w-xl overflow-hidden flex flex-col gap-0 p-0">
         {/* Header */}
-        <div className="relative overflow-hidden rounded-t-lg border-b border-border bg-card px-6 pb-5 pt-6">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -right-8 -top-8 h-36 w-36 rounded-full opacity-20 blur-3xl"
-            style={{ backgroundColor: typeMeta.color }}
-          />
+        <div className="relative rounded-t-lg border-b border-border bg-card px-6 pb-5 pt-6">
+          <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden rounded-t-lg">
+            <div
+              className="absolute -right-8 -top-8 h-36 w-36 rounded-full opacity-20 blur-3xl"
+              style={{ backgroundColor: typeMeta.color }}
+            />
+          </div>
           <DialogHeader className="relative">
             <div className="mb-2 flex flex-wrap items-center gap-2">
               <span

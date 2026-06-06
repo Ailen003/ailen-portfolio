@@ -32,12 +32,13 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[88dvh] max-w-2xl overflow-hidden flex flex-col gap-0 p-0">
         {/* Header */}
-        <div className="relative overflow-hidden rounded-t-lg border-b border-border bg-card px-6 pb-5 pt-6">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-25 blur-3xl"
-            style={{ backgroundColor: accentColor }}
-          />
+        <div className="relative rounded-t-lg border-b border-border bg-card px-6 pb-5 pt-6">
+          <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden rounded-t-lg">
+            <div
+              className="absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-25 blur-3xl"
+              style={{ backgroundColor: accentColor }}
+            />
+          </div>
           <DialogHeader className="relative">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0 flex-1">

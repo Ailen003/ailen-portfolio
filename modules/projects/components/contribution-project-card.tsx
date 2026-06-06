@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { ArrowUpRight, Github, Users, ScanSearch } from "lucide-react"
+import { ArrowUpRight, Github, Users } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { PROJECT_CATEGORY_META, type ContributionProject } from "../lib/types/project.types"
 
@@ -15,7 +15,10 @@ export function ContributionProjectCard({ project, index = 0, onOpenDetail }: Co
 
   return (
     <Reveal delay={index * 80}>
-      <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10">
+      <article
+        className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 cursor-pointer"
+        onClick={onOpenDetail}
+      >
         {project.image ? (
           <div className="relative aspect-16/10 overflow-hidden">
             <Image
@@ -70,6 +73,7 @@ export function ContributionProjectCard({ project, index = 0, onOpenDetail }: Co
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`${project.title} source`}
+                onClick={(e) => e.stopPropagation()}
                 className="text-muted-foreground transition-colors hover:text-primary"
               >
                 <Github className="h-5 w-5" />
@@ -80,6 +84,7 @@ export function ContributionProjectCard({ project, index = 0, onOpenDetail }: Co
                   target="_blank"
                   rel="noreferrer"
                   aria-label={`${project.title} demo`}
+                  onClick={(e) => e.stopPropagation()}
                   className="text-muted-foreground transition-colors hover:text-primary"
                 >
                   <ArrowUpRight className="h-5 w-5" />
@@ -122,16 +127,6 @@ export function ContributionProjectCard({ project, index = 0, onOpenDetail }: Co
             </ul>
           </div>
 
-          {onOpenDetail && (
-            <button
-              type="button"
-              onClick={onOpenDetail}
-              className="mt-4 inline-flex w-full items-center justify-center gap-1.5 rounded-xl border border-border/60 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-            >
-              <ScanSearch className="h-3.5 w-3.5" />
-              View details
-            </button>
-          )}
         </div>
       </article>
     </Reveal>

@@ -1,4 +1,4 @@
-import { ArrowUpRight, FlaskConical, BookOpen, Microscope, Lightbulb, ScanSearch } from "lucide-react"
+import { ArrowUpRight, FlaskConical, BookOpen, Microscope, Lightbulb } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { PROJECT_CATEGORY_META, type ResearchProject, type ResearchType } from "../lib/types/project.types"
 
@@ -27,8 +27,9 @@ export function ResearchProjectCard({ project, index = 0, onOpenDetail }: Resear
   return (
     <Reveal delay={index * 60}>
       <article
-        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:shadow-lg cursor-pointer"
         style={{ borderLeftColor: accentColor, borderLeftWidth: "3px" }}
+        onClick={onOpenDetail}
       >
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-2">
@@ -50,6 +51,7 @@ export function ResearchProjectCard({ project, index = 0, onOpenDetail }: Resear
               target="_blank"
               rel="noreferrer"
               aria-label={`${project.title} link`}
+              onClick={(e) => e.stopPropagation()}
               className="shrink-0 text-muted-foreground transition-all hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
             >
               <ArrowUpRight className="h-4 w-4" />
@@ -92,16 +94,6 @@ export function ResearchProjectCard({ project, index = 0, onOpenDetail }: Resear
           </ul>
         </div>
 
-        {onOpenDetail && (
-          <button
-            type="button"
-            onClick={onOpenDetail}
-            className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-border/50 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-          >
-            <ScanSearch className="h-3 w-3" />
-            View details
-          </button>
-        )}
       </article>
     </Reveal>
   )
