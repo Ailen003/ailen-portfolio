@@ -40,35 +40,37 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
             />
           </div>
           <DialogHeader className="relative">
+            {/* Meta row */}
+            <div className="mb-3 flex flex-wrap items-center gap-2 pr-8 sm:pr-0">
+              {statusMeta && (
+                <span
+                  className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-xs font-medium"
+                  style={{
+                    backgroundColor: `${statusMeta.color}15`,
+                    color: statusMeta.color,
+                    borderColor: `${statusMeta.color}40`,
+                  }}
+                >
+                  <Radio className="h-3 w-3" />
+                  {statusMeta.label}
+                </span>
+              )}
+              {project.year && (
+                <span className="inline-flex items-center gap-1 font-mono text-xs text-muted-foreground">
+                  <CalendarDays className="h-3 w-3" />
+                  {project.year}
+                </span>
+              )}
+              {project.teamSize && (
+                <span className="inline-flex items-center gap-1 font-mono text-xs text-muted-foreground">
+                  <Users className="h-3 w-3" />
+                  {project.teamSize}
+                </span>
+              )}
+            </div>
+            {/* Title + CTAs row */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-              <div className="min-w-0 flex-1">
-                <div className="mb-2 flex flex-wrap items-center gap-2">
-                  {statusMeta && (
-                    <span
-                      className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-xs font-medium"
-                      style={{
-                        backgroundColor: `${statusMeta.color}15`,
-                        color: statusMeta.color,
-                        borderColor: `${statusMeta.color}40`,
-                      }}
-                    >
-                      <Radio className="h-3 w-3" />
-                      {statusMeta.label}
-                    </span>
-                  )}
-                  {project.year && (
-                    <span className="inline-flex items-center gap-1 font-mono text-xs text-muted-foreground">
-                      <CalendarDays className="h-3 w-3" />
-                      {project.year}
-                    </span>
-                  )}
-                  {project.teamSize && (
-                    <span className="inline-flex items-center gap-1 font-mono text-xs text-muted-foreground">
-                      <Users className="h-3 w-3" />
-                      {project.teamSize}
-                    </span>
-                  )}
-                </div>
+              <div className="min-w-0">
                 <DialogTitle className="text-xl font-bold leading-tight text-foreground sm:text-2xl">
                   {project.title}
                 </DialogTitle>
