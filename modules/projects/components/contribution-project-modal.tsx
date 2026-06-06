@@ -58,11 +58,11 @@ export function ContributionProjectModal({ project, open, onOpenChange }: Contri
 
             {/* Category + tech stack */}
             <div className="mt-2.5 flex flex-wrap gap-1.5">
-              {project.categories.map((cat) => {
+              {project.categories.map((cat, index) => {
                 const meta = PROJECT_CATEGORY_META[cat]
                 return (
                   <span
-                    key={cat}
+                    key={index}
                     className="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 font-mono text-[10px] font-medium"
                     style={{
                       backgroundColor: `${meta.color}15`,
@@ -75,9 +75,9 @@ export function ContributionProjectModal({ project, open, onOpenChange }: Contri
                   </span>
                 )
               })}
-              {project.tags.map((tag) => (
+              {project.tags.map((tag, index) => (
                 <span
-                  key={tag}
+                  key={index}
                   className="rounded-full border border-border/60 bg-secondary/50 px-2.5 py-0.5 font-mono text-[10px] text-muted-foreground"
                 >
                   {tag}
@@ -113,8 +113,8 @@ export function ContributionProjectModal({ project, open, onOpenChange }: Contri
                 Pull requests & issues
               </h4>
               <ul className="space-y-2">
-                {project.prLinks.map((pr) => (
-                  <li key={pr.url}>
+                {project.prLinks.map((pr, index) => (
+                  <li key={index}>
                     <a
                       href={pr.url}
                       target="_blank"
