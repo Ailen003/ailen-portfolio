@@ -1,14 +1,15 @@
 import Image from "next/image"
-import { ArrowUpRight, Github, Users } from "lucide-react"
+import { ArrowUpRight, Github, Users, ScanSearch } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { PROJECT_CATEGORY_META, type ContributionProject } from "../lib/types/project.types"
 
 interface ContributionProjectCardProps {
   project: ContributionProject
   index?: number
+  onOpenDetail?: () => void
 }
 
-export function ContributionProjectCard({ project, index = 0 }: ContributionProjectCardProps) {
+export function ContributionProjectCard({ project, index = 0, onOpenDetail }: ContributionProjectCardProps) {
   const primaryCat = project.categories[0]
   const primaryColor = primaryCat ? PROJECT_CATEGORY_META[primaryCat].color : "#6B7280"
 
@@ -120,6 +121,17 @@ export function ContributionProjectCard({ project, index = 0 }: ContributionProj
               ))}
             </ul>
           </div>
+
+          {onOpenDetail && (
+            <button
+              type="button"
+              onClick={onOpenDetail}
+              className="mt-4 inline-flex w-full items-center justify-center gap-1.5 rounded-xl border border-border/60 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+            >
+              <ScanSearch className="h-3.5 w-3.5" />
+              View details
+            </button>
+          )}
         </div>
       </article>
     </Reveal>

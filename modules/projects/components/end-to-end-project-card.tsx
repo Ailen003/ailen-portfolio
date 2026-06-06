@@ -1,14 +1,15 @@
 import Image from "next/image"
-import { ArrowUpRight, Github, Star } from "lucide-react"
+import { ArrowUpRight, Github, Star, ScanSearch } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { PROJECT_CATEGORY_META, type EndToEndProject } from "../lib/types/project.types"
 
 interface EndToEndProjectCardProps {
   project: EndToEndProject
   index?: number
+  onOpenDetail?: () => void
 }
 
-export function EndToEndProjectCard({ project, index = 0 }: EndToEndProjectCardProps) {
+export function EndToEndProjectCard({ project, index = 0, onOpenDetail }: EndToEndProjectCardProps) {
   if (project.featured) {
     return (
       <Reveal delay={index * 80}>
@@ -66,7 +67,7 @@ export function EndToEndProjectCard({ project, index = 0 }: EndToEndProjectCardP
               ))}
             </ul>
 
-            <div className="mt-8 flex items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
                 href={project.demo}
                 target="_blank"
@@ -85,6 +86,16 @@ export function EndToEndProjectCard({ project, index = 0 }: EndToEndProjectCardP
               >
                 <Github className="h-5 w-5" />
               </a>
+              {onOpenDetail && (
+                <button
+                  type="button"
+                  onClick={onOpenDetail}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                >
+                  <ScanSearch className="h-4 w-4" />
+                  View details
+                </button>
+              )}
             </div>
           </div>
         </article>
@@ -167,6 +178,17 @@ export function EndToEndProjectCard({ project, index = 0 }: EndToEndProjectCardP
               </li>
             ))}
           </ul>
+
+          {onOpenDetail && (
+            <button
+              type="button"
+              onClick={onOpenDetail}
+              className="mt-4 inline-flex w-full items-center justify-center gap-1.5 rounded-xl border border-border/60 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+            >
+              <ScanSearch className="h-3.5 w-3.5" />
+              View details
+            </button>
+          )}
         </div>
       </article>
     </Reveal>

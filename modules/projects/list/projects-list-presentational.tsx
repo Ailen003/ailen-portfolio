@@ -6,6 +6,9 @@ import { EndToEndProjectCard } from "../components/end-to-end-project-card"
 import { ContributionProjectCard } from "../components/contribution-project-card"
 import { ResearchProjectCard } from "../components/research-project-card"
 import { ProjectLevelSection } from "../components/project-level-section"
+import { EndToEndProjectModal } from "../components/end-to-end-project-modal"
+import { ContributionProjectModal } from "../components/contribution-project-modal"
+import { ResearchProjectModal } from "../components/research-project-modal"
 import type {
   EndToEndProject,
   ContributionProject,
@@ -33,6 +36,9 @@ export function ProjectsListPresentational({
   research,
 }: ProjectsListPresentationalProps) {
   const [activeFilters, setActiveFilters] = useState<ProjectCategory[]>([])
+  const [selectedEndToEnd, setSelectedEndToEnd] = useState<EndToEndProject | null>(null)
+  const [selectedContribution, setSelectedContribution] = useState<ContributionProject | null>(null)
+  const [selectedResearch, setSelectedResearch] = useState<ResearchProject | null>(null)
 
   const filteredEndToEnd = useMemo(() => hasCategory(endToEnd, activeFilters), [endToEnd, activeFilters])
   const filteredContributions = useMemo(() => hasCategory(contributions, activeFilters), [contributions, activeFilters])
@@ -66,12 +72,21 @@ export function ProjectsListPresentational({
         isEmpty={filteredEndToEnd.length === 0}
       >
         {featuredProject && (
-          <EndToEndProjectCard project={featuredProject} index={0} />
+          <EndToEndProjectCard
+            project={featuredProject}
+            index={0}
+            onOpenDetail={() => setSelectedEndToEnd(featuredProject)}
+          />
         )}
         {otherEndToEnd.length > 0 && (
           <div className={`grid gap-6 md:grid-cols-2 ${featuredProject ? "mt-6" : ""}`}>
             {otherEndToEnd.map((p, i) => (
-              <EndToEndProjectCard key={p.title} project={p} index={i + 1} />
+              <EndToEndProjectCard
+                key={p.title}
+                project={p}
+                index={i + 1}
+                onOpenDetail={() => setSelectedEndToEnd(p)}
+              />
             ))}
           </div>
         )}
@@ -85,7 +100,12 @@ export function ProjectsListPresentational({
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredContributions.map((p, i) => (
-            <ContributionProjectCard key={p.title} project={p} index={i} />
+            <ContributionProjectCard
+              key={p.title}
+              project={p}
+              index={i}
+              onOpenDetail={() => setSelectedContribution(p)}
+            />
           ))}
         </div>
       </ProjectLevelSection>
@@ -98,10 +118,39 @@ export function ProjectsListPresentational({
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {filteredResearch.map((p, i) => (
-            <ResearchProjectCard key={p.title} project={p} index={i} />
+            <ResearchProjectCard
+              key={p.title}
+              project={p}
+              index={i}
+              onOpenDetail={() => setSelectedResearch(p)}
+            />
           ))}
         </div>
       </ProjectLevelSection>
+
+      {selectedEndToEnd && (
+        <EndToEndProjectModal
+          project={selectedEndToEnd}
+          open={selectedEndToEnd !== null}
+          onOpenChange={(open) => { if (!open) setSelectedEndToEnd(null) }}
+        />
+      )}
+
+      {selectedContribution && (
+        <ContributionProjectModal
+          project={selectedContribution}
+          open={selectedContribution !== null}
+          onOpenChange={(open) => { if (!open) setSelectedContribution(null) }}
+        />
+      )}
+
+      {selectedResearch && (
+        <ResearchProjectModal
+          project={selectedResearch}
+          open={selectedResearch !== null}
+          onOpenChange={(open) => { if (!open) setSelectedResearch(null) }}
+        />
+      )}
     </>
   )
 }

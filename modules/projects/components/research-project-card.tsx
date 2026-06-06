@@ -1,4 +1,4 @@
-import { ArrowUpRight, FlaskConical, BookOpen, Microscope, Lightbulb } from "lucide-react"
+import { ArrowUpRight, FlaskConical, BookOpen, Microscope, Lightbulb, ScanSearch } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { PROJECT_CATEGORY_META, type ResearchProject, type ResearchType } from "../lib/types/project.types"
 
@@ -15,9 +15,10 @@ const RESEARCH_TYPE_META: Record<
 interface ResearchProjectCardProps {
   project: ResearchProject
   index?: number
+  onOpenDetail?: () => void
 }
 
-export function ResearchProjectCard({ project, index = 0 }: ResearchProjectCardProps) {
+export function ResearchProjectCard({ project, index = 0, onOpenDetail }: ResearchProjectCardProps) {
   const typeMeta = RESEARCH_TYPE_META[project.researchType]
   const TypeIcon = typeMeta.icon
   const primaryCat = project.categories[0]
@@ -90,6 +91,17 @@ export function ResearchProjectCard({ project, index = 0 }: ResearchProjectCardP
             ))}
           </ul>
         </div>
+
+        {onOpenDetail && (
+          <button
+            type="button"
+            onClick={onOpenDetail}
+            className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-border/50 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+          >
+            <ScanSearch className="h-3 w-3" />
+            View details
+          </button>
+        )}
       </article>
     </Reveal>
   )
