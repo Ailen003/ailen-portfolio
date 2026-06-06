@@ -3,7 +3,8 @@
 import Image from "next/image"
 import { ArrowDownRight, FileText } from "lucide-react"
 import { useEffect, useState } from "react"
-import { heroSocials, ROLES } from "./lib/data/hero.data"
+import { useTranslations } from "next-intl"
+import { heroSocials } from "./lib/data/hero.data"
 
 function useTypewriter(
   words: string[],
@@ -59,7 +60,9 @@ function useTypewriter(
 }
 
 export function Hero() {
-  const { text: role, isTyping: roleTyping } = useTypewriter(ROLES, 80, 40, 2000, true, 0)
+  const t = useTranslations("hero")
+  const roles = [t("roles.senior"), t("roles.fullStack"), t("roles.problemSolver")]
+  const { text: role, isTyping: roleTyping } = useTypewriter(roles, 80, 40, 2000, true, 0)
 
   return (
     <section id="home" className="relative overflow-hidden">
@@ -80,10 +83,10 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
             </span>
-            Available for new projects
+            {t("badge")}
           </div>
 
-          <p className="mb-3 font-mono text-sm font-medium tracking-wide text-primary">Hi, my name is</p>
+          <p className="mb-3 font-mono text-sm font-medium tracking-wide text-primary">{t("greeting")}</p>
           <h1 className="text-balance text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
             Elena Vargas
           </h1>
@@ -96,8 +99,7 @@ export function Hero() {
           </h2>
 
           <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
-            I design and build resilient, accessible web products where thoughtful interface design meets
-            solid engineering. I care about performance, the small details, and shipping work that lasts.
+            {t("description")}
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -105,7 +107,7 @@ export function Hero() {
               href="#projects"
               className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/25"
             >
-              View my work
+              {t("cta.viewWork")}
               <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
             </a>
             <a
@@ -113,7 +115,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
             >
               <FileText className="h-4 w-4" />
-              Download CV
+              {t("cta.downloadCv")}
             </a>
           </div>
 
@@ -138,7 +140,7 @@ export function Hero() {
           <div className="animate-float-slow overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-2xl shadow-primary/10">
             <Image
               src="/elena-portrait.png"
-              alt="Portrait of Elena Vargas"
+              alt={t("portraitAlt")}
               width={640}
               height={760}
               priority
@@ -148,11 +150,11 @@ export function Hero() {
 
           <div className="absolute -bottom-5 -left-5 rounded-2xl border border-border bg-card/90 px-5 py-4 shadow-xl backdrop-blur">
             <p className="font-mono text-2xl font-bold text-primary">8+</p>
-            <p className="text-xs text-muted-foreground">Years building</p>
+            <p className="text-xs text-muted-foreground">{t("stats.yearsLabel")}</p>
           </div>
           <div className="absolute -right-4 top-8 rounded-2xl border border-border bg-card/90 px-5 py-4 shadow-xl backdrop-blur">
             <p className="font-mono text-2xl font-bold text-primary">50+</p>
-            <p className="text-xs text-muted-foreground">Projects shipped</p>
+            <p className="text-xs text-muted-foreground">{t("stats.projectsLabel")}</p>
           </div>
         </div>
       </div>

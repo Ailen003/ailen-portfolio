@@ -1,0 +1,30 @@
+{
+  "languageToggle": {
+    "label": "Language",
+    "en": "English",
+    "es": "Español"
+  },
+  "metadata": {
+    "title": "Elena Vargas — Software Engineer",
+    "description": "Portfolio of Elena Vargas, a senior software engineer crafting performant, accessible web products with thoughtful design and robust engineering."
+  },
+  "hero": {
+    "badge": "Available for new projects",
+    "greeting": "Hi, my name is",
+    "roles": {
+      "senior": "Senior Software Engineer",
+      "fullStack": "Full Stack Developer",
+      "problemSolver": "Problem Solver"
+    },
+    "description": "I design and build resilient, accessible web products where thoughtful interface design meets solid engineering. I care about performance, the small details, and shipping work that lasts.",
+    "cta": {
+      "viewWork": "View my work",
+      "downloadCv": "Download CV"
+    },
+    "stats": {
+      "yearsLabel": "Years building",
+      "projectsLabel": "Projects shipped"
+    },
+    "portraitAlt": "Portrait of Elena Vargas"
+  }
+}

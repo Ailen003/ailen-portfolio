@@ -1,0 +1,30 @@
+{
+  "languageToggle": {
+    "label": "Idioma",
+    "en": "English",
+    "es": "Español"
+  },
+  "metadata": {
+    "title": "Elena Vargas — Ingeniería de Software",
+    "description": "Portfolio de Elena Vargas, ingeniería de software senior especializada en productos web de alto rendimiento, accesibles y con diseño cuidado."
+  },
+  "hero": {
+    "badge": "Disponible para nuevos proyectos",
+    "greeting": "Hola, me llamo",
+    "roles": {
+      "senior": "Ingeniería de Software Senior",
+      "fullStack": "Desarrolladora Full Stack",
+      "problemSolver": "Resolutora de Problemas"
+    },
+    "description": "Diseño y construyo productos web resilientes y accesibles donde el diseño de interfaz cuidado se une a la ingeniería sólida. Me importan el rendimiento, los pequeños detalles y entregar trabajo que perdure.",
+    "cta": {
+      "viewWork": "Ver mi trabajo",
+      "downloadCv": "Descargar CV"
+    },
+    "stats": {
+      "yearsLabel": "Años construyendo",
+      "projectsLabel": "Proyectos entregados"
+    },
+    "portraitAlt": "Retrato de Elena Vargas"
+  }
+}
