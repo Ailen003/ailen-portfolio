@@ -15,7 +15,7 @@ import { routing } from "@/i18n/routing"
 export const PERSON_NAME = "Elena Vargas"
 
 /** Default placeholder used when NEXT_PUBLIC_SITE_URL is not set. */
-const FALLBACK_SITE_URL = "http://localhost:3000"
+const FALLBACK_SITE_URL = "https://ailen-portfolio.vercel.app"
 
 /**
  * Returns the canonical production origin (no trailing slash).
