@@ -5,10 +5,12 @@ import { Send, Check } from "lucide-react"
 
 interface ContactFormPresentationalProps {
   sent: boolean
+  loading: boolean
+  error: string | null
   onSubmit: (e: FormEvent<HTMLFormElement>) => void
 }
 
-export function ContactFormPresentational({ sent, onSubmit }: ContactFormPresentationalProps) {
+export function ContactFormPresentational({ sent, loading, error, onSubmit }: ContactFormPresentationalProps) {
   return (
     <form
       onSubmit={onSubmit}
@@ -68,12 +70,18 @@ export function ContactFormPresentational({ sent, onSubmit }: ContactFormPresent
       </div>
       <button
         type="submit"
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/25"
+        disabled={loading || sent}
+        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/25 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {sent ? (
           <>
             <Check className="h-4 w-4" />
             Message sent
+          </>
+        ) : loading ? (
+          <>
+            <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
+            Sending…
           </>
         ) : (
           <>
@@ -82,6 +90,10 @@ export function ContactFormPresentational({ sent, onSubmit }: ContactFormPresent
           </>
         )}
       </button>
+
+      {error && (
+        <p className="mt-3 text-center text-sm text-destructive">{error}</p>
+      )}
     </form>
   )
 }
