@@ -4,6 +4,9 @@
     "en": "English",
     "es": "Español"
   },
+  "themeToggle": {
+    "label": "Toggle theme"
+  },
   "metadata": {
     "title": "Elena Vargas — Software Engineer",
     "description": "Portfolio of Elena Vargas, a senior software engineer crafting performant, accessible web products with thoughtful design and robust engineering."

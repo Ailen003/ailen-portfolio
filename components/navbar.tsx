@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 import { Menu, X } from "lucide-react"
 import { LanguageToggle } from "@/components/language-toggle"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const links = [
   { label: "About", href: "#about" },
@@ -71,6 +72,7 @@ export function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-2 md:flex">
+          <ThemeToggle />
           <LanguageToggle />
           <a
             href="#contact"
@@ -81,6 +83,7 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-1 md:hidden">
+          <ThemeToggle />
           <LanguageToggle />
           <button
             type="button"

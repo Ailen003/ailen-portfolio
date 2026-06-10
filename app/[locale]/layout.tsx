@@ -5,6 +5,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl"
 import { getMessages, getTranslations } from "next-intl/server"
 import { Analytics } from "@vercel/analytics/next"
 import { routing } from "@/i18n/routing"
+import { Providers } from "@/app/providers"
 import "../globals.css"
 
 const sora = Sora({
@@ -63,11 +64,14 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       className={`${sora.variable} ${jetbrainsMono.variable} bg-background`}
+      suppressHydrationWarning
     >
       <body className="font-sans antialiased">
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          {children}
-        </NextIntlClientProvider>
+        <Providers>
+          <NextIntlClientProvider messages={messages} locale={locale}>
+            {children}
+          </NextIntlClientProvider>
+        </Providers>
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

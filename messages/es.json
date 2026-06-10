@@ -4,6 +4,9 @@
     "en": "English",
     "es": "Español"
   },
+  "themeToggle": {
+    "label": "Cambiar tema"
+  },
   "metadata": {
     "title": "Elena Vargas — Ingeniería de Software",
     "description": "Portfolio de Elena Vargas, ingeniería de software senior especializada en productos web de alto rendimiento, accesibles y con diseño cuidado."

@@ -40,38 +40,38 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --background: oklch(0.17 0.013 195);
+  --foreground: oklch(0.95 0.006 175);
+  --card: oklch(0.21 0.015 195);
+  --card-foreground: oklch(0.95 0.006 175);
+  --popover: oklch(0.215 0.016 195);
+  --popover-foreground: oklch(0.95 0.006 175);
+  --primary: oklch(0.74 0.13 175);
+  --primary-foreground: oklch(0.18 0.02 195);
+  --secondary: oklch(0.27 0.018 190);
+  --secondary-foreground: oklch(0.92 0.012 175);
+  --muted: oklch(0.255 0.014 190);
+  --muted-foreground: oklch(0.7 0.022 178);
+  --accent: oklch(0.32 0.04 178);
+  --accent-foreground: oklch(0.88 0.05 175);
+  --destructive: oklch(0.62 0.2 25);
+  --destructive-foreground: oklch(0.98 0.01 25);
+  --border: oklch(0.29 0.016 190);
+  --input: oklch(0.29 0.016 190);
+  --ring: oklch(0.74 0.13 175);
+  --chart-1: oklch(0.7 0.13 175);
+  --chart-2: oklch(0.68 0.14 220);
+  --chart-3: oklch(0.74 0.16 85);
+  --chart-4: oklch(0.66 0.2 300);
+  --chart-5: oklch(0.68 0.19 30);
+  --sidebar: oklch(0.205 0.015 195);
+  --sidebar-foreground: oklch(0.95 0.006 175);
+  --sidebar-primary: oklch(0.74 0.13 175);
+  --sidebar-primary-foreground: oklch(0.18 0.02 195);
+  --sidebar-accent: oklch(0.27 0.018 190);
+  --sidebar-accent-foreground: oklch(0.92 0.012 175);
+  --sidebar-border: oklch(0.29 0.016 190);
+  --sidebar-ring: oklch(0.74 0.13 175);
 }
 
 @theme inline {
@@ -276,4 +276,77 @@
   .caret.blinking {
     animation: blink 1s step-end infinite;
   }
+}
+
+/* Dark-mode tuning for decorative patterns: brighter teal + slightly
+   higher opacity so they remain legible over the dark background. */
+.dark .grid-pattern {
+  background-image: linear-gradient(
+      to right,
+      oklch(0.8 0.13 175 / 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, oklch(0.8 0.13 175 / 0.07) 1px, transparent 1px);
+}
+
+.dark .dot-pattern {
+  background-image: radial-gradient(
+    oklch(0.8 0.13 175 / 0.16) 1px,
+    transparent 1px
+  );
+}
+
+.dark .dot-grid-pattern {
+  background-image: radial-gradient(
+    oklch(0.8 0.13 175 / 0.2) 1.5px,
+    transparent 1.5px
+  );
+}
+
+.dark .diagonal-stripe-pattern {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0,
+    transparent 18px,
+    oklch(0.8 0.13 175 / 0.09) 18px,
+    oklch(0.8 0.13 175 / 0.09) 19px
+  );
+}
+
+.dark .topo-pattern {
+  background-image:
+    repeating-radial-gradient(
+      ellipse at 28% 55%,
+      transparent 0,
+      transparent 36px,
+      oklch(0.8 0.13 175 / 0.08) 36px,
+      oklch(0.8 0.13 175 / 0.08) 37px
+    ),
+    repeating-radial-gradient(
+      ellipse at 72% 40%,
+      transparent 0,
+      transparent 42px,
+      oklch(0.8 0.13 175 / 0.06) 42px,
+      oklch(0.8 0.13 175 / 0.06) 43px
+    );
+}
+
+.dark .crosshatch-pattern {
+  background-image:
+    linear-gradient(oklch(0.8 0.13 175 / 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.8 0.13 175 / 0.09) 1px, transparent 1px);
+}
+
+.dark .circuit-dot-pattern {
+  background-image:
+    radial-gradient(oklch(0.8 0.13 175 / 0.2) 1.5px, transparent 1.5px),
+    radial-gradient(oklch(0.8 0.13 175 / 0.2) 1.5px, transparent 1.5px);
+}
+
+.dark .radial-spotlight {
+  background-image: radial-gradient(
+    ellipse 90% 55% at 50% 0%,
+    oklch(0.78 0.13 175 / 0.16) 0%,
+    transparent 70%
+  );
 }
