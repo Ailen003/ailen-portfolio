@@ -66,7 +66,7 @@ export function ContributionProjectCard({ project, index = 0, onOpenDetail }: Co
           </div>
 
           <div className="mt-3 flex items-start justify-between gap-4">
-            <h3 className="text-lg font-bold tracking-tight">{project.title}</h3>
+            <h3 className="text-base font-bold tracking-tight sm:text-lg">{project.title}</h3>
             <div className="flex shrink-0 items-center gap-2">
               <a
                 href={project.source}

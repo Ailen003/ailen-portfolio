@@ -23,7 +23,7 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden border-y border-border bg-secondary/30 diagonal-stripe-pattern py-24"
+      className="relative overflow-hidden border-y border-border bg-secondary/30 diagonal-stripe-pattern py-16 md:py-24"
     >
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading

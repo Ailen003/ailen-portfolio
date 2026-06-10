@@ -5,7 +5,7 @@ import { ContactFormContainer } from "./form/contact-form-container"
 
 export function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden border-t border-border bg-secondary/30 dot-pattern py-24">
+    <section id="contact" className="relative overflow-hidden border-t border-border bg-secondary/30 dot-pattern py-16 md:py-24">
       <div className="pointer-events-none absolute inset-0 radial-spotlight" />
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
@@ -17,7 +17,7 @@ export function Contact() {
 
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal className="flex flex-col gap-6">
-            <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
+            <p className="text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
               {
                 "Whether you're looking for an engineer to join your team or need help shipping a product, I'd love to hear about it. I usually reply within a day."
               }

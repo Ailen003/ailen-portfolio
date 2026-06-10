@@ -27,7 +27,7 @@ export function EndToEndProjectCard({ project, index = 0, onOpenDetail }: EndToE
             <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
           </div>
 
-          <div className="flex flex-col justify-center p-8 lg:p-10">
+          <div className="flex flex-col justify-center p-5 sm:p-8 lg:p-10">
             <div className="mb-4 flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 font-mono text-xs font-medium text-primary">
                 <Star className="h-3.5 w-3.5" />
@@ -55,7 +55,7 @@ export function EndToEndProjectCard({ project, index = 0, onOpenDetail }: EndToE
               })}
             </div>
 
-            <h3 className="text-2xl font-bold tracking-tight sm:text-3xl">{project.title}</h3>
+            <h3 className="text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">{project.title}</h3>
             <p className="mt-1 font-medium text-primary">{project.tagline}</p>
             <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">{project.description}</p>
 
@@ -139,7 +139,7 @@ export function EndToEndProjectCard({ project, index = 0, onOpenDetail }: EndToE
         <div className="flex flex-1 flex-col p-6">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h3 className="text-xl font-bold tracking-tight">{project.title}</h3>
+              <h3 className="text-base font-bold tracking-tight sm:text-xl">{project.title}</h3>
               <p className="mt-0.5 text-sm font-medium text-primary">{project.tagline}</p>
             </div>
             <div className="flex shrink-0 items-center gap-2">

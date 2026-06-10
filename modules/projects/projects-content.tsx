@@ -3,7 +3,7 @@ import { ProjectsListContainer } from "./list/projects-list-container"
 
 export function Projects() {
   return (
-    <section id="projects" className="relative overflow-hidden py-24">
+    <section id="projects" className="relative overflow-hidden py-16 md:py-24">
       <div className="pointer-events-none absolute inset-0 topo-pattern" />
       <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-background/60 via-transparent to-background/60" />
 

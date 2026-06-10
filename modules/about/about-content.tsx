@@ -21,7 +21,7 @@ export async function About() {
   ]
 
   return (
-    <section id="about" className="relative overflow-hidden py-24">
+    <section id="about" className="relative overflow-hidden py-16 md:py-24">
       <div className="pointer-events-none absolute inset-0 dot-grid-pattern opacity-70" />
 
       <svg className="pointer-events-none absolute bottom-0 right-0 h-[400px] w-[400px] opacity-[0.06]" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -33,8 +33,8 @@ export async function About() {
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading index="01" title={t("title")} />
 
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
-          <Reveal className="space-y-5 text-lg leading-relaxed text-muted-foreground">
+        <div className="grid gap-8 md:gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+          <Reveal className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
             <p>{t("p1")}</p>
             <p>{t("p2")}</p>
             <p>{t("p3")}</p>

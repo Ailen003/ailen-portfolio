@@ -76,7 +76,7 @@ export function Hero() {
 
       <div className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 pb-20 pt-32 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:pb-28 lg:pt-40">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 pb-16 pt-28 sm:px-8 md:pb-20 md:pt-32 lg:grid-cols-[1.1fr_0.9fr] lg:pb-28 lg:pt-40">
         <div>
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-sm text-muted-foreground backdrop-blur">
             <span className="relative flex h-2 w-2">
@@ -87,18 +87,18 @@ export function Hero() {
           </div>
 
           <p className="mb-3 font-mono text-sm font-medium tracking-wide text-primary">{t("greeting")}</p>
-          <h1 className="text-balance text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
             Elena Vargas
           </h1>
           <h2
-            className="mt-3 text-2xl font-semibold text-muted-foreground sm:text-3xl"
+            className="mt-3 text-xl font-semibold text-muted-foreground sm:text-2xl md:text-3xl"
             style={{ minHeight: "1.5em" }}
           >
             {role}
             <span className={`caret ${!roleTyping ? "blinking" : ""}`}>|</span>
           </h2>
 
-          <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
             {t("description")}
           </p>
 
@@ -148,11 +148,11 @@ export function Hero() {
             />
           </div>
 
-          <div className="absolute -bottom-5 -left-5 rounded-2xl border border-border bg-card/90 px-5 py-4 shadow-xl backdrop-blur">
+          <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-border bg-card/90 px-5 py-4 shadow-xl backdrop-blur sm:block">
             <p className="font-mono text-2xl font-bold text-primary">8+</p>
             <p className="text-xs text-muted-foreground">{t("stats.yearsLabel")}</p>
           </div>
-          <div className="absolute -right-4 top-8 rounded-2xl border border-border bg-card/90 px-5 py-4 shadow-xl backdrop-blur">
+          <div className="absolute -right-4 top-8 hidden rounded-2xl border border-border bg-card/90 px-5 py-4 shadow-xl backdrop-blur sm:block">
             <p className="font-mono text-2xl font-bold text-primary">50+</p>
             <p className="text-xs text-muted-foreground">{t("stats.projectsLabel")}</p>
           </div>
