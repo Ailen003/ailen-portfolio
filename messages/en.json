@@ -11,6 +11,12 @@
     "title": "Elena Vargas — Software Engineer",
     "description": "Portfolio of Elena Vargas, a senior software engineer crafting performant, accessible web products with thoughtful design and robust engineering."
   },
+  "seo": {
+    "siteName": "Elena Vargas — Portfolio",
+    "jobTitle": "Senior Software Engineer",
+    "ogImageAlt": "Elena Vargas — Senior Software Engineer portfolio",
+    "keywords": "Elena Vargas, software engineer, full-stack developer, frontend engineer, React, Next.js, TypeScript, Node.js, web performance, accessibility, design systems, portfolio"
+  },
   "hero": {
     "badge": "Available for new projects",
     "greeting": "Hi, my name is",

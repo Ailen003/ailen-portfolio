@@ -11,6 +11,12 @@
     "title": "Elena Vargas — Ingeniería de Software",
     "description": "Portfolio de Elena Vargas, ingeniería de software senior especializada en productos web de alto rendimiento, accesibles y con diseño cuidado."
   },
+  "seo": {
+    "siteName": "Elena Vargas — Portfolio",
+    "jobTitle": "Ingeniería de Software Senior",
+    "ogImageAlt": "Elena Vargas — Portfolio de Ingeniería de Software Senior",
+    "keywords": "Elena Vargas, ingeniera de software, desarrolladora full-stack, desarrolladora frontend, React, Next.js, TypeScript, Node.js, rendimiento web, accesibilidad, sistemas de diseño, portfolio"
+  },
   "hero": {
     "badge": "Disponible para nuevos proyectos",
     "greeting": "Hola, me llamo",

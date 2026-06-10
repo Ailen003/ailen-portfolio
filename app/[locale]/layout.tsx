@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Sora, JetBrains_Mono } from "next/font/google"
 import { notFound } from "next/navigation"
 import { hasLocale, NextIntlClientProvider } from "next-intl"
@@ -6,6 +6,13 @@ import { getMessages, getTranslations } from "next-intl/server"
 import { Analytics } from "@vercel/analytics/next"
 import { routing } from "@/i18n/routing"
 import { Providers } from "@/app/providers"
+import {
+  PERSON_NAME,
+  getSiteUrl,
+  localePath,
+  LOCALES,
+  DEFAULT_LOCALE,
+} from "@/lib/seo/site-config"
 import "../globals.css"
 
 const sora = Sora({
@@ -31,18 +38,76 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "metadata" })
+  const seo = await getTranslations({ locale, namespace: "seo" })
+
+  const title = t("title")
+  const description = t("description")
+  const siteUrl = getSiteUrl()
+
+  // hreflang alternates — one entry per locale plus an x-default.
+  const languages: Record<string, string> = Object.fromEntries(
+    LOCALES.map((l) => [l, localePath(l)]),
+  )
+  languages["x-default"] = localePath(DEFAULT_LOCALE)
 
   return {
-    title: t("title"),
-    description: t("description"),
+    metadataBase: new URL(siteUrl),
+    title,
+    description,
+    applicationName: seo("siteName"),
     generator: "Next.js",
+    keywords: seo("keywords")
+      .split(",")
+      .map((k) => k.trim())
+      .filter(Boolean),
+    authors: [{ name: PERSON_NAME, url: siteUrl }],
+    creator: PERSON_NAME,
+    publisher: PERSON_NAME,
+    alternates: {
+      canonical: localePath(locale),
+      languages,
+    },
     openGraph: {
-      title: t("title"),
-      description: t("description"),
+      title,
+      description,
       type: "website",
+      url: localePath(locale),
+      siteName: seo("siteName"),
       locale,
+      alternateLocale: LOCALES.filter((l) => l !== locale),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      creator: PERSON_NAME,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+    other: {
+      "profile:first_name": PERSON_NAME.split(" ")[0],
+      "profile:last_name": PERSON_NAME.split(" ").slice(1).join(" "),
     },
   }
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
 }
 
 export default async function LocaleLayout({

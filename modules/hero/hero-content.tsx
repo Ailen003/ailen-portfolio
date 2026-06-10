@@ -65,7 +65,7 @@ export function Hero() {
   const { text: role, isTyping: roleTyping } = useTypewriter(roles, 80, 40, 2000, true, 0)
 
   return (
-    <section id="home" className="relative overflow-hidden">
+    <section id="home" aria-labelledby="hero-heading" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 grid-pattern opacity-80" />
 
       <svg className="pointer-events-none absolute right-0 top-0 h-[420px] w-[420px] opacity-[0.07]" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -87,7 +87,7 @@ export function Hero() {
           </div>
 
           <p className="mb-3 font-mono text-sm font-medium tracking-wide text-primary">{t("greeting")}</p>
-          <h1 className="text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 id="hero-heading" className="text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
             Elena Vargas
           </h1>
           <h2

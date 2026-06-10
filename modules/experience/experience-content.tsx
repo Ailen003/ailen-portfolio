@@ -21,7 +21,7 @@ export async function Experience() {
   }))
 
   return (
-    <section id="experience" className="relative overflow-hidden border-y border-border bg-secondary/50 crosshatch-pattern py-16 md:py-24">
+    <section id="experience" aria-labelledby="experience-heading" className="relative overflow-hidden border-y border-border bg-secondary/50 crosshatch-pattern py-16 md:py-24">
       <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-linear-to-b from-transparent via-primary/30 to-transparent" />
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
@@ -29,6 +29,7 @@ export async function Experience() {
           index="04"
           title={t("title")}
           subtitle={t("subtitle")}
+          headingId="experience-heading"
         />
 
         <ol className="relative space-y-4 before:absolute before:left-[7px] before:top-2 before:hidden before:h-[calc(100%-1rem)] before:w-px before:bg-border md:before:block">
