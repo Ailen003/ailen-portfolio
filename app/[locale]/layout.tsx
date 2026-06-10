@@ -43,7 +43,7 @@ export async function generateMetadata({
   const title = t("title")
   const description = t("description")
   const siteUrl = getSiteUrl()
-
+  console.log(siteUrl)
   // hreflang alternates — one entry per locale plus an x-default.
   const languages: Record<string, string> = Object.fromEntries(
     LOCALES.map((l) => [l, localePath(l)]),
