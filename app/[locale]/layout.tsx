@@ -75,12 +75,21 @@ export async function generateMetadata({
       siteName: seo("siteName"),
       locale,
       alternateLocale: LOCALES.filter((l) => l !== locale),
+      images: [
+        {
+          url: "/elena-portrait.png",
+          width: 1200,
+          height: 630,
+          alt: seo("ogImageAlt"),
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
       creator: PERSON_NAME,
+      images: ["/elena-portrait.png"],
     },
     robots: {
       index: true,
