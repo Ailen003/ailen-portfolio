@@ -77,7 +77,7 @@ export async function generateMetadata({
       alternateLocale: LOCALES.filter((l) => l !== locale),
       images: [
         {
-          url: "/elena-portrait.png",
+          url: "/og-image.webp",
           width: 1200,
           height: 630,
           alt: seo("ogImageAlt"),
