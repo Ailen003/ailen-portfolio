@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import nodemailer from "nodemailer"
+import { generateContactEmail } from "@/modules/contact/lib/templates/contact-email"
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -23,13 +24,7 @@ export async function POST(request: NextRequest) {
       replyTo: email,
       subject: `[Portfolio] ${subject}`,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
-      html: `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <hr />
-        <p>${message.replace(/\n/g, "<br />")}</p>
-      `,
+      html: generateContactEmail({ name, email, subject, message }),
     })
 
     return NextResponse.json({ success: true })
