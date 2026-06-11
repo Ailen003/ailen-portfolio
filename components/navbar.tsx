@@ -56,7 +56,7 @@ export function Navbar() {
           <span className="hidden sm:inline">elena.dev</span>
         </a>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-1 2lg:flex">
           {links.map((link) => (
             <li key={link.href}>
               <a
@@ -72,7 +72,7 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-2 2lg:flex">
           <ThemeToggle />
           <LanguageToggle />
           <a
@@ -83,7 +83,7 @@ export function Navbar() {
           </a>
         </div>
 
-        <div className="flex items-center gap-1 md:hidden">
+        <div className="flex items-center gap-1 2lg:hidden">
           <ThemeToggle />
           <LanguageToggle />
           <button
@@ -99,7 +99,7 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-border bg-background/95 backdrop-blur-md md:hidden">
+        <div className="border-t border-border bg-background/95 backdrop-blur-md 2lg:hidden">
           <ul className="mx-auto flex max-w-6xl flex-col px-5 py-2 sm:px-8">
             {links.map((link) => (
               <li key={link.href}>
