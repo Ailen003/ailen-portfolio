@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { createPortal } from "react-dom"
 import type { ContributionWeek } from "../lib/types/github-stats.types"
 
 interface ContributionHeatmapProps {
@@ -31,7 +32,10 @@ function getMonthLabels(weeks: ContributionWeek[]): { label: string; col: number
 export function ContributionHeatmap({ weeks, totalContributions }: ContributionHeatmapProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null)
+
+  useEffect(() => setMounted(true), [])
 
   useEffect(() => {
     const node = ref.current
@@ -70,7 +74,7 @@ export function ContributionHeatmap({ weeks, totalContributions }: ContributionH
       </div>
 
       <div
-        className="relative overflow-x-auto"
+        className="overflow-x-auto"
         onMouseLeave={() => setTooltip(null)}
       >
         <svg
@@ -130,9 +134,6 @@ export function ContributionHeatmap({ weeks, totalContributions }: ContributionH
                     transitionDelay: visible ? `${(col * 7 + row) * 2}ms` : "0ms",
                   }}
                   onMouseEnter={(e) => {
-                    const rect = (e.target as SVGRectElement).getBoundingClientRect()
-                    const container = ref.current?.getBoundingClientRect()
-                    if (!container) return
                     const dateStr = day.date
                       ? new Date(day.date + "T00:00:00").toLocaleDateString("en-US", {
                           month: "short",
@@ -142,8 +143,8 @@ export function ContributionHeatmap({ weeks, totalContributions }: ContributionH
                       : ""
                     setTooltip({
                       text: `${day.count} contribution${day.count !== 1 ? "s" : ""} on ${dateStr}`,
-                      x: rect.left - container.left + CELL / 2,
-                      y: rect.top - container.top - 8,
+                      x: e.clientX,
+                      y: e.clientY - 12,
                     })
                   }}
                 />
@@ -152,15 +153,19 @@ export function ContributionHeatmap({ weeks, totalContributions }: ContributionH
           )}
         </svg>
 
-        {tooltip && (
+      </div>
+
+      {mounted &&
+        tooltip &&
+        createPortal(
           <div
-            className="pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-full rounded-lg border border-border bg-card px-2.5 py-1.5 text-xs text-foreground shadow-lg"
+            className="pointer-events-none fixed z-50 -translate-x-1/2 -translate-y-full rounded-lg border border-border bg-card px-2.5 py-1.5 text-xs whitespace-nowrap text-foreground shadow-lg"
             style={{ left: tooltip.x, top: tooltip.y }}
           >
             {tooltip.text}
-          </div>
+          </div>,
+          document.body,
         )}
-      </div>
 
       <div className="flex items-center justify-end gap-1.5">
         <span className="text-xs text-muted-foreground">Less</span>

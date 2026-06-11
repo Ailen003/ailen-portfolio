@@ -89,8 +89,8 @@ export async function GithubStats() {
             </div>
           </Reveal>
 
-          <Reveal delay={180}>
-            <div className="h-full rounded-3xl border border-border bg-card p-6 sm:p-7">
+          <Reveal delay={180} className="self-start">
+            <div className="rounded-3xl border border-border bg-card p-6 sm:p-7">
               {contributions.weeks.length > 0 ? (
                 <ContributionHeatmap
                   weeks={contributions.weeks}
