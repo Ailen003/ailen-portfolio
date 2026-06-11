@@ -44,8 +44,8 @@ export async function GithubStats() {
 
   return (
     <section
-      id="github"
-      aria-labelledby="github-heading"
+      id="contributions"
+      aria-labelledby="contributions-heading"
       className="relative overflow-hidden border-y border-border bg-secondary/20 py-16 md:py-24"
     >
       <div className="pointer-events-none absolute inset-0 grid-pattern opacity-100 mask-[radial-gradient(ellipse_at_center,black_45%,transparent_85%)]" />
@@ -65,9 +65,9 @@ export async function GithubStats() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             index="06"
-            title="GitHub activity"
+            title="Contribution activity"
             subtitle="Live metrics from my public profile — real data, no hand-picked numbers."
-            headingId="github-heading"
+            headingId="contributions-heading"
           />
           <Reveal className="mb-12 shrink-0">
             <GithubCta profileUrl={profile.htmlUrl} login={profile.login} />
