@@ -7,6 +7,7 @@ import type { ContributionWeek } from "../lib/types/github-stats.types"
 interface ContributionHeatmapProps {
   weeks: ContributionWeek[]
   totalContributions: number
+  fluid?: boolean
 }
 
 const LEVEL_OPACITY = ["0.06", "0.25", "0.50", "0.75", "1"]
@@ -29,7 +30,7 @@ function getMonthLabels(weeks: ContributionWeek[]): { label: string; col: number
   return labels
 }
 
-export function ContributionHeatmap({ weeks, totalContributions }: ContributionHeatmapProps) {
+export function ContributionHeatmap({ weeks, totalContributions, fluid = false }: ContributionHeatmapProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -74,13 +75,19 @@ export function ContributionHeatmap({ weeks, totalContributions }: ContributionH
       </div>
 
       <div
-        className="overflow-x-auto"
+        className={fluid ? undefined : "overflow-x-auto"}
         onMouseLeave={() => setTooltip(null)}
       >
         <svg
-          width={svgW}
-          height={svgH}
-          className="min-w-full"
+          {...(fluid
+            ? {
+                viewBox: `0 0 ${svgW} ${svgH}`,
+                width: "100%",
+                height: "auto",
+                preserveAspectRatio: "xMinYMin meet",
+              }
+            : { width: svgW, height: svgH })}
+          className={fluid ? "h-auto w-full" : "min-w-full"}
           aria-label={`Contribution heatmap: ${totalContributions} contributions this year`}
         >
           {monthLabels.map(({ label, col }) => (

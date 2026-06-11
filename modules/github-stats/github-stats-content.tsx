@@ -110,7 +110,14 @@ export async function GithubStats() {
                       totalContributions={contributions.totalContributions}
                     />
                   </div>
-                  <div className="hidden lg:block">
+                  <div className="hidden lg:max-2lg:block">
+                    <ContributionHeatmap
+                      weeks={contributions.weeks}
+                      totalContributions={contributions.totalContributions}
+                      fluid
+                    />
+                  </div>
+                  <div className="hidden 2lg:block">
                     <ContributionHeatmap
                       weeks={contributions.weeks}
                       totalContributions={contributions.totalContributions}
