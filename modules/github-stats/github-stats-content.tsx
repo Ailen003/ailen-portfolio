@@ -4,6 +4,7 @@ import { fetchGithubStats } from "./lib/actions/github-stats.action"
 import { StatCounter } from "./components/stat-counter"
 import { LanguageBars } from "./components/language-bars"
 import { ContributionHeatmap } from "./components/contribution-heatmap"
+import { ContributionMonthly } from "./components/contribution-monthly"
 import { GithubCta } from "./components/github-cta"
 
 export async function GithubStats() {
@@ -102,10 +103,20 @@ export async function GithubStats() {
           <Reveal delay={180} className="self-start">
             <div className="rounded-3xl border border-border bg-card p-6 sm:p-7">
               {contributions.weeks.length > 0 ? (
-                <ContributionHeatmap
-                  weeks={contributions.weeks}
-                  totalContributions={contributions.totalContributions}
-                />
+                <>
+                  <div className="lg:hidden">
+                    <ContributionMonthly
+                      weeks={contributions.weeks}
+                      totalContributions={contributions.totalContributions}
+                    />
+                  </div>
+                  <div className="hidden lg:block">
+                    <ContributionHeatmap
+                      weeks={contributions.weeks}
+                      totalContributions={contributions.totalContributions}
+                    />
+                  </div>
+                </>
               ) : (
                 <div className="flex h-full flex-col items-center justify-center gap-2 text-center">
                   <p className="text-sm font-medium text-foreground">Contribution calendar</p>
