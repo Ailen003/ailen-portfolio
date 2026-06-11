@@ -10,7 +10,7 @@ export function Contact() {
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading
-          index="06"
+          index="07"
           title="Let's build something"
           subtitle="Have a project in mind or just want to say hello? My inbox is always open."
           headingId="contact-heading"
