@@ -48,8 +48,18 @@ export async function GithubStats() {
       aria-labelledby="github-heading"
       className="relative overflow-hidden border-y border-border bg-secondary/20 py-16 md:py-24"
     >
-      <div className="pointer-events-none absolute inset-0 topo-pattern opacity-40" />
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-background/50 via-transparent to-background/50" />
+      <div className="pointer-events-none absolute inset-0 grid-pattern opacity-100 mask-[radial-gradient(ellipse_at_center,black_45%,transparent_85%)]" />
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(60% 55% at 15% 10%, oklch(0.6 0.12 175 / 0.28), transparent 60%), radial-gradient(50% 60% at 85% 25%, oklch(0.62 0.1 200 / 0.22), transparent 60%), radial-gradient(70% 60% at 50% 110%, oklch(0.6 0.12 175 / 0.30), transparent 65%)",
+        }}
+      />
+
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-background via-transparent to-background" />
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
