@@ -8,6 +8,7 @@ import { Projects } from "@/modules/projects/projects-content"
 import { Experience } from "@/modules/experience/experience-content"
 import { Education } from "@/modules/education/education-content"
 import { GithubStats } from "@/modules/github-stats/github-stats-content"
+import { Services } from "@/modules/services/services-content"
 import { Contact } from "@/modules/contact/contact-content"
 import { JsonLd } from "@/components/seo/json-ld"
 import { buildPortfolioJsonLd } from "@/lib/seo/structured-data"
@@ -40,6 +41,7 @@ export default async function Page({
         <Experience />
         <Education />
         <GithubStats />
+        <Services />
         <Contact />
       </main>
       <Footer />

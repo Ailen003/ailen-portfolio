@@ -340,6 +340,76 @@
       }
     ]
   },
+  "services": {
+    "title": "Cómo puedo ayudarte",
+    "subtitle": "Ya sea que necesites un ingeniero a tiempo completo, un desarrollo puntual o una revisión estratégica — así podemos trabajar juntos.",
+    "availability": "Disponible para nuevos proyectos",
+    "idealForLabel": "Ideal para",
+    "items": {
+      "remoteRole": {
+        "title": "Ingeniería Remota",
+        "tagline": "Únete a tu equipo como ingeniero remoto a tiempo completo o parcial.",
+        "bullets": [
+          "Desarrollo full-stack de funcionalidades (frontend + backend)",
+          "Decisiones de arquitectura y liderazgo técnico",
+          "Revisiones de código, mentoría y documentación"
+        ],
+        "idealFor": "Empresas con trabajo remoto"
+      },
+      "freelance": {
+        "title": "Desarrollo Freelance",
+        "tagline": "Lanza un producto, funcionalidad o MVP desde cero hasta producción.",
+        "bullets": [
+          "Desarrollo de aplicaciones web end-to-end",
+          "Landing pages, dashboards y productos SaaS",
+          "Entregas iterativas con demos y actualizaciones regulares"
+        ],
+        "idealFor": "Startups y fundadores"
+      },
+      "consulting": {
+        "title": "Consultoría Técnica",
+        "tagline": "Asesoramiento experto en arquitectura, stack y estrategia de ingeniería.",
+        "bullets": [
+          "Evaluación de stack tecnológico y planificación de migraciones",
+          "Auditorías de rendimiento y escalabilidad",
+          "Procesos de equipo de ingeniería y buenas prácticas"
+        ],
+        "idealFor": "CTOs y responsables técnicos"
+      },
+      "codeReview": {
+        "title": "Revisión y Auditoría de Código",
+        "tagline": "Una revisión externa exhaustiva de tu código base e infraestructura.",
+        "bullets": [
+          "Análisis de seguridad, rendimiento y mantenibilidad",
+          "Informe escrito detallado con recomendaciones accionables",
+          "Sesión de Q&A de seguimiento incluida"
+        ],
+        "idealFor": "Equipos que buscan calidad"
+      }
+    },
+    "process": [
+      {
+        "label": "Descubrir",
+        "description": "Alineamos objetivos, alcance y plazos en una breve llamada inicial."
+      },
+      {
+        "label": "Planificar",
+        "description": "Propongo un enfoque técnico claro y hitos de entrega."
+      },
+      {
+        "label": "Construir",
+        "description": "Desarrollo iterativo con revisiones y demos regulares."
+      },
+      {
+        "label": "Entregar",
+        "description": "Entrega lista para producción con documentación y traspaso fluido."
+      }
+    ],
+    "cta": {
+      "book": "Reservar una llamada gratuita",
+      "contact": "Enviar un mensaje"
+    }
+  },
   "contact": {
     "title": "Construyamos algo juntos",
     "subtitle": "¿Tienes un proyecto en mente o simplemente quieres saludar? Mi bandeja de entrada está siempre abierta.",

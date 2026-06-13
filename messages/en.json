@@ -340,6 +340,76 @@
       }
     ]
   },
+  "services": {
+    "title": "How I can help",
+    "subtitle": "Whether you need a full-time engineer, a focused build, or a strategic review — here's how we can work together.",
+    "availability": "Available for new projects",
+    "idealForLabel": "Ideal for",
+    "items": {
+      "remoteRole": {
+        "title": "Remote Engineering",
+        "tagline": "Join your team as a full-time or part-time remote engineer.",
+        "bullets": [
+          "Full-stack feature development (frontend + backend)",
+          "Architecture decisions and technical leadership",
+          "Code reviews, mentoring, and documentation"
+        ],
+        "idealFor": "Companies hiring remotely"
+      },
+      "freelance": {
+        "title": "Freelance Development",
+        "tagline": "Ship a product, feature, or MVP from zero to production.",
+        "bullets": [
+          "End-to-end web application development",
+          "Landing pages, dashboards, and SaaS products",
+          "Iterative delivery with regular demos and updates"
+        ],
+        "idealFor": "Startups & solo founders"
+      },
+      "consulting": {
+        "title": "Technical Consulting",
+        "tagline": "Expert guidance on architecture, stack, and engineering strategy.",
+        "bullets": [
+          "Tech stack evaluation and migration planning",
+          "Performance and scalability audits",
+          "Engineering team processes and best practices"
+        ],
+        "idealFor": "CTOs & engineering leads"
+      },
+      "codeReview": {
+        "title": "Code Review & Audit",
+        "tagline": "A thorough external review of your codebase and infrastructure.",
+        "bullets": [
+          "Security, performance, and maintainability analysis",
+          "Detailed written report with actionable recommendations",
+          "Follow-up Q&A session included"
+        ],
+        "idealFor": "Teams seeking quality assurance"
+      }
+    },
+    "process": [
+      {
+        "label": "Discover",
+        "description": "We align on goals, scope, and timeline in a short intro call."
+      },
+      {
+        "label": "Plan",
+        "description": "I propose a clear technical approach and delivery milestones."
+      },
+      {
+        "label": "Build",
+        "description": "Iterative development with regular check-ins and demos."
+      },
+      {
+        "label": "Ship",
+        "description": "Production-ready delivery with docs and a smooth handoff."
+      }
+    ],
+    "cta": {
+      "book": "Book a free call",
+      "contact": "Send a message"
+    }
+  },
   "contact": {
     "title": "Let's build something",
     "subtitle": "Have a project in mind or just want to say hello? My inbox is always open.",
