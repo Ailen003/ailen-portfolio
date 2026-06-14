@@ -63,12 +63,17 @@ export async function Services() {
           </Reveal>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, i) => (
-            <Reveal key={service.key} delay={i * 80}>
+            <Reveal
+              key={service.key}
+              delay={i * 80}
+              className={i === 0 || i === 3 ? "lg:col-span-2" : "lg:col-span-1"}
+            >
               <ServiceCard
                 service={service}
                 idealForLabel={t("idealForLabel")}
+                index={i}
               />
             </Reveal>
           ))}
