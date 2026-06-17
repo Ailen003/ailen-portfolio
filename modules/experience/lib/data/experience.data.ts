@@ -4,14 +4,14 @@ export const experienceRoles: ExperienceRole[] = [
   {
     period: "2022 — Present",
     role: "Senior Software Engineer",
-    company: "Northwind Labs",
+    company: "ETI",
     logo: "/images/experiences/eti-logo.jpg",
     summary:
-      "Lead frontend engineer for the core platform used by 40k+ customers. Own architecture decisions and mentor a team of five.",
+      "Leading developer of all types of systems.",
     achievements: [
-      "Rebuilt the design system, reducing UI bugs by 35% and accelerating feature delivery.",
-      "Cut Largest Contentful Paint by 60% through streaming and edge rendering.",
-      "Introduced end-to-end testing that brought production regressions near zero.",
+      "Development and implementation of GestionVC, a solution to videoconferencing problems.",
+      "Commercial development system.",
+      "Infrastructure deployment.",
     ],
     tags: ["Next.js", "TypeScript", "GraphQL"],
   },
