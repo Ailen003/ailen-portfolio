@@ -1,5 +1,5 @@
-import type { ChatMessage, ChatResult, SendMessageOptions, StreamMessageOptions } from "../types/chatbot.types"
-import { DEFAULT_MAX_TOKENS, DEFAULT_MODEL, DEFAULT_TEMPERATURE, MAX_HISTORY_MESSAGES } from "../config/chatbot.config"
+import type { ChatMessage, ChatResult, SendMessageOptions, StreamMessageOptions } from "../types/groq.types"
+import { DEFAULT_MAX_TOKENS, DEFAULT_MODEL, DEFAULT_TEMPERATURE, MAX_HISTORY_MESSAGES } from "../config/groq.config"
 import { getGroqClient } from "./groq.client"
 
 function buildMessages(options: SendMessageOptions): ChatMessage[] {

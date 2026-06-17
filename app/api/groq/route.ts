@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
-import { streamMessage } from "@/modules/chatbot/lib/services/groq-chat.service"
-import type { SendMessageOptions } from "@/modules/chatbot/lib/types/chatbot.types"
+import { streamMessage } from "@/modules/groq/lib/services/groq.service"
+import type { SendMessageOptions } from "@/modules/groq/lib/types/groq.types"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"

@@ -1,5 +1,5 @@
-import { GroqModel } from "../types/chatbot.types"
-import type { GroqModelMeta } from "../types/chatbot.types"
+import { GroqModel } from "../types/groq.types"
+import type { GroqModelMeta } from "../types/groq.types"
 
 export const GROQ_MODELS: Record<GroqModel, GroqModelMeta> = {
   [GroqModel.Llama33_70b]: {

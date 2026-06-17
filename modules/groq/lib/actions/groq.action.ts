@@ -1,7 +1,7 @@
 "use server"
 
-import { sendMessage } from "../services/groq-chat.service"
-import type { ChatResult, SendMessageOptions } from "../types/chatbot.types"
+import { sendMessage } from "../services/groq.service"
+import type { ChatResult, SendMessageOptions } from "../types/groq.types"
 
 export async function sendChatMessage(options: SendMessageOptions): Promise<ChatResult> {
   if (!options.messages || options.messages.length === 0) {
