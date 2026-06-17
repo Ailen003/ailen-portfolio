@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { hasLocale, NextIntlClientProvider } from "next-intl"
 import { getMessages, getTranslations } from "next-intl/server"
 import { Analytics } from "@vercel/analytics/next"
+import { ChatbotWidget } from "@/modules/chatbot/chatbot-widget"
 import { routing } from "@/i18n/routing"
 import { Providers } from "@/app/providers"
 import {
@@ -145,6 +146,7 @@ export default async function LocaleLayout({
           <NextIntlClientProvider messages={messages} locale={locale}>
             {children}
           </NextIntlClientProvider>
+          <ChatbotWidget />
         </Providers>
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
