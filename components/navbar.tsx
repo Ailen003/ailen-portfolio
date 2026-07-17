@@ -52,7 +52,7 @@ export function Navbar() {
           : "border-b border-transparent bg-background/40",
       )}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         <a href="#home" className="group flex items-center gap-2 font-mono text-sm font-semibold tracking-tight">
           <span className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground transition-transform duration-300 group-hover:rotate-6">
             EV
