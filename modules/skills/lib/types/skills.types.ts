@@ -79,3 +79,17 @@ export interface SkillCategory {
   tagline: string
   skills: Skill[]
 }
+
+export interface SkillsData {
+  title: string
+  subtitle: string
+  tabs: {
+    grid: string
+    gridMobile: string
+    galaxy: string
+  }
+}
+
+export type SkillsDataResult =
+  | { ok: true; data: SkillsData }
+  | { ok: false; error: string }

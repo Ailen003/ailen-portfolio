@@ -1,23 +1,27 @@
-import { getTranslations } from "next-intl/server"
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
 import { aboutValues } from "./lib/data/about.data"
+import { fetchAboutData } from "./lib/actions/about.action"
 
 export async function About() {
-  const t = await getTranslations("about")
+  const result = await fetchAboutData()
+
+  if (!result.ok) return null
+
+  const { title, p1, p2, p3, values, facts } = result.data
 
   const factsData = [
-    { key: "basedIn",    label: t("facts.basedIn.label"),    value: t("facts.basedIn.value") },
-    { key: "experience", label: t("facts.experience.label"), value: t("facts.experience.value") },
-    { key: "focus",      label: t("facts.focus.label"),      value: t("facts.focus.value") },
-    { key: "languages",  label: t("facts.languages.label"),  value: t("facts.languages.value") },
+    { key: "basedIn",    label: facts.basedIn.label,    value: facts.basedIn.value },
+    { key: "experience", label: facts.experience.label, value: facts.experience.value },
+    { key: "focus",      label: facts.focus.label,      value: facts.focus.value },
+    { key: "languages",  label: facts.languages.label,  value: facts.languages.value },
   ]
 
   const valuesData = [
-    { title: t("values.productMinded.title"),  description: t("values.productMinded.description") },
-    { title: t("values.craftQuality.title"),   description: t("values.craftQuality.description") },
-    { title: t("values.collaborative.title"),  description: t("values.collaborative.description") },
-    { title: t("values.alwaysLearning.title"), description: t("values.alwaysLearning.description") },
+    { title: values.productMinded.title,  description: values.productMinded.description },
+    { title: values.craftQuality.title,   description: values.craftQuality.description },
+    { title: values.collaborative.title,  description: values.collaborative.description },
+    { title: values.alwaysLearning.title, description: values.alwaysLearning.description },
   ]
 
   return (
@@ -31,13 +35,13 @@ export async function About() {
       </svg>
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading index="01" title={t("title")} headingId="about-heading" />
+        <SectionHeading index="01" title={title} headingId="about-heading" />
 
         <div className="grid gap-8 md:gap-12 lg:grid-cols-[1.2fr_0.8fr]">
           <Reveal className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            <p>{t("p1")}</p>
-            <p>{t("p2")}</p>
-            <p>{t("p3")}</p>
+            <p>{p1}</p>
+            <p>{p2}</p>
+            <p>{p3}</p>
 
             <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-4">
               {factsData.map((f) => (

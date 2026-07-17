@@ -14,30 +14,30 @@ export async function GithubStats() {
     return null
   }
 
-  const { profile, totalStars, topLanguages, contributions } = result.data
+  const { profile, totalStars, topLanguages, contributions, labels } = result.data
 
   const stats = [
     {
       value: profile.publicRepos,
-      label: "Public repositories",
+      label: labels.stats.publicRepos,
       iconKey: "GitFork",
       delay: 0,
     },
     {
       value: totalStars,
-      label: "Total stars earned",
+      label: labels.stats.totalStars,
       iconKey: "Star",
       delay: 80,
     },
     {
       value: profile.followers,
-      label: "Followers",
+      label: labels.stats.followers,
       iconKey: "Users",
       delay: 160,
     },
     {
       value: contributions.totalCommits,
-      label: "Commits this year",
+      label: labels.stats.commits,
       iconKey: "GitCommitHorizontal",
       delay: 240,
     },
@@ -66,8 +66,8 @@ export async function GithubStats() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             index="06"
-            title="Contribution activity"
-            subtitle="Live metrics from my public profile — real data, no hand-picked numbers."
+            title={labels.title}
+            subtitle={labels.subtitle}
             headingId="contributions-heading"
           />
           <Reveal className="mb-12 shrink-0">
@@ -91,11 +91,11 @@ export async function GithubStats() {
         <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_1.6fr]">
           <Reveal delay={100}>
             <div className="h-full rounded-3xl border border-border bg-card p-6 sm:p-7">
-              <h3 className="mb-5 text-base font-semibold text-foreground">Top languages</h3>
+              <h3 className="mb-5 text-base font-semibold text-foreground">{labels.topLanguages}</h3>
               {topLanguages.length > 0 ? (
                 <LanguageBars languages={topLanguages} />
               ) : (
-                <p className="text-sm text-muted-foreground">No language data available.</p>
+                <p className="text-sm text-muted-foreground">{labels.noLanguageData}</p>
               )}
             </div>
           </Reveal>
@@ -126,10 +126,9 @@ export async function GithubStats() {
                 </>
               ) : (
                 <div className="flex h-full flex-col items-center justify-center gap-2 text-center">
-                  <p className="text-sm font-medium text-foreground">Contribution calendar</p>
+                  <p className="text-sm font-medium text-foreground">{labels.contributionCalendar}</p>
                   <p className="text-xs text-muted-foreground">
-                    Add a <code className="rounded bg-secondary px-1 py-0.5 font-mono text-[11px]">GITHUB_TOKEN</code> to
-                    enable the contribution heatmap.
+                    {labels.addTokenHint}
                   </p>
                 </div>
               )}

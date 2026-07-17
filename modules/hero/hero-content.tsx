@@ -1,68 +1,15 @@
-"use client"
-
 import Image from "next/image"
 import { ArrowDownRight, FileText } from "lucide-react"
-import { useEffect, useState } from "react"
-import { useTranslations } from "next-intl"
 import { heroSocials } from "./lib/data/hero.data"
+import { fetchHeroData } from "./lib/actions/hero.action"
+import { HeroRoles } from "./components/hero-roles"
 
-function useTypewriter(
-  words: string[],
-  typeSpeed = 80,
-  deleteSpeed = 40,
-  pause = 1400,
-  cycle = true,
-  startDelay = 0,
-) {
-  const [text, setText] = useState("")
-  const [wordIndex, setWordIndex] = useState(0)
-  const [deleting, setDeleting] = useState(false)
-  const [started, setStarted] = useState(false)
-  const [isTyping, setIsTyping] = useState(false)
+export async function Hero() {
+  const result = await fetchHeroData()
 
-  useEffect(() => {
-    const startTimeout = setTimeout(() => {
-      setStarted(true)
-    }, startDelay)
+  if (!result.ok) return null
 
-    return () => clearTimeout(startTimeout)
-  }, [startDelay])
-
-  useEffect(() => {
-    if (!started) return
-
-    const current = words[wordIndex % words.length]
-    let timeout: ReturnType<typeof setTimeout>
-
-    if (!deleting && text === current) {
-      setIsTyping(false)
-      if (cycle) {
-        timeout = setTimeout(() => setDeleting(true), pause)
-      }
-    } else if (deleting && text === "") {
-      setDeleting(false)
-      setWordIndex((i) => (i + 1) % words.length)
-    } else {
-      setIsTyping(true)
-      timeout = setTimeout(
-        () => {
-          setText((prev) =>
-            deleting ? current.substring(0, prev.length - 1) : current.substring(0, prev.length + 1),
-          )
-        },
-        deleting ? deleteSpeed : typeSpeed,
-      )
-    }
-    return () => clearTimeout(timeout)
-  }, [text, deleting, wordIndex, words, typeSpeed, deleteSpeed, pause, cycle, started])
-
-  return { text, isTyping }
-}
-
-export function Hero() {
-  const t = useTranslations("hero")
-  const roles = [t("roles.senior"), t("roles.fullStack"), t("roles.problemSolver")]
-  const { text: role, isTyping: roleTyping } = useTypewriter(roles, 80, 40, 2000, true, 0)
+  const { badge, greeting, roles, description, cta, stats, portraitAlt } = result.data
 
   return (
     <section id="home" aria-labelledby="hero-heading" className="relative overflow-hidden">
@@ -83,23 +30,18 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
             </span>
-            {t("badge")}
+            {badge}
           </div>
 
-          <p className="mb-3 font-mono text-sm font-medium tracking-wide text-primary">{t("greeting")}</p>
+          <p className="mb-3 font-mono text-sm font-medium tracking-wide text-primary">{greeting}</p>
           <h1 id="hero-heading" className="text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
             Elena Vargas
           </h1>
-          <h2
-            className="mt-3 text-xl font-semibold text-muted-foreground sm:text-2xl md:text-3xl"
-            style={{ minHeight: "1.5em" }}
-          >
-            {role}
-            <span className={`caret ${!roleTyping ? "blinking" : ""}`}>|</span>
-          </h2>
+
+          <HeroRoles roles={[roles.senior, roles.fullStack, roles.problemSolver]} />
 
           <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {t("description")}
+            {description}
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -107,7 +49,7 @@ export function Hero() {
               href="#projects"
               className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/25"
             >
-              {t("cta.viewWork")}
+              {cta.viewWork}
               <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
             </a>
             <a
@@ -115,7 +57,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
             >
               <FileText className="h-4 w-4" />
-              {t("cta.downloadCv")}
+              {cta.downloadCv}
             </a>
           </div>
 
@@ -140,7 +82,7 @@ export function Hero() {
           <div className="animate-float-slow overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-2xl shadow-primary/10">
             <Image
               src="/elena-portrait.png"
-              alt={t("portraitAlt")}
+              alt={portraitAlt}
               width={640}
               height={760}
               priority
@@ -150,11 +92,11 @@ export function Hero() {
 
           <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-border bg-card/90 px-5 py-4 shadow-xl backdrop-blur sm:block">
             <p className="font-mono text-2xl font-bold text-primary">8+</p>
-            <p className="text-xs text-muted-foreground">{t("stats.yearsLabel")}</p>
+            <p className="text-xs text-muted-foreground">{stats.yearsLabel}</p>
           </div>
           <div className="absolute -right-4 top-8 hidden rounded-2xl border border-border bg-card/90 px-5 py-4 shadow-xl backdrop-blur sm:block">
             <p className="font-mono text-2xl font-bold text-primary">50+</p>
-            <p className="text-xs text-muted-foreground">{t("stats.projectsLabel")}</p>
+            <p className="text-xs text-muted-foreground">{stats.projectsLabel}</p>
           </div>
         </div>
       </div>

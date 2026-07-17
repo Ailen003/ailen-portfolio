@@ -19,3 +19,13 @@ export interface ContactFormData {
   subject: string
   message: string
 }
+
+export interface ContactData {
+  title: string
+  subtitle: string
+  description: string
+}
+
+export type ContactDataResult =
+  | { ok: true; data: ContactData }
+  | { ok: false; error: string }

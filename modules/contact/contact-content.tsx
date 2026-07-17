@@ -2,26 +2,37 @@ import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
 import { contactChannels, contactSocials } from "./lib/data/contact.data"
 import { ContactFormContainer } from "./form/contact-form-container"
+import { fetchContactData } from "./lib/actions/contact.action"
 
-export function Contact() {
+export async function Contact() {
+  const result = await fetchContactData()
+
+  if (!result.ok) return null
+
+  const { title, subtitle, description } = result.data
+
   return (
     <section id="contact" aria-labelledby="contact-heading" className="relative overflow-hidden border-t border-border bg-secondary/30 dot-pattern py-16 md:py-24">
       <div className="pointer-events-none absolute inset-0 radial-spotlight" />
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading
+<<<<<<< HEAD
           index="08"
           title="Let's build something"
           subtitle="Have a project in mind or just want to say hello? My inbox is always open."
+=======
+          index="07"
+          title={title}
+          subtitle={subtitle}
+>>>>>>> d47a984 (refactor: migrate About, Contact, and Education modules from next-intl to server action data fetching pattern)
           headingId="contact-heading"
         />
 
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal className="flex flex-col gap-6">
             <p className="text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-              {
-                "Whether you're looking for an engineer to join your team or need help shipping a product, I'd love to hear about it. I usually reply within a day."
-              }
+              {description}
             </p>
 
             <div className="space-y-3">

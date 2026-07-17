@@ -1,4 +1,5 @@
 import type { EndToEndProject, ContributionProject, ResearchProject } from "../types/project.types"
+import type { ProjectsData } from "../types/projects.types"
 
 export const endToEndProjects: EndToEndProject[] = [
   {
@@ -307,3 +308,14 @@ Built a series of increasingly complex Next.js App Router demos to stress-test R
 Still exploring the cache invalidation model (\`revalidatePath\` vs \`revalidateTag\`) and its interaction with CDN-level caching.`,
   },
 ]
+
+export const projectsDataMap: Record<string, ProjectsData> = {
+  en: {
+    title: "Featured projects",
+    subtitle: "Some things I\u2019ve designed, built, and shipped from start to finish.",
+  },
+  es: {
+    title: "Proyectos destacados",
+    subtitle: "Algunas cosas que he dise\u00f1ado, constru\u00eddo y lanzado de principio a fin.",
+  },
+}

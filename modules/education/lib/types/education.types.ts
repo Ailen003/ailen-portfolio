@@ -10,3 +10,16 @@ export interface Certification {
   org: string
   year: string
 }
+
+export interface EducationData {
+  title: string
+  subtitle: string
+  sectionEducation: string
+  sectionCertifications: string
+  entries: EducationEntry[]
+  certifications: Certification[]
+}
+
+export type EducationDataResult =
+  | { ok: true; data: EducationData }
+  | { ok: false; error: string }

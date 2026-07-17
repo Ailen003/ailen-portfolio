@@ -1,24 +1,14 @@
-import { getTranslations } from "next-intl/server"
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
-import { experienceRoles } from "./lib/data/experience.data"
 import AvatarContainer from "@/components/ui/avatar-container"
+import { fetchExperienceData } from "./lib/actions/experience.action"
 
 export async function Experience() {
-  const t = await getTranslations("experience")
+  const result = await fetchExperienceData()
 
-  const translatedRoles = t.raw("roles") as Array<{
-    role: string
-    summary: string
-    achievements: string[]
-  }>
+  if (!result.ok) return null
 
-  const roles = experienceRoles.map((r, i) => ({
-    ...r,
-    role: translatedRoles[i]?.role ?? r.role,
-    summary: translatedRoles[i]?.summary ?? r.summary,
-    achievements: translatedRoles[i]?.achievements ?? r.achievements,
-  }))
+  const { title, subtitle, roles } = result.data
 
   return (
     <section id="experience" aria-labelledby="experience-heading" className="relative overflow-hidden border-y border-border bg-secondary/50 crosshatch-pattern py-16 md:py-24">
@@ -27,8 +17,8 @@ export async function Experience() {
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading
           index="04"
-          title={t("title")}
-          subtitle={t("subtitle")}
+          title={title}
+          subtitle={subtitle}
           headingId="experience-heading"
         />
 

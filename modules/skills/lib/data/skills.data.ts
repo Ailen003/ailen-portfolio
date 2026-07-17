@@ -11,6 +11,7 @@ import {
   Drama,
   Cloud,
 } from "lucide-react"
+import type { SkillsData } from "../types/skills.types"
 import {
   SiReact,
   SiNextdotjs,
@@ -545,3 +546,16 @@ export const marqueeSkills: { name: string; Icon: SkillCategory["skills"][number
   { name: "Redis", Icon: SiRedis, color: "#FF4438" },
   { name: "Vercel", Icon: SiVercel, color: "#111111" },
 ]
+
+export const skillsDataMap: Record<string, SkillsData> = {
+  en: {
+    title: "Technical skills",
+    subtitle: "A toolkit refined across products and teams. Click any skill to see my experience in detail.",
+    tabs: { grid: "By categories", gridMobile: "Categories", galaxy: "Orbit" },
+  },
+  es: {
+    title: "Habilidades t\u00e9cnicas",
+    subtitle: "Un conjunto de herramientas refinado a lo largo de productos y equipos. Haz clic en cualquier habilidad para ver mi experiencia en detalle.",
+    tabs: { grid: "Por categor\u00edas", gridMobile: "Categor\u00edas", galaxy: "\u00d3rbita" },
+  },
+}

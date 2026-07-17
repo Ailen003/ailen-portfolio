@@ -40,6 +40,25 @@ export interface GithubStats {
   contributions: GithubContributions
 }
 
+export interface GithubStatsLabels {
+  title: string
+  subtitle: string
+  stats: {
+    publicRepos: string
+    totalStars: string
+    followers: string
+    commits: string
+  }
+  topLanguages: string
+  noLanguageData: string
+  contributionCalendar: string
+  addTokenHint: string
+}
+
+export interface GithubStatsData extends GithubStats {
+  labels: GithubStatsLabels
+}
+
 export type GithubStatsResult =
-  | { ok: true; data: GithubStats }
+  | { ok: true; data: GithubStatsData }
   | { ok: false; error: string }

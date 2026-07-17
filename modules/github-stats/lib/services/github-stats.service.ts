@@ -3,9 +3,11 @@ import type {
   GithubLanguage,
   GithubContributions,
   GithubStats,
+  GithubStatsData,
   ContributionDay,
   ContributionWeek,
 } from "../types/github-stats.types"
+import { githubStatsLabelsMap } from "../data/github-stats.data"
 
 const GITHUB_API = "https://api.github.com"
 const GITHUB_GRAPHQL = "https://api.github.com/graphql"
@@ -215,7 +217,7 @@ async function fetchContributions(username: string): Promise<GithubContributions
   }
 }
 
-export async function getGithubStats(): Promise<GithubStats> {
+export async function getGithubStats(locale = "en"): Promise<GithubStatsData> {
   const username = process.env.GITHUB_USERNAME
   if (!username) throw new Error("GITHUB_USERNAME environment variable is not set")
 
@@ -225,10 +227,13 @@ export async function getGithubStats(): Promise<GithubStats> {
     fetchContributions(username),
   ])
 
+  const labels = githubStatsLabelsMap[locale] ?? githubStatsLabelsMap["en"]
+
   return {
     profile,
     totalStars: langAndStars.totalStars,
     topLanguages: langAndStars.languages,
     contributions,
+    labels,
   }
 }
