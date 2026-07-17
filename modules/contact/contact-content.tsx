@@ -17,15 +17,9 @@ export async function Contact() {
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading
-<<<<<<< HEAD
-          index="08"
-          title="Let's build something"
-          subtitle="Have a project in mind or just want to say hello? My inbox is always open."
-=======
           index="07"
           title={title}
           subtitle={subtitle}
->>>>>>> d47a984 (refactor: migrate About, Contact, and Education modules from next-intl to server action data fetching pattern)
           headingId="contact-heading"
         />
 
