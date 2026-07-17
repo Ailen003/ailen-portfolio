@@ -31,7 +31,7 @@ function purgeOldest(sessions: ChatSession[]): ChatSession[] {
 }
 
 export function useChatStore() {
-  const [store, setStore] = useState<ChatStore>(() => readStore())
+  const [store, setStore] = useState<ChatStore>({ sessions: [], activeChatId: null })
 
   useEffect(() => {
     const stored = readStore()
