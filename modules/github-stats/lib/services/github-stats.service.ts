@@ -2,7 +2,6 @@ import type {
   GithubProfile,
   GithubLanguage,
   GithubContributions,
-  GithubStats,
   GithubStatsData,
   ContributionDay,
   ContributionWeek,
