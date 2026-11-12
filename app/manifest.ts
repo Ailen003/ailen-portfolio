@@ -12,8 +12,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: `Portfolio of ${PERSON_NAME}, senior software engineer.`,
     start_url: "/",
     display: "standalone",
-    background_color: "#0a0a0a",
-    theme_color: "#0a0a0a",
+    background_color: "#1c1612",
+    theme_color: "#1c1612",
     icons: [
       { src: "/icon.svg", type: "image/svg+xml", sizes: "any" },
       { src: "/icon-light-32x32.png", type: "image/png", sizes: "32x32" },

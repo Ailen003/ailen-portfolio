@@ -17,9 +17,10 @@ export function ThemeToggle({ className }: { className?: string }) {
 
   useEffect(() => {
     if (!mounted) return
-    document.querySelector('meta[name="theme-color"]')?.setAttribute(
-      "content", resolvedTheme === "dark" ? "#131e23" : "#f4f0e9",
-    )
+    const color = resolvedTheme === "dark" ? "#1c1612" : "#faf5ec"
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+      meta.setAttribute("content", color)
+    })
   }, [mounted, resolvedTheme])
 
   const baseClass = cn(

@@ -64,8 +64,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Portfolio organization
 
-The visual system follows the local Nairad reference: Geist body text, Sora headings,
-shared color tokens, geometry and surfaces in `app/globals.css`. End-to-end cards
+The visual system uses burnt orange, warm ivory and sand, with restrained honey accents
+and flowing contour geometry. The dark theme pairs deep coffee surfaces with apricot accents.
+Geist body text and Sora headings retain the hierarchy
+of the Nairad reference. Light and dark theme tokens live in `app/globals.css`. End-to-end cards
 use Tata's single-column composition and link to localized case-study pages. Skills retain their category
 tile grid; the orbital view has been removed.
 
