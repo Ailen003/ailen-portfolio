@@ -37,6 +37,8 @@ export interface ProjectReference {
 }
 
 export interface EndToEndProject {
+  /** Permanent URL identifier, shared across translations. */
+  slug: string
   company?: ProjectCompany
   engagement?: ProjectEngagement
   isExample?: boolean

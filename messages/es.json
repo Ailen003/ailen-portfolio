@@ -401,6 +401,7 @@
     },
     "engagementLabels": {
       "employee": "Proyecto de empresa",
+      "freelance": "Desarrollo freelance",
       "freelance-fullstack": "Desarrollo freelance",
       "personal": "Proyecto personal",
       "academic": "Proyecto académico"

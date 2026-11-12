@@ -1,0 +1,107 @@
+import assert from "node:assert/strict"
+import fs from "node:fs"
+import path from "node:path"
+import { createRequire } from "node:module"
+import { fileURLToPath } from "node:url"
+import { test } from "node:test"
+import ts from "typescript"
+import { createElement } from "react"
+import { renderToStaticMarkup } from "react-dom/server"
+
+const requireTs = createRequire(import.meta.url)
+const projectRoot = fileURLToPath(new URL("../", import.meta.url))
+
+// Load the real data, navigation and schema builders with the installed compiler.
+const loadTypeScript = (module, filename) => {
+  const { outputText } = ts.transpileModule(fs.readFileSync(filename, "utf8"), {
+    fileName: filename,
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true },
+  })
+  const compiled = outputText.replace(/require\(["']@\/([^"']+)["']\)/g, (_, target) => `require(${JSON.stringify(path.join(projectRoot, target))})`)
+  module._compile(compiled, filename)
+}
+requireTs.extensions[".ts"] = loadTypeScript
+requireTs.extensions[".tsx"] = loadTypeScript
+
+const { getProjectsData, getEndToEndProjectBySlug } = requireTs("../modules/projects/lib/services/projects.service.ts")
+const { buildProjectSchema, buildProjectsItemList } = requireTs("../lib/seo/structured-data.ts")
+const { CaseStudyNavigation } = requireTs("../modules/projects/components/case-study-navigation.tsx")
+const sitemap = requireTs("../app/sitemap.ts").default
+
+test("permanent project URLs resolve in both languages, including current examples", () => {
+  const en = getProjectsData("en").endToEnd
+  const es = getProjectsData("es").endToEnd
+  assert.deepEqual(en.map(({ slug }) => slug), es.map(({ slug }) => slug))
+  assert.equal(new Set(en.map(({ slug }) => slug)).size, en.length)
+  for (const project of en) {
+    assert.match(project.slug, /^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+    for (const locale of ["en", "es"]) {
+      assert.equal(getEndToEndProjectBySlug(locale, project.slug)?.slug, project.slug)
+    }
+  }
+  assert.notEqual(getEndToEndProjectBySlug("en", "finflow").description, getEndToEndProjectBySlug("es", "finflow").description)
+})
+
+test("unknown slugs never resolve and unknown locale keys safely fall back", () => {
+  for (const slug of ["missing", "__proto__", "constructor", "vercel-ai-sdk"]) {
+    assert.equal(getEndToEndProjectBySlug("es", slug), undefined)
+  }
+  for (const locale of ["unknown", "__proto__", "constructor"]) {
+    assert.equal(getProjectsData(locale), getProjectsData("en"))
+  }
+})
+
+test("detail metadata labels exist for every project's context and status", () => {
+  for (const locale of ["en", "es"]) {
+    const copy = requireTs(`../messages/${locale}.json`).projects
+    for (const project of getProjectsData(locale).endToEnd) {
+      if (project.engagement) assert.equal(typeof copy.engagementLabels[project.engagement], "string")
+      if (project.status) assert.equal(typeof copy.statusLabels[project.status], "string")
+    }
+  }
+})
+
+test("structured data points at the localized case study instead of its demo", () => {
+  for (const locale of ["en", "es"]) {
+    const project = getEndToEndProjectBySlug(locale, "finflow")
+    const schema = buildProjectSchema(project, locale)
+    assert.equal(new URL(schema.url).pathname, `/${locale}/projects/finflow`)
+    assert.equal(schema.inLanguage, locale)
+    assert.equal(schema.codeRepository, undefined)
+    for (const entry of buildProjectsItemList({ locale }).itemListElement) {
+      assert.match(new URL(entry.item.url).pathname, new RegExp(`^/${locale}/projects/`))
+    }
+  }
+})
+
+test("sitemap excludes examples and includes published projects with language alternates", () => {
+  const entries = sitemap()
+  for (const locale of ["en", "es"]) {
+    for (const project of getProjectsData(locale).endToEnd) {
+      const listed = entries.some(({ url }) => new URL(url).pathname === `/${locale}/projects/${project.slug}`)
+      assert.equal(listed, !project.isExample)
+    }
+  }
+  const project = getEndToEndProjectBySlug("en", "finflow")
+  const wasExample = project.isExample
+  try {
+    project.isExample = false
+    const entry = sitemap().find(({ url }) => new URL(url).pathname === "/en/projects/finflow")
+    assert.ok(entry)
+    assert.equal(new URL(entry.alternates.languages.es).pathname, "/es/projects/finflow")
+    assert.equal(new URL(entry.alternates.languages["x-default"]).pathname, "/en/projects/finflow")
+  } finally {
+    project.isExample = wasExample
+  }
+})
+
+test("the responsive contents index only links to supplied sections", () => {
+  assert.equal(renderToStaticMarkup(createElement(CaseStudyNavigation, { label: "Contents", sections: [{ id: "overview", title: "Overview" }] })), "")
+  const html = renderToStaticMarkup(createElement(CaseStudyNavigation, {
+    label: "Contents", sections: [{ id: "overview", title: "Overview" }, { id: "notes", title: "Notes" }],
+  }))
+  assert.ok(html.includes('href="#overview"'))
+  assert.ok(html.includes('href="#notes"'))
+  assert.ok(html.includes("<details"))
+  assert.ok(!html.includes('href="#gallery"'))
+})

@@ -66,7 +66,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 The visual system follows the local Nairad reference: Geist body text, Sora headings,
 shared color tokens, geometry and surfaces in `app/globals.css`. End-to-end cards
-use Tata's single-column composition and open a dialog. Skills retain their category
+use Tata's single-column composition and link to localized case-study pages. Skills retain their category
 tile grid; the orbital view has been removed.
 
 - `modules/portfolio/lib/data/identity.data.ts`: shared name, initials, portrait,
@@ -79,9 +79,17 @@ tile grid; the orbital view has been removed.
 - `modules/projects/lib/data/projects.data.ts`: base project metadata and localized
   collections. FinFlow and Atlas UI use the existing ETI logo; Pulse and contributions
   demonstrate freelance work. These attributions are provisional and marked with
-  `isExample` in both cards and dialogs. Update `company` and `engagement`, then
+  `isExample` in cards and detail views. Update `company` and `engagement`, then
   clear `isExample` when real information is supplied. Technical scope belongs to
   `categories` independently of employment/freelance status.
+
+End-to-end details use `app/[locale]/projects/[slug]/page.tsx` and the shared
+`modules/projects/detail/project-detail.tsx` template from the Nairad reference.
+Assign each project a permanent `slug` in the base data; translations share that
+identifier. The template derives its metadata, contents index, gallery and technical
+sections from the project data. Optional sections are omitted when empty. Example
+projects remain navigable but use `noindex` and are excluded from the sitemap.
+Contribution and research details retain their dialogs.
 
 The reference projects are read-only examples excluded from TypeScript and ESLint.
 Next.js uses `next.config.ts` and the current `proxy.ts` locale routing convention.

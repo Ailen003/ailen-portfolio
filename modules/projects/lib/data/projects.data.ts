@@ -5,6 +5,7 @@ import type { ProjectsData } from "../types/projects.types"
 
 const rawEndToEndProjects: EndToEndProject[] = [
   {
+    slug: "finflow",
     title: "FinFlow",
     tagline: "Personal finance, reimagined",
     description:
@@ -40,6 +41,7 @@ The frontend is built on **Next.js App Router** with a strict separation between
 The biggest challenge was real-time budget reconciliation across browser tabs. Solved this using a \`BroadcastChannel\` + server-sent events fallback for environments that don't support it.`,
   },
   {
+    slug: "pulse",
     title: "Pulse",
     tagline: "Metrics at the speed of thought",
     description:
@@ -71,6 +73,7 @@ The query builder generates a subset of PromQL. The AST is built client-side in 
 Uses a sliding window Z-score algorithm — simple but effective for developer dashboards where spikes are the main concern.`,
   },
   {
+    slug: "atlas-ui",
     title: "Atlas UI",
     tagline: "Design systems done right",
     description:

@@ -217,7 +217,8 @@
   .project-details-button { border: 0; padding: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; }
   .project-details-button::after { position: absolute; inset: 0; content: ''; }
   .portfolio-project-card a { position: relative; z-index: 2; }
-  .portfolio-project-card .project-details-link { position: static; }
+  .portfolio-project-card .project-details-link, .project-card .project-details-link { position: static; }
+  .project-card a:not(.project-details-link) { position: relative; z-index: 2; }
   .project-details-link::after { position: absolute; inset: 0; content: ''; z-index: 1; }
   .project-details-link:focus-visible::after { outline: 2px solid var(--ring); outline-offset: -3px; border-radius: var(--radius); }
   .project-preview-stage { border-bottom: 1px solid var(--border); background: var(--secondary); }
@@ -319,7 +320,7 @@
  .project-card--reversed .project-card-copy { grid-column: 1; grid-row: 1; }
 }
 .hero-stats { display: flex; gap: 2rem; }
-.project-card .project-card-action a { position: relative; z-index: 2; }
 .project-card { position: relative; }
-
-.project-card a { position: relative; z-index: 2; }
+/* Keep the detail link's containing block on the card so its overlay covers it. */
+.project-card .project-details-link { position: static; }
+.project-card a:not(.project-details-link), .project-card button { position: relative; z-index: 2; }

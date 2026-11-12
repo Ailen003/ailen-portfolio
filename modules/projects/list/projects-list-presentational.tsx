@@ -7,7 +7,6 @@ import { EndToEndProjectCard } from "../components/end-to-end-project-card"
 import { ContributionProjectCard } from "../components/contribution-project-card"
 import { ResearchProjectCard } from "../components/research-project-card"
 import { ProjectLevelSection } from "../components/project-level-section"
-import { EndToEndProjectModal } from "../components/end-to-end-project-modal"
 import { ContributionProjectModal } from "../components/contribution-project-modal"
 import { ResearchProjectModal } from "../components/research-project-modal"
 import {
@@ -58,7 +57,6 @@ export function ProjectsListPresentational({
     contributions: [],
     research: [],
   })
-  const [selectedEndToEnd, setSelectedEndToEnd] = useState<EndToEndProject | null>(null)
   const [selectedContribution, setSelectedContribution] = useState<ContributionProject | null>(null)
   const [selectedResearch, setSelectedResearch] = useState<ResearchProject | null>(null)
 
@@ -117,10 +115,9 @@ export function ProjectsListPresentational({
         <div className="project-gallery grid grid-cols-1 gap-8 md:gap-12 lg:gap-16">
           {filteredEndToEnd.map((p, i) => (
             <EndToEndProjectCard
-              key={p.title}
+              key={p.slug}
               project={p}
               index={i}
-              onOpenDetail={() => { detailTrigger.current = document.activeElement as HTMLElement; setSelectedEndToEnd(p) }}
             />
           ))}
         </div>
@@ -188,7 +185,6 @@ export function ProjectsListPresentational({
         </div>
       </ProjectLevelSection>
 
-      {selectedEndToEnd && <EndToEndProjectModal project={selectedEndToEnd} open onOpenChange={open => { if (!open) setSelectedEndToEnd(null) }} onCloseAutoFocus={restoreDetailFocus} />}
       {selectedContribution && (
         <ContributionProjectModal
           onCloseAutoFocus={restoreDetailFocus}

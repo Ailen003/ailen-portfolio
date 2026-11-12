@@ -1,6 +1,8 @@
 import { getAllSkills } from "@/modules/skills/lib/data/skills.data"
 import { educationEntries } from "@/modules/education/lib/data/education.data"
 import { projectsDataMap } from "@/modules/projects/lib/data/projects.data"
+import type { EndToEndProject } from "@/modules/projects/lib/types/project.types"
+import { isRepositoryUrl } from "@/modules/projects/lib/utils/project-links"
 import {
   PERSON_NAME,
   absoluteUrl,
@@ -93,8 +95,7 @@ export function buildProfilePageSchema({
 
 /**
  * schema.org ItemList of featured projects (CreativeWork).
- * Built from the end-to-end projects data; ready to point at dedicated
- * project routes once they exist.
+ * Points at the shared end-to-end case-study routes.
  */
 export function buildProjectsItemList({ locale }: LocalizedSeoStrings): JsonLd {
   return {
@@ -112,11 +113,31 @@ export function buildProjectsItemList({ locale }: LocalizedSeoStrings): JsonLd {
         description: p.description,
         keywords: p.tags.join(", "),
         ...(p.year ? { dateCreated: String(p.year) } : {}),
-        ...(p.source ? { codeRepository: p.source } : {}),
-        ...(p.demo ? { url: p.demo } : {}),
+        ...(isRepositoryUrl(p.source) ? { codeRepository: p.source } : {}),
+        url: absoluteUrl(localePath(locale, `projects/${p.slug}`)),
         author: { "@id": `${absoluteUrl(localePath(locale))}#person` },
       },
     })),
+  }
+}
+
+/** A shareable case study, distinct from its optional public demo or repository. */
+export function buildProjectSchema(project: EndToEndProject, locale: string): JsonLd {
+  const url = absoluteUrl(localePath(locale, `projects/${project.slug}`))
+  return {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "@id": `${url}#project`,
+    url,
+    name: project.title,
+    headline: project.tagline,
+    description: project.description,
+    inLanguage: locale,
+    keywords: project.tags.join(", "),
+    ...(project.image ? { image: absoluteUrl(project.image) } : {}),
+    ...(project.year ? { dateCreated: String(project.year) } : {}),
+    ...(isRepositoryUrl(project.source) ? { codeRepository: project.source } : {}),
+    author: { "@type": "Person", name: PERSON_NAME, url: absoluteUrl(localePath(locale)) },
   }
 }
 

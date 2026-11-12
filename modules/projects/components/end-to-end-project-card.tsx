@@ -5,12 +5,13 @@ import { ArrowUpRight, Star } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { Reveal } from "@/components/reveal"
 import { DesignGeometry } from "@/components/design-geometry"
+import { Link } from "@/i18n/navigation"
 import type { EndToEndProject } from "../lib/types/project.types"
 import { ProjectEngagementBadge } from "./project-engagement-badge"
 import { getProjectExternalLinks } from "../lib/utils/project-links"
 
-export function EndToEndProjectCard({ project, index = 0, onOpenDetail }: {
-  project: EndToEndProject; index?: number; onOpenDetail?: () => void
+export function EndToEndProjectCard({ project, index = 0 }: {
+  project: EndToEndProject; index?: number
 }) {
   const t = useTranslations("projects")
   return <Reveal className="project-reveal min-w-0">
@@ -26,7 +27,7 @@ export function EndToEndProjectCard({ project, index = 0, onOpenDetail }: {
           <ProjectEngagementBadge engagement={project.engagement} company={project.company} />
           {project.year && <span className="font-mono text-xs text-muted-foreground">{project.year}</span>}
         </div>
-        <h4 className="project-card-title"><button type="button" aria-haspopup="dialog" className="project-details-button focus-visible:underline" onClick={onOpenDetail}>{project.title}<ArrowUpRight className="ml-3 inline size-5 text-primary" aria-hidden="true" /></button></h4>
+        <h4 className="project-card-title"><Link href={`/projects/${project.slug}`} scroll={false} className="project-details-link focus-visible:underline">{project.title}<ArrowUpRight className="ml-3 inline size-5 text-primary" aria-hidden="true" /></Link></h4>
         <p className="mt-2 text-sm font-medium text-primary">{project.tagline}</p>
         <p className="mt-4 text-pretty text-sm leading-7 text-muted-foreground">{project.description}</p>
         <div className="mt-4 flex flex-wrap gap-2">
@@ -35,7 +36,7 @@ export function EndToEndProjectCard({ project, index = 0, onOpenDetail }: {
           {project.categories.map(category => <span key={category} className="tag">{t(`categoryLabels.${category}`)}</span>)}
         </div>
         <ul className="mt-5 flex flex-wrap gap-1.5">{project.tags.map(tag => <li key={tag} className="tag">{tag}</li>)}</ul>
-        <div className="project-card-action relative z-2 flex flex-wrap gap-2">
+        <div className="project-card-action flex flex-wrap gap-2">
           {getProjectExternalLinks(project).map(link => <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className="button-secondary text-xs">{t(`actions.${link.label}`)}<ArrowUpRight className="size-3.5" aria-hidden="true" /></a>)}
         </div>
       </div>
