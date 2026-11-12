@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { ArrowUpRight, Github, CheckCircle2, Users, CalendarDays, Radio } from "lucide-react"
 import {
   Dialog,
@@ -10,27 +11,42 @@ import {
 import { PROJECT_CATEGORY_META, type EndToEndProject, type ProjectStatus } from "../lib/types/project.types"
 import { ProjectMarkdown } from "./project-markdown"
 import { ProjectImageLightbox } from "./project-image-lightbox"
+import { ProjectEngagementBadge } from "./project-engagement-badge"
+
 
 const STATUS_META: Record<ProjectStatus, { label: string; color: string }> = {
-  live:     { label: "Live",     color: "#10B981" },
-  wip:      { label: "In progress", color: "#F59E0B" },
-  archived: { label: "Archived", color: "#6B7280" },
+  live:       { label: "Live",         color: "#10B981" },
+  completed:  { label: "Completed",    color: "#3B82F6" },
+  wip:        { label: "In progress",  color: "#F59E0B" },
+  supporting: { label: "Active support", color: "#F59E0B" },
+  archived:   { label: "Archived",     color: "#6B7280" },
 }
 
 interface EndToEndProjectModalProps {
   project: EndToEndProject
   open: boolean
   onOpenChange: (open: boolean) => void
+  onCloseAutoFocus?: () => void
 }
 
-export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndProjectModalProps) {
+export function EndToEndProjectModal({ project, open, onOpenChange, onCloseAutoFocus }: EndToEndProjectModalProps) {
+  const t = useTranslations("projects")
   const primaryCat = project.categories[0]
   const accentColor = primaryCat ? PROJECT_CATEGORY_META[primaryCat].color : "#8B5CF6"
   const statusMeta = project.status ? STATUS_META[project.status] : null
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="flex max-h-[92dvh] w-[calc(100%-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-h-[88dvh] sm:max-w-2xl">
+      <DialogContent
+        aria-describedby={undefined}
+        onCloseAutoFocus={(event) => {
+          if (onCloseAutoFocus) {
+            event.preventDefault()
+            onCloseAutoFocus()
+          }
+        }}
+        className="flex max-h-[92dvh] w-[calc(100%-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-h-[88dvh] sm:max-w-2xl"
+      >
         {/* Header */}
         <div className="relative rounded-t-lg border-b border-border bg-card px-4 pb-4 pt-5 sm:px-6 sm:pb-5 sm:pt-6">
           <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden rounded-t-lg">
@@ -40,19 +56,20 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
             />
           </div>
           <DialogHeader className="relative">
-            {/* Meta row */}
+            <div className="flex flex-col gap-2">
+              {/* Meta row */}
             <div className="mb-3 flex flex-wrap items-center gap-2 pr-8 sm:pr-0">
               {statusMeta && (
                 <span
                   className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-xs font-medium"
                   style={{
                     backgroundColor: `${statusMeta.color}15`,
-                    color: statusMeta.color,
+                    color: `color-mix(in srgb, ${statusMeta.color} var(--tag-color-weight), var(--foreground))`,
                     borderColor: `${statusMeta.color}40`,
                   }}
                 >
                   <Radio className="h-3 w-3" />
-                  {statusMeta.label}
+                  {t(`statusLabels.${project.status}`)}
                 </span>
               )}
               {project.year && (
@@ -68,6 +85,10 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
                 </span>
               )}
             </div>
+            {(project.company || project.engagement) && (
+              <ProjectEngagementBadge engagement={project.engagement} company={project.company} />
+            )}
+          </div>
             {/* Title + CTAs row */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div className="min-w-0">
@@ -76,26 +97,32 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
                 </DialogTitle>
                 <p className="mt-1 text-sm font-medium text-primary">{project.tagline}</p>
               </div>
-              <div className="flex shrink-0 items-center gap-2 sm:self-start">
-                <a
-                  href={project.source}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Source code"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-                >
-                  <Github className="h-4 w-4" />
-                </a>
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-                >
-                  Live demo
-                  <ArrowUpRight className="h-3.5 w-3.5" />
-                </a>
-              </div>
+              {(project.source || project.demo) && (
+                <div className="flex shrink-0 items-center gap-2 sm:self-start">
+                  {project.source && (
+                    <a
+                      href={project.source}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={t("ariaLabels.source", { title: project.title })}
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                    >
+                      <Github className="h-4 w-4" />
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                    >
+                      {t("actions.liveDemo")}
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Category + tech stack */}
@@ -108,12 +135,12 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
                     className="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 font-mono text-[10px] font-medium"
                     style={{
                       backgroundColor: `${meta.color}15`,
-                      color: meta.color,
+                      color: `color-mix(in srgb, ${meta.color} var(--tag-color-weight), var(--foreground))`,
                       borderColor: `${meta.color}40`,
                     }}
                   >
                     <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: meta.color }} />
-                    {meta.label}
+                      {t(`categoryLabels.${cat}`)}
                   </span>
                 )
               })}
@@ -131,6 +158,7 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
 
         {/* Scrollable body */}
         <div className="flex-1 space-y-5 overflow-y-auto px-4 py-4 sm:px-6 sm:py-5">
+          {project.isExample && <p className="tag">{t("example")}</p>}
           {/* Description */}
           <p className="text-sm leading-relaxed text-muted-foreground">{project.description}</p>
 
@@ -138,7 +166,7 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
           {project.images && project.images.length > 0 && (
             <div>
               <h4 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                Screenshots
+                {t("modal.screenshots")}
               </h4>
               <ProjectImageLightbox images={project.images} projectTitle={project.title} />
             </div>
@@ -148,14 +176,14 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
           {project.highlights && project.highlights.length > 0 && (
             <div>
               <h4 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                Highlights
+                {t("modal.highlights")}
               </h4>
               <ul className="space-y-2">
                 {project.highlights.map((h) => (
                   <li key={h} className="flex items-start gap-2.5">
                     <CheckCircle2
                       className="mt-0.5 h-4 w-4 shrink-0"
-                      style={{ color: accentColor }}
+                      style={{ color: `color-mix(in srgb, ${accentColor} var(--tag-color-weight), var(--foreground))` }}
                     />
                     <span className="text-sm text-foreground">{h}</span>
                   </li>
@@ -168,7 +196,7 @@ export function EndToEndProjectModal({ project, open, onOpenChange }: EndToEndPr
           {project.technicalNotes && (
             <div>
               <h4 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                Technical notes
+                {t("modal.technicalNotes")}
               </h4>
               <div className="rounded-xl border border-border/60 bg-secondary/20 px-4 py-3">
                 <ProjectMarkdown content={project.technicalNotes} />

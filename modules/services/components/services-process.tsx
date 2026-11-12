@@ -10,11 +10,11 @@ interface ServicesProcessProps {
 
 export function ServicesProcess({ steps }: ServicesProcessProps) {
   return (
-    <div className="relative mt-12 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+    <div className="quiet-card mt-12 grid gap-px overflow-hidden bg-border sm:grid-cols-2 lg:grid-cols-4">
       {steps.map((step, i) => (
         <div
           key={step.number}
-          className="group relative flex flex-col gap-2 bg-card p-6 transition-colors hover:bg-accent/50 sm:p-7"
+          className="flex flex-col gap-2 bg-card p-6 sm:p-7"
         >
           <div className="flex items-center gap-3">
             <span className="font-mono text-xs font-medium text-primary">{step.number}</span>

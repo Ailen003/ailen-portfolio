@@ -1,3 +1,4 @@
+import { portfolioIdentity } from "@/modules/portfolio/lib/data/identity.data"
 import { heroSocials } from "@/modules/hero/lib/data/hero.data"
 import { contactChannels, contactSocials } from "@/modules/contact/lib/data/contact.data"
 import { aboutFacts } from "@/modules/about/lib/data/about.data"
@@ -12,7 +13,7 @@ import { routing } from "@/i18n/routing"
  */
 
 /** Person/brand name. Keep in sync with the Hero headline. */
-export const PERSON_NAME = "Elena Vargas"
+export const PERSON_NAME = portfolioIdentity.name
 
 /** Default placeholder used when NEXT_PUBLIC_SITE_URL is not set. */
 const FALLBACK_SITE_URL = "https://ailen-portfolio.vercel.app"

@@ -33,7 +33,7 @@ export default async function Page({
     <>
       <JsonLd data={jsonLd} />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <About />
         <Skills />

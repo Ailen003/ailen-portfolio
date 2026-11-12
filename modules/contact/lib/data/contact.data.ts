@@ -1,13 +1,14 @@
+import { portfolioIdentity } from "@/modules/portfolio/lib/data/identity.data"
 import { Mail, MapPin, Github, Linkedin, Twitter } from "lucide-react"
 import type { ContactChannel, ContactSocial, ContactData } from "../types/contact.types"
 
 export const contactChannels: ContactChannel[] = [
-  { icon: Mail, label: "Email", value: "hello@elena.dev", href: "mailto:hello@elena.dev" },
-  { icon: MapPin, label: "Location", value: "Barcelona, Spain", href: undefined },
+  { icon: Mail, label: "Email", value: portfolioIdentity.email, href: `mailto:${portfolioIdentity.email}` },
+  { icon: MapPin, label: "Location", value: portfolioIdentity.location.en, href: undefined },
 ]
 
 export const contactSocials: ContactSocial[] = [
-  { icon: Github, label: "GitHub", href: "https://github.com" },
+  { icon: Github, label: "GitHub", href: portfolioIdentity.githubUrl },
   { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
   { icon: Twitter, label: "Twitter", href: "https://twitter.com" },
 ]

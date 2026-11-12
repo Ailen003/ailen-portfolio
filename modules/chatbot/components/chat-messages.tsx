@@ -56,7 +56,7 @@ export function ChatMessages({
           <div className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
             <div className="size-3.5 animate-pulse rounded-full bg-primary/50" />
           </div>
-          <div className="flex items-center gap-1 rounded-2xl rounded-tl-sm bg-secondary px-4 py-3">
+          <div className="flex items-center gap-1 rounded-lg rounded-tl-sm bg-secondary px-4 py-3">
             <span className="size-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:0ms]" />
             <span className="size-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:150ms]" />
             <span className="size-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:300ms]" />

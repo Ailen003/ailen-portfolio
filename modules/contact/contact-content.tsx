@@ -1,3 +1,6 @@
+import { portfolioIdentity } from "@/modules/portfolio/lib/data/identity.data"
+import { getLocale } from "next-intl/server"
+import { getTranslations } from "next-intl/server"
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
 import { contactChannels, contactSocials } from "./lib/data/contact.data"
@@ -5,49 +8,54 @@ import { ContactFormContainer } from "./form/contact-form-container"
 import { fetchContactData } from "./lib/actions/contact.action"
 
 export async function Contact() {
+  const t = await getTranslations("contact")
   const result = await fetchContactData()
 
   if (!result.ok) return null
 
-  const { title, subtitle, description } = result.data
+  const { description } = result.data
+  const locale = await getLocale()
+  const channels = contactChannels.map(channel => channel.label === "Location" ? { ...channel, value: portfolioIdentity.location[locale === "es" ? "es" : "en"] } : channel)
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="relative overflow-hidden border-t border-border bg-secondary/30 dot-pattern py-16 md:py-24">
-      <div className="pointer-events-none absolute inset-0 radial-spotlight" />
+    <section id="contact" aria-labelledby="contact-heading" className="relative overflow-hidden border-t border-border contact-section section-space">
 
-      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+
+      <div className="site-container relative">
         <SectionHeading
-          index="07"
-          title={title}
-          subtitle={subtitle}
+          index="08"
+          title={t("title")}
+          subtitle={t("subtitle")}
           headingId="contact-heading"
         />
 
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal className="flex flex-col gap-6">
-            <p className="text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="section-copy text-pretty text-muted-foreground">
               {description}
             </p>
 
             <div className="space-y-3">
-              {contactChannels.map((c) => {
+              {channels.map((c) => {
                 const content = (
-                  <div className="flex items-center gap-4 rounded-2xl border border-border bg-card p-4 transition-colors hover:border-primary/40">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-primary">
+                  <div className="paper-card flex items-center gap-4 border border-border p-4 transition-colors">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-accent text-primary">
                       <c.icon className="h-5 w-5" />
                     </span>
-                    <div>
-                      <p className="font-mono text-xs uppercase tracking-wide text-muted-foreground">{c.label}</p>
+                    <div className="contact-channel-copy">
+                      <p className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+                        {t(`channels.${c.label.toLowerCase()}.label`)}
+                      </p>
                       <p className="font-medium text-foreground">{c.value}</p>
                     </div>
                   </div>
                 )
                 return c.href ? (
-                  <a key={c.label} href={c.href}>
+                  <a key={c.label} href={c.href} className="contact-channel">
                     {content}
                   </a>
                 ) : (
-                  <div key={c.label}>{content}</div>
+                  <div key={c.label} className="contact-channel">{content}</div>
                 )
               })}
             </div>
@@ -60,7 +68,7 @@ export async function Contact() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={s.label}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-primary hover:text-primary"
+                  className="icon-button"
                 >
                   <s.icon className="h-5 w-5" />
                 </a>

@@ -1,28 +1,52 @@
 "use client"
 
-import { ArrowUpRight, Github, Users, CalendarDays, GitPullRequest, TrendingUp } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { ArrowUpRight, Github, Users, CalendarDays, GitPullRequest, TrendingUp, CheckCircle2, Radio } from "lucide-react"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { PROJECT_CATEGORY_META, type ContributionProject } from "../lib/types/project.types"
+import { PROJECT_CATEGORY_META, type ContributionProject, type ProjectStatus } from "../lib/types/project.types"
 import { ProjectMarkdown } from "./project-markdown"
+import { ProjectImageLightbox } from "./project-image-lightbox"
+import { ProjectEngagementBadge } from "./project-engagement-badge"
+
+
+const STATUS_META: Record<ProjectStatus, { label: string; color: string }> = {
+  live:       { label: "Live",         color: "#10B981" },
+  completed:  { label: "Completed",    color: "#3B82F6" },
+  wip:        { label: "In progress",  color: "#F59E0B" },
+  supporting: { label: "Active support", color: "#F59E0B" },
+  archived:   { label: "Archived",     color: "#6B7280" },
+}
 
 interface ContributionProjectModalProps {
   project: ContributionProject
   open: boolean
   onOpenChange: (open: boolean) => void
+  onCloseAutoFocus?: () => void
 }
 
-export function ContributionProjectModal({ project, open, onOpenChange }: ContributionProjectModalProps) {
+export function ContributionProjectModal({ project, open, onOpenChange, onCloseAutoFocus }: ContributionProjectModalProps) {
+  const t = useTranslations("projects")
   const primaryCat = project.categories[0]
   const accentColor = primaryCat ? PROJECT_CATEGORY_META[primaryCat].color : "#6B7280"
+  const statusMeta = project.status ? STATUS_META[project.status] : null
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="flex max-h-[92dvh] w-[calc(100%-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-h-[88dvh] sm:max-w-xl">
+      <DialogContent
+        aria-describedby={undefined}
+        onCloseAutoFocus={(event) => {
+          if (onCloseAutoFocus) {
+            event.preventDefault()
+            onCloseAutoFocus()
+          }
+        }}
+        className="flex max-h-[92dvh] w-[calc(100%-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-h-[88dvh] sm:max-w-2xl"
+      >
         {/* Header */}
         <div className="relative rounded-t-lg border-b border-border bg-card px-4 pb-4 pt-5 sm:px-6 sm:pb-5 sm:pt-6">
           <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden rounded-t-lg">
@@ -32,52 +56,102 @@ export function ContributionProjectModal({ project, open, onOpenChange }: Contri
             />
           </div>
           <DialogHeader className="relative">
-            <div className="mb-2 flex flex-wrap items-center gap-2">
+           <div className="flex flex-col gap-2">
+             <div className="mb-3 flex flex-wrap items-center gap-2 pr-8 sm:pr-0">
               <span
                 className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-xs font-medium"
                 style={{
                   backgroundColor: `${accentColor}15`,
-                  color: accentColor,
+                  color: `color-mix(in srgb, ${accentColor} var(--tag-color-weight), var(--foreground))`,
                   borderColor: `${accentColor}40`,
                 }}
               >
                 <Users className="h-3 w-3" />
                 {project.role}
               </span>
+              {statusMeta && (
+                <span
+                  className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-xs font-medium"
+                  style={{
+                    backgroundColor: `${statusMeta.color}15`,
+                    color: `color-mix(in srgb, ${statusMeta.color} var(--tag-color-weight), var(--foreground))`,
+                    borderColor: `${statusMeta.color}40`,
+                  }}
+                >
+                  <Radio className="h-3 w-3" />
+                  {t(`statusLabels.${project.status}`)}
+                </span>
+              )}
               {project.year && (
                 <span className="inline-flex items-center gap-1 font-mono text-xs text-muted-foreground">
                   <CalendarDays className="h-3 w-3" />
                   {project.year}
                 </span>
               )}
+              {project.teamSize && (
+                <span className="inline-flex items-center gap-1 font-mono text-xs text-muted-foreground">
+                  <Users className="h-3 w-3" />
+                  {project.teamSize}
+                </span>
+              )}
+            </div>
+            {(project.company || project.engagement) && (
+              <ProjectEngagementBadge engagement={project.engagement} company={project.company} />
+            )}
+          </div>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div className="min-w-0">
+                <DialogTitle className="text-xl font-bold leading-tight text-foreground sm:text-2xl">
+                  {project.title}
+                </DialogTitle>
+                <p className="mt-1 text-sm font-medium text-primary">{project.tagline}</p>
+              </div>
+              <div className="flex shrink-0 items-center gap-2 sm:self-start">
+                <a
+                  href={project.source}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={t("ariaLabels.source", { title: project.title })}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                >
+                  <Github className="h-4 w-4" />
+                </a>
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                  >
+                    {t("actions.liveDemo")}
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </a>
+                )}
+              </div>
             </div>
 
-            <DialogTitle className="text-xl font-bold leading-tight text-foreground">
-              {project.title}
-            </DialogTitle>
-
             {/* Category + tech stack */}
-            <div className="mt-2.5 flex flex-wrap gap-1.5">
-              {project.categories.map((cat, index) => {
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {project.categories.map((cat) => {
                 const meta = PROJECT_CATEGORY_META[cat]
                 return (
                   <span
-                    key={index}
+                    key={cat}
                     className="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 font-mono text-[10px] font-medium"
                     style={{
                       backgroundColor: `${meta.color}15`,
-                      color: meta.color,
+                      color: `color-mix(in srgb, ${meta.color} var(--tag-color-weight), var(--foreground))`,
                       borderColor: `${meta.color}40`,
                     }}
                   >
                     <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: meta.color }} />
-                    {meta.label}
+                    {t(`categoryLabels.${cat}`)}
                   </span>
                 )
               })}
-              {project.tags.map((tag, index) => (
+              {project.tags.map((tag) => (
                 <span
-                  key={index}
+                  key={tag}
                   className="rounded-full border border-border/60 bg-secondary/50 px-2.5 py-0.5 font-mono text-[10px] text-muted-foreground"
                 >
                   {tag}
@@ -89,8 +163,39 @@ export function ContributionProjectModal({ project, open, onOpenChange }: Contri
 
         {/* Scrollable body */}
         <div className="flex-1 space-y-5 overflow-y-auto px-4 py-4 sm:px-6 sm:py-5">
+          {project.isExample && <p className="tag">{t("example")}</p>}
           {/* Description */}
           <p className="text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+
+          {/* Image gallery */}
+          {project.images && project.images.length > 0 && (
+            <div>
+              <h4 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                {t("modal.screenshots")}
+              </h4>
+              <ProjectImageLightbox images={project.images} projectTitle={project.title} />
+            </div>
+          )}
+
+          {/* Highlights */}
+          {project.highlights && project.highlights.length > 0 && (
+            <div>
+              <h4 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                {t("modal.highlights")}
+              </h4>
+              <ul className="space-y-2">
+                {project.highlights.map((h) => (
+                  <li key={h} className="flex items-start gap-2.5">
+                    <CheckCircle2
+                      className="mt-0.5 h-4 w-4 shrink-0"
+                      style={{ color: `color-mix(in srgb, ${accentColor} var(--tag-color-weight), var(--foreground))` }}
+                    />
+                    <span className="text-sm text-foreground">{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Impact */}
           {project.impact && (
@@ -101,7 +206,7 @@ export function ContributionProjectModal({ project, open, onOpenChange }: Contri
                 borderColor: `${accentColor}30`,
               }}
             >
-              <TrendingUp className="mt-0.5 h-4 w-4 shrink-0" style={{ color: accentColor }} />
+              <TrendingUp className="mt-0.5 h-4 w-4 shrink-0" style={{ color: `color-mix(in srgb, ${accentColor} var(--tag-color-weight), var(--foreground))` }} />
               <p className="text-sm font-medium text-foreground">{project.impact}</p>
             </div>
           )}
@@ -110,7 +215,7 @@ export function ContributionProjectModal({ project, open, onOpenChange }: Contri
           {project.prLinks && project.prLinks.length > 0 && (
             <div>
               <h4 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                Pull requests & issues
+                {t("modal.pullRequests")}
               </h4>
               <ul className="space-y-2">
                 {project.prLinks.map((pr, index) => (
@@ -135,7 +240,7 @@ export function ContributionProjectModal({ project, open, onOpenChange }: Contri
           {project.technicalNotes && (
             <div>
               <h4 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                Technical notes
+                {t("modal.technicalNotes")}
               </h4>
               <div className="rounded-xl border border-border/60 bg-secondary/20 px-4 py-3">
                 <ProjectMarkdown content={project.technicalNotes} />
@@ -143,29 +248,6 @@ export function ContributionProjectModal({ project, open, onOpenChange }: Contri
             </div>
           )}
 
-          {/* Footer links */}
-          <div className="flex flex-wrap items-center gap-3 pt-1">
-            <a
-              href={project.source}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
-            >
-              <Github className="h-3.5 w-3.5" />
-              View repository
-            </a>
-            {project.demo && (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-              >
-                Live demo
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </a>
-            )}
-          </div>
         </div>
       </DialogContent>
     </Dialog>

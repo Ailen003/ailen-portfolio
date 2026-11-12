@@ -61,3 +61,32 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Portfolio organization
+
+The visual system follows the local Nairad reference: Geist body text, Sora headings,
+shared color tokens, geometry and surfaces in `app/globals.css`. End-to-end cards
+use Tata's single-column composition and open a dialog. Skills retain their category
+tile grid; the orbital view has been removed.
+
+- `modules/portfolio/lib/data/identity.data.ts`: shared name, initials, portrait,
+  contact details and headline statistics. The current Elena identity is retained.
+- `messages/en.json` and `messages/es.json`: localized interface and project copy,
+  service descriptions and skill experience. Existing portfolio content is retained.
+- `modules/<section>/components` and `lib/{data,types,services,actions}`: section
+  presentation and data access. `components` contains shared navigation, headings,
+  reveal behavior, geometry and UI primitives.
+- `modules/projects/lib/data/projects.data.ts`: base project metadata and localized
+  collections. FinFlow and Atlas UI use the existing ETI logo; Pulse and contributions
+  demonstrate freelance work. These attributions are provisional and marked with
+  `isExample` in both cards and dialogs. Update `company` and `engagement`, then
+  clear `isExample` when real information is supplied. Technical scope belongs to
+  `categories` independently of employment/freelance status.
+
+The reference projects are read-only examples excluded from TypeScript and ESLint.
+Next.js uses `next.config.ts` and the current `proxy.ts` locale routing convention.
+Production builds enforce TypeScript checks.
+
+Validation: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`.
+Contact and assistant API contracts are unchanged. The contact CTA remains available
+while no CV file is configured. No project detail routes or hosting changes are added.

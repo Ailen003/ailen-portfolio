@@ -63,7 +63,7 @@ export interface Skill {
   level: SkillLevel
   /** Detailed experience description, written in Markdown */
   description: string
-  /** Fine-grained category tags for filtering in the galaxy view */
+  /** Fine-grained category tags shown in the skill detail dialog */
   categories: SkillCategoryTag[]
   /** Origin group title, injected by getAllSkills() — not set in raw data */
   group?: string
@@ -83,11 +83,6 @@ export interface SkillCategory {
 export interface SkillsData {
   title: string
   subtitle: string
-  tabs: {
-    grid: string
-    gridMobile: string
-    galaxy: string
-  }
 }
 
 export type SkillsDataResult =

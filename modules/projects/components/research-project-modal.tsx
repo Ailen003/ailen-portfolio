@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { ArrowUpRight, CalendarDays, Lightbulb, BookOpen, FlaskConical, Microscope, CheckCircle2, Circle } from "lucide-react"
 import {
   Dialog,
@@ -24,9 +25,15 @@ interface ResearchProjectModalProps {
   project: ResearchProject
   open: boolean
   onOpenChange: (open: boolean) => void
+  onCloseAutoFocus?: () => void
 }
 
-export function ResearchProjectModal({ project, open, onOpenChange }: ResearchProjectModalProps) {
+function researchTypeKey(type: ResearchType) {
+  return type === "Deep Dive" ? "DeepDive" : type
+}
+
+export function ResearchProjectModal({ project, open, onOpenChange, onCloseAutoFocus }: ResearchProjectModalProps) {
+  const t = useTranslations("projects")
   const typeMeta = RESEARCH_TYPE_META[project.researchType]
   const TypeIcon = typeMeta.icon
   const primaryCat = project.categories[0]
@@ -35,7 +42,16 @@ export function ResearchProjectModal({ project, open, onOpenChange }: ResearchPr
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="flex max-h-[92dvh] w-[calc(100%-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-h-[88dvh] sm:max-w-xl">
+      <DialogContent
+        aria-describedby={undefined}
+        onCloseAutoFocus={(event) => {
+          if (onCloseAutoFocus) {
+            event.preventDefault()
+            onCloseAutoFocus()
+          }
+        }}
+        className="flex max-h-[92dvh] w-[calc(100%-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-h-[88dvh] sm:max-w-xl"
+      >
         {/* Header */}
         <div className="relative rounded-t-lg border-b border-border bg-card px-4 pb-4 pt-5 sm:px-6 sm:pb-5 sm:pt-6">
           <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden rounded-t-lg">
@@ -50,12 +66,12 @@ export function ResearchProjectModal({ project, open, onOpenChange }: ResearchPr
                 className="inline-flex items-center gap-1.5 rounded-md border px-2.5 py-0.5 font-mono text-xs font-semibold"
                 style={{
                   backgroundColor: `${typeMeta.color}15`,
-                  color: typeMeta.color,
+                  color: `color-mix(in srgb, ${typeMeta.color} var(--tag-color-weight), var(--foreground))`,
                   borderColor: `${typeMeta.color}40`,
                 }}
               >
                 <TypeIcon className="h-3 w-3" />
-                {typeMeta.label}
+                {t(`researchTypes.${researchTypeKey(project.researchType)}`)}
               </span>
 
               {project.completionStatus && (
@@ -71,7 +87,7 @@ export function ResearchProjectModal({ project, open, onOpenChange }: ResearchPr
                   ) : (
                     <CheckCircle2 className="h-3 w-3" />
                   )}
-                  {isOngoing ? "Ongoing" : "Completed"}
+                  {isOngoing ? t("badges.ongoing") : t("badges.completed")}
                 </span>
               )}
 
@@ -97,12 +113,12 @@ export function ResearchProjectModal({ project, open, onOpenChange }: ResearchPr
                     className="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 font-mono text-[10px] font-medium"
                     style={{
                       backgroundColor: `${meta.color}15`,
-                      color: meta.color,
+                      color: `color-mix(in srgb, ${meta.color} var(--tag-color-weight), var(--foreground))`,
                       borderColor: `${meta.color}40`,
                     }}
                   >
                     <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: meta.color }} />
-                    {meta.label}
+                    {t(`categoryLabels.${cat}`)}
                   </span>
                 )
               })}
@@ -127,14 +143,14 @@ export function ResearchProjectModal({ project, open, onOpenChange }: ResearchPr
           {project.findings && project.findings.length > 0 && (
             <div>
               <h4 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                Key findings
+                {t("modal.keyFindings")}
               </h4>
               <ul className="space-y-2">
                 {project.findings.map((f) => (
                   <li key={f} className="flex items-start gap-2.5">
                     <Lightbulb
                       className="mt-0.5 h-3.5 w-3.5 shrink-0"
-                      style={{ color: typeMeta.color }}
+                      style={{ color: `color-mix(in srgb, ${typeMeta.color} var(--tag-color-weight), var(--foreground))` }}
                     />
                     <span className="text-sm text-foreground">{f}</span>
                   </li>
@@ -147,7 +163,7 @@ export function ResearchProjectModal({ project, open, onOpenChange }: ResearchPr
           {project.technicalNotes && (
             <div>
               <h4 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                Notes
+                {t("modal.notes")}
               </h4>
               <div className="rounded-xl border border-border/60 bg-secondary/20 px-4 py-3">
                 <ProjectMarkdown content={project.technicalNotes} />
@@ -159,7 +175,7 @@ export function ResearchProjectModal({ project, open, onOpenChange }: ResearchPr
           {project.references && project.references.length > 0 && (
             <div>
               <h4 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                References
+                {t("modal.references")}
               </h4>
               <ul className="space-y-1.5">
                 {project.references.map((ref) => (
@@ -192,7 +208,7 @@ export function ResearchProjectModal({ project, open, onOpenChange }: ResearchPr
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90"
               >
-                View project
+                {t("actions.viewProject")}
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </a>
             </div>

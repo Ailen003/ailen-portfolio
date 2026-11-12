@@ -1,9 +1,12 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { useState, type FormEvent } from "react"
 import { ContactFormPresentational } from "./contact-form-presentational"
 
 export function ContactFormContainer() {
+  const t = useTranslations("contact.form")
+  const copy = { nameLabel: t("name.label"), namePlaceholder: t("name.placeholder"), emailLabel: t("email.label"), emailPlaceholder: t("email.placeholder"), subjectLabel: t("subject.label"), subjectPlaceholder: t("subject.placeholder"), messageLabel: t("message.label"), messagePlaceholder: t("message.placeholder"), send: t("send"), sending: t("sending"), sent: t("sent") }
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -26,14 +29,14 @@ export function ContactFormContainer() {
       const json = await res.json()
 
       if (!res.ok) {
-        setError(json.error ?? "Something went wrong. Please try again.")
+        setError(json.error ?? t("error"))
       } else {
         setSent(true)
         form.reset()
         setTimeout(() => setSent(false), 4000)
       }
     } catch {
-      setError("Network error. Please check your connection and try again.")
+      setError(t("networkError"))
     } finally {
       setLoading(false)
     }
@@ -41,6 +44,7 @@ export function ContactFormContainer() {
 
   return (
     <ContactFormPresentational
+      copy={copy}
       sent={sent}
       loading={loading}
       error={error}

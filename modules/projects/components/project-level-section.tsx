@@ -5,7 +5,9 @@ interface ProjectLevelSectionProps {
   number: string
   title: string
   description: string
+  emptyLabel: string
   isEmpty?: boolean
+  controls?: ReactNode
   children: ReactNode
 }
 
@@ -13,13 +15,15 @@ export function ProjectLevelSection({
   number,
   title,
   description,
+  emptyLabel,
   isEmpty = false,
+  controls,
   children,
 }: ProjectLevelSectionProps) {
   return (
-    <section className="mt-16 first:mt-0">
+    <section aria-label={title} className="project-level mt-16 first:mt-0">
       <Reveal>
-        <div className="mb-8 flex items-start gap-4">
+        <div className="mb-4 flex items-start gap-4">
           <div className="flex shrink-0 flex-col items-center">
             <span className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/30 bg-primary/8 font-mono text-sm font-bold text-primary">
               {number}
@@ -33,9 +37,11 @@ export function ProjectLevelSection({
         </div>
       </Reveal>
 
+      {controls}
+
       {isEmpty ? (
         <Reveal>
-          <p className="ml-13 text-sm italic text-muted-foreground/60">No projects match the current filter.</p>
+          <p className="ml-13 text-sm italic text-muted-foreground/60">{emptyLabel}</p>
         </Reveal>
       ) : (
         children

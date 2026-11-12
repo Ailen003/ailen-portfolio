@@ -35,7 +35,7 @@ export function LanguageToggle({ className }: { className?: string }) {
           aria-label={t("label")}
           disabled={isPending}
           className={cn(
-            "inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground disabled:opacity-50",
+            "inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground disabled:opacity-50",
             className,
           )}
         >

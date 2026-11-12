@@ -7,22 +7,23 @@ import { cn } from "@/lib/utils"
 interface ProjectMarkdownProps {
   content: string
   className?: string
+  variant?: "default" | "case-study"
 }
 
-export function ProjectMarkdown({ content, className }: ProjectMarkdownProps) {
+export function ProjectMarkdown({ content, className, variant = "default" }: ProjectMarkdownProps) {
   return (
-    <div className={cn("text-sm leading-relaxed text-foreground", className)}>
+    <div className={cn("text-sm leading-relaxed text-foreground", variant === "case-study" && "case-markdown", className)}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
           h1: ({ children }) => (
-            <h1 className="mb-3 mt-0 text-xl font-bold text-foreground">{children}</h1>
+            variant === "case-study" ? <h3 className="mb-3 mt-0 font-semibold text-foreground">{children}</h3> : <h1 className="mb-3 mt-0 text-xl font-bold text-foreground">{children}</h1>
           ),
           h2: ({ children }) => (
-            <h2 className="mb-2 mt-5 text-base font-semibold text-foreground first:mt-0">{children}</h2>
+            variant === "case-study" ? <h3 className="mb-2 font-semibold text-foreground first:mt-0">{children}</h3> : <h2 className="mb-2 mt-5 text-base font-semibold text-foreground first:mt-0">{children}</h2>
           ),
           h3: ({ children }) => (
-            <h3 className="mb-2 mt-4 text-sm font-semibold text-foreground">{children}</h3>
+            variant === "case-study" ? <h4 className="mb-2 mt-5 text-base font-semibold text-foreground">{children}</h4> : <h3 className="mb-2 mt-4 text-sm font-semibold text-foreground">{children}</h3>
           ),
           p: ({ children }) => (
             <p className="mb-3 text-sm leading-relaxed text-muted-foreground last:mb-0">{children}</p>
@@ -78,6 +79,13 @@ export function ProjectMarkdown({ content, className }: ProjectMarkdownProps) {
             </a>
           ),
           hr: () => <hr className="my-4 border-border" />,
+          table: ({ children }) => (
+            <div className="mb-4 overflow-x-auto rounded-lg border border-border" tabIndex={0}>
+              <table className="w-full border-collapse text-left text-sm">{children}</table>
+            </div>
+          ),
+          th: ({ children }) => <th className="border-b border-border bg-secondary px-3 py-2 font-semibold">{children}</th>,
+          td: ({ children }) => <td className="border-b border-border px-3 py-2 align-top leading-7 text-muted-foreground">{children}</td>,
         }}
       >
         {content}

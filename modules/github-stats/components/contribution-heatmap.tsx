@@ -134,7 +134,7 @@ export function ContributionHeatmap({ weeks, totalContributions, fluid = false }
                   height={CELL}
                   rx={2}
                   ry={2}
-                  fill={`oklch(0.6 0.12 175)`}
+                  fill="var(--signal)"
                   opacity={opacity}
                   className="cursor-pointer transition-opacity duration-500"
                   style={{
@@ -180,7 +180,7 @@ export function ContributionHeatmap({ weeks, totalContributions, fluid = false }
           <span
             key={i}
             className="h-2.5 w-2.5 rounded-sm"
-            style={{ backgroundColor: `oklch(0.6 0.12 175 / ${op})` }}
+            style={{ backgroundColor: `rgb(213 35 67 / ${op})` }}
             aria-hidden
           />
         ))}

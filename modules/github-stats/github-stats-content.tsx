@@ -47,22 +47,18 @@ export async function GithubStats() {
     <section
       id="contributions"
       aria-labelledby="contributions-heading"
-      className="relative overflow-hidden border-y border-border bg-secondary/20 py-16 md:py-24"
+      className="relative overflow-hidden border-y border-border section-inset section-space"
     >
-      <div className="pointer-events-none absolute inset-0 grid-pattern opacity-100 mask-[radial-gradient(ellipse_at_center,black_45%,transparent_85%)]" />
 
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(60% 55% at 15% 10%, oklch(0.6 0.12 175 / 0.28), transparent 60%), radial-gradient(50% 60% at 85% 25%, oklch(0.62 0.1 200 / 0.22), transparent 60%), radial-gradient(70% 60% at 50% 110%, oklch(0.6 0.12 175 / 0.30), transparent 65%)",
-        }}
+
       />
 
       <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-background via-transparent to-background" />
 
-      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="site-container relative">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             index="06"
@@ -90,7 +86,7 @@ export async function GithubStats() {
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_1.6fr]">
           <Reveal delay={100}>
-            <div className="h-full rounded-3xl border border-border bg-card p-6 sm:p-7">
+            <div className="paper-card h-full border border-border p-6 sm:p-7">
               <h3 className="mb-5 text-base font-semibold text-foreground">{labels.topLanguages}</h3>
               {topLanguages.length > 0 ? (
                 <LanguageBars languages={topLanguages} />
@@ -101,7 +97,7 @@ export async function GithubStats() {
           </Reveal>
 
           <Reveal delay={180} className="self-start">
-            <div className="rounded-3xl border border-border bg-card p-6 sm:p-7">
+            <div className="paper-card border border-border p-6 sm:p-7">
               {contributions.weeks.length > 0 ? (
                 <>
                   <div className="lg:hidden">

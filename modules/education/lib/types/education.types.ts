@@ -6,6 +6,7 @@ export interface EducationEntry {
 }
 
 export interface Certification {
+  description?: string
   title: string
   org: string
   year: string

@@ -84,7 +84,7 @@ export function ContributionMonthly({ weeks, totalContributions }: ContributionM
                   className="h-full rounded-full transition-[width] duration-700 ease-out"
                   style={{
                     width: visible ? `${pct}%` : "0%",
-                    backgroundColor: "oklch(0.6 0.12 175)",
+                    backgroundColor: "var(--signal)",
                     transitionDelay: visible ? `${i * 60}ms` : "0ms",
                   }}
                   role="progressbar"

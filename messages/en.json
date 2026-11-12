@@ -28,7 +28,9 @@
     "description": "I design and build resilient, accessible web products where thoughtful interface design meets solid engineering. I care about performance, the small details, and shipping work that lasts.",
     "cta": {
       "viewWork": "View my work",
-      "downloadCv": "Download CV"
+      "downloadCv": "Download CV",
+      "cv": "Request CV",
+      "contact": "Get in touch"
     },
     "stats": {
       "yearsLabel": "Years building",
@@ -60,21 +62,30 @@
       }
     },
     "facts": {
-      "basedIn": { "label": "Based in", "value": "Barcelona, ES" },
-      "experience": { "label": "Experience", "value": "8+ years" },
-      "focus": { "label": "Focus", "value": "Full-stack web" },
-      "languages": { "label": "Languages", "value": "EN · ES · CA" }
+      "basedIn": {
+        "label": "Based in",
+        "value": "Barcelona, ES"
+      },
+      "experience": {
+        "label": "Experience",
+        "value": "8+ years"
+      },
+      "focus": {
+        "label": "Focus",
+        "value": "Full-stack web"
+      },
+      "languages": {
+        "label": "Languages",
+        "value": "EN · ES · CA"
+      }
     }
   },
   "skills": {
     "title": "Technical skills",
     "subtitle": "A toolkit refined across products and teams. Click any skill to see my experience in detail.",
-    "tabs": {
-      "grid": "By categories",
-      "gridMobile": "Categories",
-      "galaxy": "Orbit"
+    "filter": {
+      "all": "All"
     },
-    "filter": { "all": "All" },
     "levels": {
       "basic": "Basic",
       "intermediate": "Intermediate",
@@ -92,10 +103,22 @@
       "practice": "Practice"
     },
     "categories": {
-      "frontend": { "title": "Frontend", "tagline": "Interfaces that feel fast and effortless." },
-      "backend": { "title": "Backend", "tagline": "APIs and services built to scale." },
-      "dataInfra": { "title": "Data & Infra", "tagline": "Reliable storage and deployment." },
-      "toolingPractices": { "title": "Tooling & Practices", "tagline": "The craft behind shipping with confidence." }
+      "frontend": {
+        "title": "Frontend",
+        "tagline": "Interfaces that feel fast and effortless."
+      },
+      "backend": {
+        "title": "Backend",
+        "tagline": "APIs and services built to scale."
+      },
+      "dataInfra": {
+        "title": "Data & Infra",
+        "tagline": "Reliable storage and deployment."
+      },
+      "toolingPractices": {
+        "title": "Tooling & Practices",
+        "tagline": "The craft behind shipping with confidence."
+      }
     },
     "skillDescriptions": {
       "React": "## React\n\nMy primary technology for several years. I work with React daily building medium and large-scale production applications.\n\n### What I master\n- **Advanced hooks**: `useReducer`, `useContext`, `useTransition`, `useDeferredValue`, and complex custom hooks.\n- **Composition patterns**: render props, compound components, controlled/uncontrolled components.\n- **Performance optimization**: `React.memo`, `useMemo`, `useCallback`, code splitting with `Suspense` and `lazy`.\n- **Server Components** (React 19) and the new concurrent rendering model.\n\n### Featured projects\nI've built real-time analytical dashboards, complete design systems, and e-commerce applications with millions of users, all on React.",
@@ -122,6 +145,9 @@
       "Playwright": "## Playwright\n\nEnd-to-end testing framework I use to validate critical user flows before each release.\n\n### Tests I implement with Playwright\n- **Authentication flows**: signup, login, password recovery.\n- **Critical business flows**: checkout, resource creation, data export.\n- **Cross-browser**: Chrome, Firefox and WebKit in the same test suite.\n\n### CI integration\nPlaywright tests run in GitHub Actions in parallel, with screenshot and video artifacts when they fail to facilitate debugging.",
       "DesignSystems": "## Design Systems\n\nI've built and maintained design systems from scratch, as well as integrated existing systems (shadcn/ui, Radix, Material) in real projects.\n\n### What it means to me\n- **Design tokens**: colors, typography, spacing and radii as CSS variables or Tailwind config.\n- **Polymorphic components**: `Button`, `Input`, `Dialog` that adapt to any context.\n- **Documentation**: stories in Storybook + MDX so designers and devs speak the same language.\n- **Versioning**: publishing internal packages with semantic versioning.\n\n### Real value\nA good design system multiplies team speed and guarantees visual consistency without extra effort.",
       "Observability": "## Observability\n\nThe difference between knowing something is broken when a user calls, and knowing it before it affects anyone.\n\n### The three pillars\n- **Logs**: structured JSON logging with `pino`, centralized in Datadog or Loki.\n- **Metrics**: API latency, error rate and saturation. Dashboards in Grafana.\n- **Traces**: distributed tracing with OpenTelemetry to understand flow between services.\n\n### Alerts\nI configure alerts with sensible thresholds (not too noisy, not too quiet) for the service's most critical SLOs."
+    },
+    "aria": {
+      "viewSkill": "View details of {name}"
     }
   },
   "experience": {
@@ -172,16 +198,26 @@
       }
     ],
     "certifications": [
-      { "title": "AWS Certified Solutions Architect" },
-      { "title": "Professional Scrum Developer" },
-      { "title": "Advanced React & Performance" },
-      { "title": "Accessibility Specialist (CPACC)" }
+      {
+        "title": "AWS Certified Solutions Architect"
+      },
+      {
+        "title": "Professional Scrum Developer"
+      },
+      {
+        "title": "Advanced React & Performance"
+      },
+      {
+        "title": "Accessibility Specialist (CPACC)"
+      }
     ]
   },
   "projects": {
     "title": "Selected projects",
     "subtitle": "A few things I've designed, built, and shipped end to end.",
-    "filter": { "all": "All" },
+    "filter": {
+      "all": "All"
+    },
     "noResults": "No projects match the current filter.",
     "categoryLabels": {
       "frontend": "Frontend",
@@ -217,7 +253,9 @@
     "actions": {
       "liveDemo": "Live demo",
       "viewRepository": "View repository",
-      "viewProject": "View project"
+      "viewProject": "View project",
+      "companyWebsite": "Company website",
+      "reference": "Project reference"
     },
     "ariaLabels": {
       "sourceCode": "Source code",
@@ -244,7 +282,9 @@
     "statusLabels": {
       "live": "Live",
       "wip": "In progress",
-      "archived": "Archived"
+      "archived": "Archived",
+      "completed": "Completed",
+      "supporting": "Active support"
     },
     "endToEnd": [
       {
@@ -338,7 +378,61 @@
         ],
         "technicalNotes": "## Scope\n\nBuilt a series of increasingly complex Next.js App Router demos to stress-test RSC boundaries, streaming behavior, and the interop between server and client components.\n\n## Key experiments\n\n**Experiment 1 — Streaming waterfall elimination**: Replaced a deeply nested component tree that had 4 sequential `useEffect` fetches with RSC `async/await`. Result: 0 client-side waterfalls, ~40% reduction in TTI.\n\n**Experiment 2 — Suspense placement**: Tested 3 different Suspense boundary configurations for the same UI. Found that coarse-grained boundaries (one per route segment) outperform fine-grained ones in practice because they reduce layout shifts.\n\n**Experiment 3 — Client island size**: Measured JS bundle size as `use client` boundaries moved progressively closer to the leaves. Every level down reduced the hydrated JS by ~15–20%.\n\n## Ongoing\n\nStill exploring the cache invalidation model (`revalidatePath` vs `revalidateTag`) and its interaction with CDN-level caching."
       }
-    ]
+    ],
+    "coverAlt": "Preview of {title}",
+    "detail": {
+      "back": "Back to projects",
+      "kicker": "End-to-end project · Case study",
+      "atGlance": "At a glance",
+      "company": "Organization",
+      "engagement": "Context",
+      "year": "Year",
+      "participation": "My participation",
+      "status": "Status",
+      "disciplines": "Disciplines",
+      "technologies": "Technologies used",
+      "contents": "In this project",
+      "overview": "Project overview",
+      "contribution": "My contribution",
+      "contactTitle": "Have a project in mind? Let's build it together.",
+      "contactAction": "Let's talk",
+      "notFoundTitle": "Project not found",
+      "notFoundDescription": "This project is not available. You can explore the other projects in my portfolio."
+    },
+    "engagementLabels": {
+      "employee": "Company project",
+      "freelance-fullstack": "Freelance development",
+      "personal": "Personal project",
+      "academic": "Academic project"
+    },
+    "gallery": {
+      "open": "Enlarge image {number} of {title}",
+      "image": "Image {number} of {title}",
+      "close": "Close gallery",
+      "previous": "Previous image",
+      "next": "Next image"
+    },
+    "company": {
+      "builtAt": "Built at",
+      "ariaLabel": "Visit {name}"
+    },
+    "fullstack": {
+      "forCompany": "Full-Stack for",
+      "ariaLabelForCompany": "Visit {name}",
+      "caption": "Freelance",
+      "generic": "Full-Stack Development"
+    },
+    "personal": {
+      "caption": "Ownership",
+      "label": "Personal Project"
+    },
+    "academic": {
+      "caption": "Coursework",
+      "label": "Academic Project"
+    },
+    "tagsMore": "+{count} more",
+    "example": "Example data",
+    "freelance": "Freelance development"
   },
   "services": {
     "title": "How I can help",
@@ -415,16 +509,97 @@
     "subtitle": "Have a project in mind or just want to say hello? My inbox is always open.",
     "description": "Whether you're looking for an engineer to join your team or need help shipping a product, I'd love to hear about it. I usually reply within a day.",
     "channels": {
-      "email": { "label": "Email" },
-      "location": { "label": "Location" }
+      "email": {
+        "label": "Email"
+      },
+      "location": {
+        "label": "Location"
+      },
+      "phone": {
+        "label": "Phone"
+      }
     },
     "form": {
-      "name": { "label": "Name", "placeholder": "Jane Doe" },
-      "email": { "label": "Email", "placeholder": "jane@company.com" },
-      "subject": { "label": "Subject", "placeholder": "Project inquiry" },
-      "message": { "label": "Message", "placeholder": "Tell me a little about what you're working on..." },
+      "name": {
+        "label": "Name",
+        "placeholder": "Jane Doe"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "jane@company.com"
+      },
+      "subject": {
+        "label": "Subject",
+        "placeholder": "Project inquiry"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Tell me a little about what you're working on..."
+      },
       "send": "Send message",
-      "sent": "Message sent"
+      "sent": "Message sent",
+      "sending": "Sending...",
+      "errors": {
+        "generic": "Something went wrong. Please try again.",
+        "network": "Network error. Please check your connection and try again."
+      },
+      "error": "Could not send your message. Please try again.",
+      "networkError": "Check your connection and try again."
     }
+  },
+  "navigation": {
+    "label": "Main navigation",
+    "skipToContent": "Skip to content",
+    "links": {
+      "about": "About",
+      "skills": "Skills",
+      "projects": "Projects",
+      "experience": "Experience",
+      "education": "Education",
+      "contributions": "Contributions",
+      "services": "Services",
+      "contact": "Contact"
+    },
+    "cta": "Get in touch",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": {
+    "built": "Designed and built with care.",
+    "backToTop": "Back to top"
+  },
+  "chatbot": {
+    "emptyTitle": "Ask me anything about Adrian",
+    "emptyDescription": "I can tell you about his experience, projects, skills, teaching work, and services.",
+    "suggestions": [
+      "What's Adrian's tech stack?",
+      "Tell me about his projects",
+      "What's his work experience?",
+      "Is he open to new opportunities?"
+    ],
+    "inputPlaceholder": "Ask about Adrian...",
+    "messageInput": "Message input",
+    "stopGenerating": "Stop generating",
+    "sendMessage": "Send message",
+    "inputHint": "Enter to send · Shift+Enter for new line",
+    "dialogLabel": "AI assistant — Ask about Adrian",
+    "defaultTitle": "Ask about Adrian",
+    "toggleHistory": "Toggle chat history",
+    "newChat": "New chat",
+    "closeAssistant": "Close assistant",
+    "openAssistant": "Open AI assistant",
+    "closeAiAssistant": "Close AI assistant",
+    "history": "History",
+    "noPreviousChats": "No previous chats",
+    "clearAllChats": "Clear all chats",
+    "openChat": "Open chat: {title}",
+    "deleteChat": "Delete chat: {title}",
+    "justNow": "Just now",
+    "minutesAgo": "{count}m ago",
+    "hoursAgo": "{count}h ago",
+    "daysAgo": "{count}d ago"
+  },
+  "common": {
+    "close": "Close"
   }
 }

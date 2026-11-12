@@ -1,12 +1,22 @@
-import { endToEndProjects, contributionProjects, researchProjects } from "../lib/data/projects.data"
 import { ProjectsListPresentational } from "./projects-list-presentational"
+import type { ContributionProject, EndToEndProject, ResearchProject } from "../lib/types/project.types"
 
-export function ProjectsListContainer() {
+interface ProjectsListContainerProps {
+  endToEnd: EndToEndProject[]
+  contributions: ContributionProject[]
+  research: ResearchProject[]
+}
+
+export function ProjectsListContainer({
+  endToEnd,
+  contributions,
+  research,
+}: ProjectsListContainerProps) {
   return (
     <ProjectsListPresentational
-      endToEnd={endToEndProjects}
-      contributions={contributionProjects}
-      research={researchProjects}
+      endToEnd={endToEnd}
+      contributions={contributions}
+      research={research}
     />
   )
 }

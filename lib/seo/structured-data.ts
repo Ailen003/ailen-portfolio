@@ -1,6 +1,6 @@
 import { getAllSkills } from "@/modules/skills/lib/data/skills.data"
 import { educationEntries } from "@/modules/education/lib/data/education.data"
-import { endToEndProjects } from "@/modules/projects/lib/data/projects.data"
+import { projectsDataMap } from "@/modules/projects/lib/data/projects.data"
 import {
   PERSON_NAME,
   absoluteUrl,
@@ -102,7 +102,7 @@ export function buildProjectsItemList({ locale }: LocalizedSeoStrings): JsonLd {
     "@type": "ItemList",
     name: "Selected projects",
     inLanguage: locale,
-    itemListElement: endToEndProjects.map((p, i) => ({
+    itemListElement: (projectsDataMap[locale] ?? projectsDataMap.en).endToEnd.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
       item: {

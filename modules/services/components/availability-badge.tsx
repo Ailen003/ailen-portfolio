@@ -6,11 +6,8 @@ interface AvailabilityBadgeProps {
 
 export function AvailabilityBadge({ label }: AvailabilityBadgeProps) {
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-4 py-2 text-sm font-medium text-foreground shadow-sm backdrop-blur">
-      <span className="relative flex h-2.5 w-2.5">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
-        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-      </span>
+    <div className="inline-flex items-center gap-2.5 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground">
+      <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
       {label}
     </div>
   )

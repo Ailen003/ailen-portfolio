@@ -68,7 +68,7 @@ export function ChatPanel({
         aria-label="AI assistant — Ask about Elena"
         className={cn(
           "fixed bottom-24 right-6 z-50 flex h-[600px] w-[420px] max-h-[calc(100dvh-7rem)] max-w-[calc(100vw-1.5rem)]",
-          "flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-2xl",
+          "flex-col overflow-hidden rounded-lg border border-border bg-background shadow-2xl",
           "transition-all duration-300 origin-bottom-right",
           isOpen
             ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"

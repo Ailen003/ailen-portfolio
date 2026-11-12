@@ -28,7 +28,9 @@
     "description": "Diseño y construyo productos web resilientes y accesibles donde el diseño de interfaz cuidado se une a la ingeniería sólida. Me importan el rendimiento, los pequeños detalles y entregar trabajo que perdure.",
     "cta": {
       "viewWork": "Ver mi trabajo",
-      "downloadCv": "Descargar CV"
+      "downloadCv": "Descargar CV",
+      "cv": "Solicitar CV",
+      "contact": "Hablemos"
     },
     "stats": {
       "yearsLabel": "Años construyendo",
@@ -60,21 +62,30 @@
       }
     },
     "facts": {
-      "basedIn": { "label": "Ubicación", "value": "Barcelona, ES" },
-      "experience": { "label": "Experiencia", "value": "8+ años" },
-      "focus": { "label": "Especialidad", "value": "Full-stack web" },
-      "languages": { "label": "Idiomas", "value": "EN · ES · CA" }
+      "basedIn": {
+        "label": "Ubicación",
+        "value": "Barcelona, ES"
+      },
+      "experience": {
+        "label": "Experiencia",
+        "value": "8+ años"
+      },
+      "focus": {
+        "label": "Especialidad",
+        "value": "Full-stack web"
+      },
+      "languages": {
+        "label": "Idiomas",
+        "value": "EN · ES · CA"
+      }
     }
   },
   "skills": {
     "title": "Habilidades técnicas",
     "subtitle": "Un conjunto de herramientas refinado a lo largo de productos y equipos. Haz clic en cualquier habilidad para ver mi experiencia en detalle.",
-    "tabs": {
-      "grid": "Por categorías",
-      "gridMobile": "Categorías",
-      "galaxy": "Órbita"
+    "filter": {
+      "all": "Todas"
     },
-    "filter": { "all": "Todas" },
     "levels": {
       "basic": "Básico",
       "intermediate": "Intermedio",
@@ -92,10 +103,22 @@
       "practice": "Práctica"
     },
     "categories": {
-      "frontend": { "title": "Frontend", "tagline": "Interfaces que se sienten rápidas y naturales." },
-      "backend": { "title": "Backend", "tagline": "APIs y servicios construidos para escalar." },
-      "dataInfra": { "title": "Datos e Infra", "tagline": "Almacenamiento fiable y despliegue consistente." },
-      "toolingPractices": { "title": "Herramientas y Prácticas", "tagline": "El oficio detrás de lanzar con confianza." }
+      "frontend": {
+        "title": "Frontend",
+        "tagline": "Interfaces que se sienten rápidas y naturales."
+      },
+      "backend": {
+        "title": "Backend",
+        "tagline": "APIs y servicios construidos para escalar."
+      },
+      "dataInfra": {
+        "title": "Datos e Infra",
+        "tagline": "Almacenamiento fiable y despliegue consistente."
+      },
+      "toolingPractices": {
+        "title": "Herramientas y Prácticas",
+        "tagline": "El oficio detrás de lanzar con confianza."
+      }
     },
     "skillDescriptions": {
       "React": "## React\n\nMi tecnología principal durante varios años. Trabajo con React a diario construyendo aplicaciones de producción de mediana y gran escala.\n\n### Lo que domino\n- **Hooks avanzados**: `useReducer`, `useContext`, `useTransition`, `useDeferredValue` y hooks personalizados complejos.\n- **Patrones de composición**: render props, compound components, componentes controlados/no controlados.\n- **Optimización de rendimiento**: `React.memo`, `useMemo`, `useCallback`, code splitting con `Suspense` y `lazy`.\n- **Server Components** (React 19) y el nuevo modelo de renderizado concurrente.\n\n### Proyectos destacados\nHe construido dashboards analíticos en tiempo real, sistemas de diseño completos y aplicaciones de e-commerce con millones de usuarios, todo sobre React.",
@@ -122,6 +145,9 @@
       "Playwright": "## Playwright\n\nFramework de testing end-to-end que uso para validar flujos críticos de usuario antes de cada release.\n\n### Tests que implemento con Playwright\n- **Flujos de autenticación**: registro, login, recuperación de contraseña.\n- **Flujos de negocio críticos**: checkout, creación de recursos, exportación de datos.\n- **Cross-browser**: Chrome, Firefox y WebKit en la misma suite de tests.\n\n### Integración en CI\nLos tests de Playwright corren en GitHub Actions en paralelo, con artefactos de captura de pantalla y vídeo cuando fallan para facilitar la depuración.",
       "DesignSystems": "## Sistemas de Diseño\n\nHe construido y mantenido sistemas de diseño desde cero, así como integrado sistemas existentes (shadcn/ui, Radix, Material) en proyectos reales.\n\n### Lo que significa para mí\n- **Design tokens**: colores, tipografía, espaciado y radios como variables CSS o config de Tailwind.\n- **Componentes polimórficos**: `Button`, `Input`, `Dialog` que se adaptan a cualquier contexto.\n- **Documentación**: stories en Storybook + MDX para que diseñadores y devs hablen el mismo lenguaje.\n- **Versionado**: publicación de paquetes internos con versionado semántico.\n\n### Valor real\nUn buen sistema de diseño multiplica la velocidad del equipo y garantiza consistencia visual sin esfuerzo extra.",
       "Observability": "## Observabilidad\n\nLa diferencia entre saber que algo está roto cuando el usuario llama, y saberlo antes de que afecte a alguien.\n\n### Los tres pilares\n- **Logs**: logging JSON estructurado con `pino`, centralizado en Datadog o Loki.\n- **Métricas**: latencia de API, tasa de errores y saturación. Dashboards en Grafana.\n- **Trazas**: rastreo distribuido con OpenTelemetry para entender el flujo entre servicios.\n\n### Alertas\nConfiguro alertas con umbrales sensatos (ni demasiado ruidosas, ni demasiado silenciosas) para los SLOs más críticos del servicio."
+    },
+    "aria": {
+      "viewSkill": "Ver detalles de {name}"
     }
   },
   "experience": {
@@ -172,16 +198,26 @@
       }
     ],
     "certifications": [
-      { "title": "AWS Certified Solutions Architect" },
-      { "title": "Professional Scrum Developer" },
-      { "title": "Advanced React & Performance" },
-      { "title": "Accessibility Specialist (CPACC)" }
+      {
+        "title": "AWS Certified Solutions Architect"
+      },
+      {
+        "title": "Professional Scrum Developer"
+      },
+      {
+        "title": "Advanced React & Performance"
+      },
+      {
+        "title": "Accessibility Specialist (CPACC)"
+      }
     ]
   },
   "projects": {
     "title": "Proyectos destacados",
     "subtitle": "Algunas cosas que he diseñado, construido y lanzado de principio a fin.",
-    "filter": { "all": "Todos" },
+    "filter": {
+      "all": "Todos"
+    },
     "noResults": "Ningún proyecto coincide con el filtro actual.",
     "categoryLabels": {
       "frontend": "Frontend",
@@ -217,7 +253,9 @@
     "actions": {
       "liveDemo": "Demo en vivo",
       "viewRepository": "Ver repositorio",
-      "viewProject": "Ver proyecto"
+      "viewProject": "Ver proyecto",
+      "companyWebsite": "Sitio de la empresa",
+      "reference": "Referencia del proyecto"
     },
     "ariaLabels": {
       "sourceCode": "Código fuente",
@@ -244,7 +282,9 @@
     "statusLabels": {
       "live": "En producción",
       "wip": "En progreso",
-      "archived": "Archivado"
+      "archived": "Archivado",
+      "completed": "Completado",
+      "supporting": "Soporte activo"
     },
     "endToEnd": [
       {
@@ -338,7 +378,61 @@
         ],
         "technicalNotes": "## Alcance\n\nConstruí una serie de demos de Next.js App Router progresivamente complejas para poner a prueba los límites RSC, el comportamiento del streaming y la interoperabilidad entre componentes de servidor y cliente.\n\n## Experimentos clave\n\n**Experimento 1 — Eliminación del waterfall de streaming**: Reemplacé un árbol de componentes profundamente anidado que tenía 4 fetches secuenciales con `useEffect` por RSC `async/await`. Resultado: 0 waterfalls en el cliente, ~40% de reducción en TTI.\n\n**Experimento 2 — Ubicación de Suspense**: Probé 3 configuraciones diferentes de límites de Suspense para la misma UI. Descubrí que los límites de grano grueso (uno por segmento de ruta) superan en práctica a los de grano fino porque reducen los layout shifts.\n\n**Experimento 3 — Tamaño de la isla cliente**: Medí el tamaño del bundle JS a medida que los límites `use client` se movían progresivamente hacia las hojas. Cada nivel hacia abajo reducía el JS hidratado en ~15–20%.\n\n## En curso\n\nSigo explorando el modelo de invalidación de caché (`revalidatePath` vs `revalidateTag`) y su interacción con el caché a nivel CDN."
       }
-    ]
+    ],
+    "coverAlt": "Vista previa de {title}",
+    "detail": {
+      "back": "Volver a los proyectos",
+      "kicker": "Proyecto end-to-end · Caso de estudio",
+      "atGlance": "De un vistazo",
+      "company": "Organización",
+      "engagement": "Contexto",
+      "year": "Año",
+      "participation": "Mi participación",
+      "status": "Estado",
+      "disciplines": "Disciplinas",
+      "technologies": "Tecnologías utilizadas",
+      "contents": "En este proyecto",
+      "overview": "Sobre el proyecto",
+      "contribution": "Mi contribución",
+      "contactTitle": "¿Tienes un proyecto en mente? Construyámoslo juntos.",
+      "contactAction": "Conversemos",
+      "notFoundTitle": "Proyecto no encontrado",
+      "notFoundDescription": "Este proyecto no está disponible. Puedes explorar los demás proyectos de mi portfolio."
+    },
+    "engagementLabels": {
+      "employee": "Proyecto de empresa",
+      "freelance-fullstack": "Desarrollo freelance",
+      "personal": "Proyecto personal",
+      "academic": "Proyecto académico"
+    },
+    "gallery": {
+      "open": "Ampliar imagen {number} de {title}",
+      "image": "Imagen {number} de {title}",
+      "close": "Cerrar galería",
+      "previous": "Imagen anterior",
+      "next": "Imagen siguiente"
+    },
+    "company": {
+      "builtAt": "Desarrollado en",
+      "ariaLabel": "Visitar {name}"
+    },
+    "fullstack": {
+      "forCompany": "Full-Stack para",
+      "ariaLabelForCompany": "Visitar {name}",
+      "caption": "Freelance",
+      "generic": "Desarrollo Full-Stack"
+    },
+    "personal": {
+      "caption": "Autoría",
+      "label": "Proyecto Personal"
+    },
+    "academic": {
+      "caption": "Académico",
+      "label": "Proyecto Académico"
+    },
+    "tagsMore": "+{count} más",
+    "example": "Datos de ejemplo",
+    "freelance": "Desarrollo freelance"
   },
   "services": {
     "title": "Cómo puedo ayudarte",
@@ -415,16 +509,97 @@
     "subtitle": "¿Tienes un proyecto en mente o simplemente quieres saludar? Mi bandeja de entrada está siempre abierta.",
     "description": "Ya sea que estés buscando una ingeniera para unirse a tu equipo o necesites ayuda para lanzar un producto, me encantaría escucharlo. Normalmente respondo en menos de un día.",
     "channels": {
-      "email": { "label": "Email" },
-      "location": { "label": "Ubicación" }
+      "email": {
+        "label": "Email"
+      },
+      "location": {
+        "label": "Ubicación"
+      },
+      "phone": {
+        "label": "Teléfono"
+      }
     },
     "form": {
-      "name": { "label": "Nombre", "placeholder": "Jane Doe" },
-      "email": { "label": "Email", "placeholder": "jane@company.com" },
-      "subject": { "label": "Asunto", "placeholder": "Consulta sobre proyecto" },
-      "message": { "label": "Mensaje", "placeholder": "Cuéntame un poco sobre lo que estás trabajando..." },
+      "name": {
+        "label": "Nombre",
+        "placeholder": "Jane Doe"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "jane@company.com"
+      },
+      "subject": {
+        "label": "Asunto",
+        "placeholder": "Consulta sobre proyecto"
+      },
+      "message": {
+        "label": "Mensaje",
+        "placeholder": "Cuéntame un poco sobre lo que estás trabajando..."
+      },
       "send": "Enviar mensaje",
-      "sent": "Mensaje enviado"
+      "sent": "Mensaje enviado",
+      "sending": "Enviando...",
+      "errors": {
+        "generic": "Algo salió mal. Inténtalo de nuevo.",
+        "network": "Error de red. Revisa tu conexión e inténtalo otra vez."
+      },
+      "error": "No se pudo enviar el mensaje.",
+      "networkError": "Comprueba tu conexión e inténtalo de nuevo."
     }
+  },
+  "navigation": {
+    "label": "Navegación principal",
+    "skipToContent": "Saltar al contenido",
+    "links": {
+      "about": "Sobre mí",
+      "skills": "Skills",
+      "projects": "Proyectos",
+      "experience": "Experiencia",
+      "education": "Educación",
+      "contributions": "Contribuciones",
+      "services": "Servicios",
+      "contact": "Contacto"
+    },
+    "cta": "Contactar",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  },
+  "footer": {
+    "built": "Diseñado y construido con cuidado.",
+    "backToTop": "Volver arriba"
+  },
+  "chatbot": {
+    "emptyTitle": "Pregúntame sobre Adrian",
+    "emptyDescription": "Puedo contarte sobre su experiencia, proyectos, habilidades, docencia y servicios.",
+    "suggestions": [
+      "¿Cuál es el stack de Adrian?",
+      "Háblame de sus proyectos",
+      "¿Cuál es su experiencia laboral?",
+      "¿Está abierto a nuevas oportunidades?"
+    ],
+    "inputPlaceholder": "Pregunta sobre Adrian...",
+    "messageInput": "Entrada de mensaje",
+    "stopGenerating": "Detener generación",
+    "sendMessage": "Enviar mensaje",
+    "inputHint": "Enter para enviar · Shift+Enter para nueva línea",
+    "dialogLabel": "Asistente IA — Pregunta sobre Adrian",
+    "defaultTitle": "Pregunta sobre Adrian",
+    "toggleHistory": "Mostrar historial",
+    "newChat": "Nuevo chat",
+    "closeAssistant": "Cerrar asistente",
+    "openAssistant": "Abrir asistente IA",
+    "closeAiAssistant": "Cerrar asistente IA",
+    "history": "Historial",
+    "noPreviousChats": "No hay chats anteriores",
+    "clearAllChats": "Limpiar chats",
+    "openChat": "Abrir chat: {title}",
+    "deleteChat": "Eliminar chat: {title}",
+    "justNow": "Ahora mismo",
+    "minutesAgo": "Hace {count} min",
+    "hoursAgo": "Hace {count} h",
+    "daysAgo": "Hace {count} d"
+  },
+  "common": {
+    "close": "Cerrar"
   }
 }

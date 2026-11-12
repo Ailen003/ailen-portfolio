@@ -15,8 +15,15 @@ export function ThemeToggle({ className }: { className?: string }) {
     setMounted(true)
   }, [])
 
+  useEffect(() => {
+    if (!mounted) return
+    document.querySelector('meta[name="theme-color"]')?.setAttribute(
+      "content", resolvedTheme === "dark" ? "#131e23" : "#f4f0e9",
+    )
+  }, [mounted, resolvedTheme])
+
   const baseClass = cn(
-    "inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground",
+    "icon-button",
     className,
   )
 
@@ -35,6 +42,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     <button
       type="button"
       aria-label={t("label")}
+      aria-pressed={isDark}
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={baseClass}
     >

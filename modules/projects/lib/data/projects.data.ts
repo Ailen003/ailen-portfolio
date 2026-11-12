@@ -1,14 +1,16 @@
+import en from "@/messages/en.json"
+import es from "@/messages/es.json"
 import type { EndToEndProject, ContributionProject, ResearchProject } from "../types/project.types"
 import type { ProjectsData } from "../types/projects.types"
 
-export const endToEndProjects: EndToEndProject[] = [
+const rawEndToEndProjects: EndToEndProject[] = [
   {
     title: "FinFlow",
     tagline: "Personal finance, reimagined",
     description:
       "A full-stack budgeting platform serving 40k+ users. I led the frontend architecture and design system, cut initial load time by 60%, and shipped real-time syncing across devices with optimistic UI.",
     image: "/project-finflow.png",
-    images: ["/project-finflow.png", "/project-finflow-2.png", "/project-finflow-3.png"],
+    images: ["/project-finflow.png", ],
     tags: ["Next.js", "TypeScript", "PostgreSQL", "tRPC", "Tailwind"],
     categories: ["fullstack", "frontend"],
     demo: "https://example.com",
@@ -43,7 +45,7 @@ The biggest challenge was real-time budget reconciliation across browser tabs. S
     description:
       "Real-time analytics for developer teams. Streaming metrics, anomaly alerts, and a query builder built for speed.",
     image: "/project-pulse.png",
-    images: ["/project-pulse.png", "/project-pulse-2.png"],
+    images: ["/project-pulse.png", ],
     tags: ["React", "Go", "Redis", "WebSockets"],
     categories: ["fullstack", "devtools"],
     demo: "https://example.com",
@@ -74,7 +76,7 @@ Uses a sliding window Z-score algorithm — simple but effective for developer d
     description:
       "An open-source, accessible component library and design system adopted across multiple product teams.",
     image: "/project-atlas.png",
-    images: ["/project-atlas.png", "/project-atlas-2.png"],
+    images: ["/project-atlas.png", ],
     tags: ["React", "TypeScript", "Storybook", "a11y"],
     categories: ["frontend", "ux"],
     demo: "https://example.com",
@@ -102,7 +104,7 @@ The library is built with **tsup** to produce both ESM and CJS outputs. Each com
   },
 ]
 
-export const contributionProjects: ContributionProject[] = [
+const rawContributionProjects: ContributionProject[] = [
   {
     title: "Vercel AI SDK",
     description:
@@ -309,13 +311,20 @@ Still exploring the cache invalidation model (\`revalidatePath\` vs \`revalidate
   },
 ]
 
-export const projectsDataMap: Record<string, ProjectsData> = {
-  en: {
-    title: "Featured projects",
-    subtitle: "Some things I\u2019ve designed, built, and shipped from start to finish.",
-  },
-  es: {
-    title: "Proyectos destacados",
-    subtitle: "Algunas cosas que he dise\u00f1ado, constru\u00eddo y lanzado de principio a fin.",
-  },
+const eti = { name: "ETI", logo: "/images/experiences/eti-logo.jpg" }
+export const endToEndProjects: EndToEndProject[] = rawEndToEndProjects.map(project => ({
+  ...project, isExample: true,
+  engagement: project.title === "Pulse" ? "freelance" : "employee",
+  company: project.title === "Pulse" ? undefined : eti,
+}))
+export const contributionProjects: ContributionProject[] = rawContributionProjects.map(project => ({
+  ...project, engagement: "freelance", isExample: true,
+}))
+function localizeProjects(copy: typeof en.projects | typeof es.projects): ProjectsData {
+  return { title: copy.title, subtitle: copy.subtitle,
+    endToEnd: endToEndProjects.map((project, index) => ({ ...project, ...copy.endToEnd[index] })),
+    contributions: contributionProjects.map((project, index) => ({ ...project, ...copy.contributions[index] })),
+    research: researchProjects.map((project, index) => ({ ...project, ...copy.research[index] })),
+  }
 }
+export const projectsDataMap: Record<string, ProjectsData> = { en: localizeProjects(en.projects), es: localizeProjects(es.projects) }

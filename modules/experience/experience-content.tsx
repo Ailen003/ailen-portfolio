@@ -1,33 +1,35 @@
+import { getTranslations } from "next-intl/server"
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
 import AvatarContainer from "@/components/ui/avatar-container"
 import { fetchExperienceData } from "./lib/actions/experience.action"
 
 export async function Experience() {
+  const t = await getTranslations("experience")
   const result = await fetchExperienceData()
 
   if (!result.ok) return null
 
-  const { title, subtitle, roles } = result.data
+  const { roles } = result.data
 
   return (
-    <section id="experience" aria-labelledby="experience-heading" className="relative overflow-hidden border-y border-border bg-secondary/50 crosshatch-pattern py-16 md:py-24">
+    <section id="experience" aria-labelledby="experience-heading" className="relative overflow-hidden border-y border-border experience-section section-space">
       <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-linear-to-b from-transparent via-primary/30 to-transparent" />
 
-      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading
-          index="04"
-          title={title}
-          subtitle={subtitle}
-          headingId="experience-heading"
-        />
+      <div className="site-container relative">
+          <SectionHeading
+            index="04"
+            title={t("title")}
+            subtitle={t("subtitle")}
+            headingId="experience-heading"
+          />
 
-        <ol className="relative space-y-4 before:absolute before:left-[7px] before:top-2 before:hidden before:h-[calc(100%-1rem)] before:w-px before:bg-border md:before:block">
+        <ol className="ink-timeline relative space-y-4 before:absolute before:left-[7px] before:top-2 before:hidden before:h-[calc(100%-1rem)] before:w-px before:bg-border md:before:block">
           {roles.map((r, i) => (
-            <Reveal key={r.company} delay={i * 90} as="li">
+            <Reveal key={`${r.company}-${r.role}-${r.period}`} delay={i * 90} as="li">
               <div className="relative md:pl-12">
-                <span className="absolute left-0 top-6 hidden h-4 w-4 -translate-x-1/2 rounded-full border-2 border-primary bg-background md:block" />
-                <div className="rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 sm:p-7">
+                <span className="ink-dot absolute left-0 top-6 hidden h-4 w-4 -translate-x-1/2 rounded-full border-2 border-primary bg-background md:block" />
+                <div className="paper-card border border-border p-6 transition-all sm:p-7">
                   <div className="flex items-start gap-3">
                     <AvatarContainer
                       image={r.logo}
@@ -60,7 +62,7 @@ export async function Experience() {
                     {r.tags.map((tag) => (
                       <li
                         key={tag}
-                        className="rounded-full border border-border bg-secondary px-3 py-1 font-mono text-xs text-secondary-foreground"
+                      className="paper-label border border-border px-3 py-1"
                       >
                         {tag}
                       </li>

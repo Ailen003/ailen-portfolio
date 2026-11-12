@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Sora, JetBrains_Mono } from "next/font/google"
+import { Sora, Geist } from "next/font/google"
 import { notFound } from "next/navigation"
 import { hasLocale, NextIntlClientProvider } from "next-intl"
 import { getMessages, getTranslations } from "next-intl/server"
@@ -18,13 +18,13 @@ import "../globals.css"
 
 const sora = Sora({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-heading",
   display: "swap",
 })
 
-const jetbrainsMono = JetBrains_Mono({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-body",
   display: "swap",
 })
 
@@ -44,7 +44,7 @@ export async function generateMetadata({
   const title = t("title")
   const description = t("description")
   const siteUrl = getSiteUrl()
-  
+
   // hreflang alternates — one entry per locale plus an x-default.
   const languages: Record<string, string> = Object.fromEntries(
     LOCALES.map((l) => [l, localePath(l)]),
@@ -138,7 +138,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${sora.variable} ${jetbrainsMono.variable} bg-background`}
+      className={`${sora.variable} ${geist.variable} bg-background`}
       suppressHydrationWarning
     >
       <body className="font-sans antialiased">

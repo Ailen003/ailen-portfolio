@@ -1,35 +1,56 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 import { Menu, X } from "lucide-react"
 import { LanguageToggle } from "@/components/language-toggle"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { portfolioIdentity } from "@/modules/portfolio/lib/data/identity.data"
+import { Link, usePathname } from "@/i18n/navigation"
 
 const links = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Education", href: "#education" },
-  { label: "Contributions", href: "#contributions" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
+  { key: "about", href: "#about" },
+  { key: "skills", href: "#skills" },
+  { key: "projects", href: "#projects" },
+  { key: "experience", href: "#experience" },
+  { key: "education", href: "#education" },
+  { key: "contributions", href: "#contributions" },
+  { key: "services", href: "#services" },
+  { key: "contact", href: "#contact" },
 ]
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
+  const t = useTranslations("navigation")
+  const pathname = usePathname()
+  const isHome = pathname === "/"
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState("")
+  const menuButton = useRef<HTMLButtonElement>(null)
+  const activeSection = isHome ? active : ""
+  const sectionHref = (hash: string) => isHome ? hash : `/${hash}`
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16)
-    onScroll()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+    if (!open) return
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false)
+        menuButton.current?.focus()
+      }
+    }
+    const onResize = () => {
+      if (window.innerWidth >= 1440) setOpen(false)
+    }
+    window.addEventListener("keydown", onKey)
+    window.addEventListener("resize", onResize)
+    return () => {
+      window.removeEventListener("keydown", onKey)
+      window.removeEventListener("resize", onResize)
+    }
+  }, [open])
 
   useEffect(() => {
+    if (!isHome || !window.IntersectionObserver) return
     const sections = links.map((l) => document.querySelector(l.href)).filter(Boolean) as Element[]
     const observer = new IntersectionObserver(
       (entries) => {
@@ -41,61 +62,53 @@ export function Navbar() {
     )
     sections.forEach((s) => observer.observe(s))
     return () => observer.disconnect()
-  }, [])
+  }, [isHome])
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "border-b border-border/70 bg-background/75 backdrop-blur-md"
-          : "border-b border-transparent bg-background/40",
-      )}
-    >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
-        <a href="#home" className="group flex items-center gap-2 font-mono text-sm font-semibold tracking-tight">
-          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground transition-transform duration-300 group-hover:rotate-6">
-            EV
+    <header className="masthead fixed inset-x-0 top-0 z-40">
+      <a href="#main-content" className="sr-only fixed left-5 top-4 z-50 rounded-lg bg-primary px-4 py-3 text-sm text-primary-foreground focus:not-sr-only">{t("skipToContent")}</a>
+      <nav aria-label={t("label")} className="site-container flex h-20 items-center justify-between gap-3">
+        <Link href={sectionHref("#home")} aria-label={portfolioIdentity.name} onClick={() => setOpen(false)} className="brand-lockup group flex min-w-0 items-center gap-2.5 text-sm font-semibold tracking-tight">
+          <span className="brand-mark" aria-hidden="true">
+            {portfolioIdentity.initials}
           </span>
-          <span className="hidden sm:inline">elena.dev</span>
-        </a>
+          <span className="hidden truncate text-sm font-semibold sm:inline">{portfolioIdentity.brand}</span>
+        </Link>
 
-        <ul className="hidden items-center gap-1 2lg:flex">
+        <ul className="desktop-navigation hidden items-center min-[1440px]:flex">
           {links.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
+              <Link
+                href={sectionHref(link.href)}
+                aria-current={activeSection === link.href ? "location" : undefined}
                 className={cn(
-                  "rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
-                  active === link.href && "text-primary",
+                  "nav-link",
+                  activeSection === link.href && "is-active",
                 )}
               >
-                {link.label}
-              </a>
+                {t(`links.${link.key}`)}
+              </Link>
             </li>
           ))}
         </ul>
 
-        <div className="hidden items-center gap-2 2lg:flex">
+        <div className="flex shrink-0 items-center gap-1 sm:gap-2">
           <ThemeToggle />
           <LanguageToggle />
-          <a
-            href="#contact"
-            className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/20"
+          <Link
+            href={sectionHref("#contact")}
+            className="button-primary ml-1 hidden min-[1440px]:inline-flex"
           >
-            Get in touch
-          </a>
-        </div>
-
-        <div className="flex items-center gap-1 2lg:hidden">
-          <ThemeToggle />
-          <LanguageToggle />
+            {t("cta")}
+          </Link>
           <button
+            ref={menuButton}
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground"
-            aria-label={open ? "Close menu" : "Open menu"}
+            className="icon-button min-[1440px]:hidden"
+            aria-label={open ? t("closeMenu") : t("openMenu")}
             aria-expanded={open}
+            aria-controls="mobile-navigation"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -103,27 +116,28 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-border bg-background/95 backdrop-blur-md 2lg:hidden">
-          <ul className="mx-auto flex max-w-6xl flex-col px-5 py-2 sm:px-8">
+        <div id="mobile-navigation" className="border-t border-border bg-background min-[1440px]:hidden">
+          <ul className="site-container flex max-h-[calc(100dvh-5rem)] flex-col gap-1 overflow-y-auto py-4">
             {links.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
+                <Link
+                  href={sectionHref(link.href)}
                   onClick={() => setOpen(false)}
-                  className="block py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  aria-current={activeSection === link.href ? "location" : undefined}
+                  className={cn("nav-link w-full py-3", activeSection === link.href && "is-active")}
                 >
-                  {link.label}
-                </a>
+                  {t(`links.${link.key}`)}
+                </Link>
               </li>
             ))}
             <li className="py-3">
-              <a
-                href="#contact"
+              <Link
+                href={sectionHref("#contact")}
                 onClick={() => setOpen(false)}
-                className="inline-block rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground"
+                className="editorial-button inline-block px-5 py-2 text-sm font-semibold text-primary-foreground"
               >
-                Get in touch
-              </a>
+                {t("cta")}
+              </Link>
             </li>
           </ul>
         </div>

@@ -24,7 +24,7 @@ export const PROJECT_CATEGORY_META: Record<ProjectCategory, ProjectCategoryMeta>
 
 export type ResearchType = "POC" | "Study" | "Deep Dive" | "Concept"
 
-export type ProjectStatus = "live" | "wip" | "archived"
+export type ProjectStatus = "live" | "completed" | "wip" | "supporting" | "archived"
 
 export interface PrLink {
   label: string
@@ -37,6 +37,9 @@ export interface ProjectReference {
 }
 
 export interface EndToEndProject {
+  company?: ProjectCompany
+  engagement?: ProjectEngagement
+  isExample?: boolean
   title: string
   tagline: string
   description: string
@@ -56,6 +59,16 @@ export interface EndToEndProject {
 }
 
 export interface ContributionProject {
+  tagline?: string
+  images?: string[]
+  highlights?: string[]
+  status?: ProjectStatus
+  year?: number
+  teamSize?: string
+  company?: ProjectCompany
+  engagement?: ProjectEngagement
+  isExample?: boolean
+  featured?: boolean
   title: string
   description: string
   image?: string
@@ -68,10 +81,10 @@ export interface ContributionProject {
   technicalNotes?: string
   impact?: string
   prLinks?: PrLink[]
-  year?: number
 }
 
 export interface ResearchProject {
+  isExample?: boolean
   title: string
   description: string
   researchType: ResearchType
@@ -85,3 +98,6 @@ export interface ResearchProject {
   year?: number
   completionStatus?: "ongoing" | "completed"
 }
+
+export interface ProjectCompany { name: string; logo: string; url?: string; logoScale?: number; darkLogoPadding?: boolean }
+export type ProjectEngagement = "employee" | "freelance" | "personal" | "academic"

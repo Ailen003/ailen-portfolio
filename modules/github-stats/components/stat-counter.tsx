@@ -77,18 +77,18 @@ export function StatCounter({ value, label, iconKey, suffix = "", delay = 0 }: S
     <div
       ref={ref}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300",
-        "hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10",
+        "paper-card group relative overflow-hidden border border-border p-6 transition-all duration-300",
+        "hover:-translate-y-1",
       )}
     >
       <div
         aria-hidden
         className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/8 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
       />
-      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-accent text-primary transition-colors group-hover:border-primary/40">
+      <div className="mb-4 flex h-10 w-10 items-center justify-center border border-foreground bg-accent text-primary transition-colors group-hover:border-primary">
         <Icon className="h-5 w-5" aria-hidden />
       </div>
-      <p className="font-mono text-3xl font-bold tabular-nums text-foreground">
+      <p className="font-display text-4xl font-bold tabular-nums text-foreground">
         {count.toLocaleString("en-US")}
         {suffix}
       </p>

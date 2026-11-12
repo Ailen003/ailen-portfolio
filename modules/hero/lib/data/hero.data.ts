@@ -1,3 +1,4 @@
+import { portfolioIdentity } from "@/modules/portfolio/lib/data/identity.data"
 import { Github, Linkedin, Mail } from "lucide-react"
 import type { HeroSocial, HeroData } from "../types/hero.types"
 
@@ -8,7 +9,7 @@ export const ROLES = [
 ]
 
 export const heroSocials: HeroSocial[] = [
-  { label: "GitHub", href: "https://github.com", icon: Github },
+  { label: "GitHub", href: portfolioIdentity.githubUrl, icon: Github },
   { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
   { label: "Email", href: "#contact", icon: Mail },
 ]
