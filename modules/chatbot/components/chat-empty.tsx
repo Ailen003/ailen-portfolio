@@ -1,13 +1,22 @@
 "use client"
 
 import { Bot } from "lucide-react"
-import { SUGGESTED_QUESTIONS } from "../lib/config/chatbot.config"
+import { useTranslations } from "next-intl"
+import { portfolioIdentity } from "@/modules/portfolio/lib/data/identity.data"
 
 interface ChatEmptyProps {
   onSuggest: (question: string) => void
 }
 
 export function ChatEmpty({ onSuggest }: ChatEmptyProps) {
+  const t = useTranslations("chatbot")
+  const suggestedQuestions = [
+    t("suggestions.0"),
+    t("suggestions.1"),
+    t("suggestions.2"),
+    t("suggestions.3"),
+  ]
+
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-5 px-4 py-8 text-center">
       <div className="flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -15,14 +24,14 @@ export function ChatEmpty({ onSuggest }: ChatEmptyProps) {
       </div>
 
       <div className="space-y-1.5">
-        <p className="text-sm font-semibold text-foreground">Ask me anything about Elena</p>
+        <p className="text-sm font-semibold text-foreground">{t("emptyTitle", { name: portfolioIdentity.firstName })}</p>
         <p className="text-xs text-muted-foreground">
-          I can tell you about her experience, projects, skills, and more.
+          {t("emptyDescription")}
         </p>
       </div>
 
       <div className="flex w-full flex-col gap-2">
-        {SUGGESTED_QUESTIONS.map((q) => (
+        {suggestedQuestions.map((q) => (
           <button
             key={q}
             type="button"

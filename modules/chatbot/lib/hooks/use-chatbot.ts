@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useCallback, useRef } from "react"
+import { useTranslations } from "next-intl"
 import { PORTFOLIO_SYSTEM_PROMPT } from "../data/portfolio-context"
 import { MAX_MESSAGES_PER_SESSION, AUTO_TITLE_MAX_LENGTH } from "../config/chatbot.config"
 import { useChatStore } from "./use-chat-store"
@@ -18,6 +19,7 @@ function buildTitle(text: string): string {
 }
 
 export function useChatbot() {
+  const t = useTranslations("chatbot")
   const store = useChatStore()
   const [isStreaming, setIsStreaming] = useState(false)
   const [streamingContent, setStreamingContent] = useState("")
@@ -118,7 +120,7 @@ export function useChatbot() {
         const errorMessage: ChatMessage = {
           id: makeId(),
           role: "assistant",
-          content: "Sorry, something went wrong. Please try again.",
+          content: t("requestError"),
           createdAt: Date.now(),
         }
         const errorSession: ChatSession = {
@@ -133,7 +135,7 @@ export function useChatbot() {
         abortRef.current = null
       }
     },
-    [isStreaming, store],
+    [isStreaming, store, t],
   )
 
   const abortStream = useCallback(() => {

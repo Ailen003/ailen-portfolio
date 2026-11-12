@@ -38,6 +38,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  if (!hasLocale(routing.locales, locale)) notFound()
   const t = await getTranslations({ locale, namespace: "metadata" })
   const seo = await getTranslations({ locale, namespace: "seo" })
 
@@ -76,21 +77,12 @@ export async function generateMetadata({
       siteName: seo("siteName"),
       locale,
       alternateLocale: LOCALES.filter((l) => l !== locale),
-      images: [
-        {
-          url: "/og-image.webp",
-          width: 1200,
-          height: 630,
-          alt: seo("ogImageAlt"),
-        },
-      ],
+      // The localized opengraph-image route supplies the social preview.
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      creator: PERSON_NAME,
-      images: ["/elena-portrait.png"],
     },
     robots: {
       index: true,
@@ -145,8 +137,8 @@ export default async function LocaleLayout({
         <Providers>
           <NextIntlClientProvider messages={messages} locale={locale}>
             {children}
+            <ChatbotWidget />
           </NextIntlClientProvider>
-          <ChatbotWidget />
         </Providers>
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>

@@ -28,8 +28,8 @@ export async function renderOgImage(locale: string): Promise<ImageResponse> {
           justifyContent: "space-between",
           padding: "80px",
           background:
-            "radial-gradient(circle at 80% 0%, #0f2e2a 0%, #0a0a0a 55%)",
-          color: "#fafafa",
+            "radial-gradient(circle at 80% 0%, #5c3b28 0%, #1c1612 55%)",
+          color: "#f4eadc",
           fontFamily: "sans-serif",
         }}
       >
@@ -39,7 +39,7 @@ export async function renderOgImage(locale: string): Promise<ImageResponse> {
               width: "20px",
               height: "20px",
               borderRadius: "9999px",
-              background: "#2dd4bf",
+              background: "#efa875",
             }}
           />
           <div
@@ -47,7 +47,7 @@ export async function renderOgImage(locale: string): Promise<ImageResponse> {
               fontSize: "26px",
               letterSpacing: "2px",
               textTransform: "uppercase",
-              color: "#9ca3af",
+              color: "#c7b29c",
             }}
           >
             {siteName}
@@ -65,12 +65,12 @@ export async function renderOgImage(locale: string): Promise<ImageResponse> {
           >
             {PERSON_NAME}
           </div>
-          <div style={{ fontSize: "44px", fontWeight: 600, color: "#2dd4bf" }}>
+          <div style={{ fontSize: "44px", fontWeight: 600, color: "#efa875" }}>
             {jobTitle}
           </div>
         </div>
 
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "28px", color: "#9ca3af" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "28px", color: "#c7b29c" }}>
           <span>{host}</span>
           <span style={{ textTransform: "uppercase", letterSpacing: "2px" }}>{locale}</span>
         </div>

@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { useTranslations } from "next-intl"
 import { ChatMessage } from "./chat-message"
 import { ChatEmpty } from "./chat-empty"
 import type { ChatMessage as ChatMessageType } from "../lib/types/chatbot.types"
@@ -18,6 +19,7 @@ export function ChatMessages({
   streamingContent,
   onSuggest,
 }: ChatMessagesProps) {
+  const t = useTranslations("chatbot")
   const bottomRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -33,7 +35,7 @@ export function ChatMessages({
       className="flex flex-1 flex-col gap-4 overflow-y-auto px-4 py-4"
       role="log"
       aria-live="polite"
-      aria-label="Chat messages"
+      aria-label={t("messagesLabel")}
     >
       {messages.map((msg) => (
         <ChatMessage key={msg.id} message={msg} />

@@ -1,6 +1,7 @@
 "use client"
 
 import { Bot, X } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 
 interface ChatFabProps {
@@ -9,11 +10,13 @@ interface ChatFabProps {
 }
 
 export function ChatFab({ isOpen, onClick }: ChatFabProps) {
+  const t = useTranslations("chatbot")
+
   return (
     <button
       type="button"
       onClick={onClick}
-      aria-label={isOpen ? "Close AI assistant" : "Open AI assistant"}
+      aria-label={isOpen ? t("closeAiAssistant") : t("openAssistant")}
       className={cn(
         "fixed bottom-6 right-6 z-50 flex size-14 items-center justify-center rounded-full shadow-lg transition-all duration-300",
         "bg-primary text-primary-foreground",

@@ -61,6 +61,8 @@ export interface EndToEndProject {
 }
 
 export interface ContributionProject {
+  /** Stable translation identifier, independent of the displayed title. */
+  translationKey: string
   tagline?: string
   images?: string[]
   highlights?: string[]
@@ -86,6 +88,8 @@ export interface ContributionProject {
 }
 
 export interface ResearchProject {
+  /** Stable translation identifier, independent of the displayed title. */
+  translationKey: string
   isExample?: boolean
   title: string
   description: string

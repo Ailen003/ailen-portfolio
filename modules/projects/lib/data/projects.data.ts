@@ -109,6 +109,7 @@ The library is built with **tsup** to produce both ESM and CJS outputs. Each com
 
 const rawContributionProjects: ContributionProject[] = [
   {
+    translationKey: "vercel-ai-sdk",
     title: "Vercel AI SDK",
     description:
       "Contributed streaming improvements and new provider adapters to the official Vercel AI SDK, improving edge-runtime compatibility.",
@@ -134,6 +135,7 @@ The Vercel AI SDK's streaming layer used Node.js \`Readable\` streams internally
 Added a new adapter for **Anthropic's Messages API**, including support for tool-use streaming and prompt caching headers.`,
   },
   {
+    translationKey: "radix-ui-primitives",
     title: "Radix UI Primitives",
     description:
       "Fixed accessibility regressions in Dialog and Tooltip components, added keyboard-navigation spec tests, and improved WAI-ARIA compliance.",
@@ -158,6 +160,7 @@ On iOS Safari, \`Dialog\` was not restoring focus to the trigger after close bec
 \`Tooltip\` was keeping the \`aria-describedby\` attribute on the anchor even after the tooltip unmounted, causing screen readers to reference a non-existent element. Added a cleanup effect tied to the tooltip's portal lifecycle.`,
   },
   {
+    translationKey: "internal-design-system",
     title: "Internal Design System @ Corp",
     description:
       "Joined an existing design-system team to ship a dark-mode token layer and migrate 30+ components from class-based to functional patterns.",
@@ -184,6 +187,7 @@ Class-based components were migrated incrementally using a codemods-first approa
 
 export const researchProjects: ResearchProject[] = [
   {
+    translationKey: "cartographer",
     title: "Cartographer",
     description: "Interactive data-viz toolkit for geospatial dashboards — exploring D3 + WebGL rendering boundaries.",
     researchType: "POC",
@@ -214,6 +218,7 @@ Built a series of progressively complex visualizations — choropleth → point 
 For dashboards with < 5k features, SVG + D3 is the right choice (easy debugging, accessibility). Beyond that, Canvas 2D or WebGL is necessary. The \`deck.gl\` + Mapbox combination offers the best ergonomics for production use.`,
   },
   {
+    translationKey: "inbox-zero",
     title: "Inbox Zero",
     description: "Prototype AI email triage assistant with smart summarization using function-calling pipelines.",
     researchType: "POC",
@@ -245,6 +250,7 @@ All steps run on Vercel Edge Functions with streaming so the UI updates progress
 At GPT-4o-mini pricing, processing 100 emails/day costs ~$0.02. Acceptable for personal use; production would need batching + caching for repeated senders.`,
   },
   {
+    translationKey: "ledger-cli",
     title: "Ledger CLI",
     description: "A fast, scriptable command-line tool for plain-text accounting. Study in Go CLI design patterns.",
     researchType: "Study",
@@ -277,6 +283,7 @@ Studied Go CLI architecture patterns by building a real tool I actually use — 
 Go's approach to CLI tooling is refreshingly pragmatic. The biggest lesson was around error handling — Go forces you to handle errors explicitly, which results in much more resilient CLI tools than equivalent Node.js scripts.`,
   },
   {
+    translationKey: "react-server-components",
     title: "React Server Components — Deep Dive",
     description:
       "Hands-on exploration of RSC architecture: streaming, Suspense boundaries, and partial hydration tradeoffs.",
@@ -323,11 +330,17 @@ export const endToEndProjects: EndToEndProject[] = rawEndToEndProjects.map(proje
 export const contributionProjects: ContributionProject[] = rawContributionProjects.map(project => ({
   ...project, engagement: "freelance", isExample: true,
 }))
-function localizeProjects(copy: typeof en.projects | typeof es.projects): ProjectsData {
+/** Fail early when a project has no translation instead of silently mixing copy. */
+export function getProjectCopy<T>(copy: Record<string, T>, key: string): T {
+  if (!Object.hasOwn(copy, key)) throw new Error(`Missing project translation: ${key}`)
+  return copy[key]
+}
+
+export function localizeProjects(copy: typeof en.projects | typeof es.projects): ProjectsData {
   return { title: copy.title, subtitle: copy.subtitle,
-    endToEnd: endToEndProjects.map((project, index) => ({ ...project, ...copy.endToEnd[index] })),
-    contributions: contributionProjects.map((project, index) => ({ ...project, ...copy.contributions[index] })),
-    research: researchProjects.map((project, index) => ({ ...project, ...copy.research[index] })),
+    endToEnd: endToEndProjects.map(project => ({ ...project, ...getProjectCopy(copy.endToEnd, project.slug) })),
+    contributions: contributionProjects.map(project => ({ ...project, ...getProjectCopy(copy.contributions, project.translationKey) })),
+    research: researchProjects.map(project => ({ ...project, ...getProjectCopy(copy.research, project.translationKey) })),
   }
 }
 export const projectsDataMap: Record<string, ProjectsData> = { en: localizeProjects(en.projects), es: localizeProjects(es.projects) }

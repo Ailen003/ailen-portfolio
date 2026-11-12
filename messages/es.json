@@ -286,8 +286,8 @@
       "completed": "Completado",
       "supporting": "Soporte activo"
     },
-    "endToEnd": [
-      {
+    "endToEnd": {
+      "finflow": {
         "tagline": "Finanzas personales, reinventadas",
         "description": "Una plataforma de presupuesto full-stack que sirve a 40k+ usuarios. Lideré la arquitectura frontend y el sistema de diseño, reduje el tiempo de carga inicial en un 60% y lancé la sincronización en tiempo real entre dispositivos con UI optimista.",
         "highlights": [
@@ -298,7 +298,7 @@
         ],
         "technicalNotes": "## Arquitectura\n\nEl frontend está construido sobre **Next.js App Router** con una separación estricta entre componentes de servidor y cliente. La obtención de datos ocurre en el servidor via procedimientos **tRPC**, manteniendo el bundle del cliente ligero.\n\n## Decisiones clave\n\n- **UI optimista**: Todas las mutaciones actualizan el estado local inmediatamente y revierten en caso de error, haciendo la app sentirse instantánea incluso en conexiones lentas.\n- **Caché en el edge**: Las rutas estáticas se cachean en el CDN edge; los datos dinámicos del usuario se sirven desde una réplica de lectura PostgreSQL regional.\n- **Sistema de diseño**: Construido sobre primitivos de Radix UI con una capa de tokens personalizada — soporta modo claro/oscuro y cumple los ratios de contraste WCAG AA en toda la app.\n\n## Retos\n\nEl mayor reto fue la reconciliación de presupuesto en tiempo real entre pestañas del navegador. Lo resolví usando `BroadcastChannel` + fallback de server-sent events para entornos que no lo soportan."
       },
-      {
+      "pulse": {
         "tagline": "Métricas a la velocidad del pensamiento",
         "description": "Analíticas en tiempo real para equipos de desarrollo. Métricas en streaming, alertas de anomalías y un constructor de consultas diseñado para la velocidad.",
         "highlights": [
@@ -308,7 +308,7 @@
         ],
         "technicalNotes": "## Pipeline de streaming\n\nLas métricas son ingestadas por un backend en **Go** en **Redis Streams**, luego distribuidas a los clientes conectados via WebSocket. El servicio Go gestiona la contrapresión automáticamente — los clientes lentos reciben un snapshot comprimido en lugar de un stream raw.\n\n## Constructor de consultas\n\nEl constructor de consultas genera un subconjunto de PromQL. El AST se construye en el cliente con React, se serializa a JSON y se interpreta en el servidor. Esto mantiene la UI completamente desacoplada de los internos del lenguaje de consultas.\n\n## Detección de anomalías\n\nUsa un algoritmo de Z-score con ventana deslizante — simple pero efectivo para dashboards de desarrolladores donde los picos son la principal preocupación."
       },
-      {
+      "atlas-ui": {
         "tagline": "Sistemas de diseño bien hechos",
         "description": "Una librería de componentes accesible y open-source, y un sistema de diseño adoptado por múltiples equipos de producto.",
         "highlights": [
@@ -319,29 +319,29 @@
         ],
         "technicalNotes": "## Design tokens\n\nTodas las decisiones de diseño están codificadas como propiedades CSS personalizadas siguiendo el borrador de especificación W3C Design Token. Esto permite a los equipos personalizar la librería sin hacer un fork.\n\n## Accesibilidad primero\n\nCada componente interactivo está construido sobre primitivos de **Radix UI**, que gestionan el foco, la navegación por teclado y los atributos ARIA. Los tests ejecutan `axe-core` en jsdom en cada push de CI.\n\n## Tamaño del bundle\n\nLa librería está construida con **tsup** para producir salidas ESM y CJS. Cada componente es un entry point separado, para que los equipos solo incluyan lo que usan."
       }
-    ],
-    "contributions": [
-      {
+    },
+    "contributions": {
+      "vercel-ai-sdk": {
         "description": "Contribuí mejoras de streaming y nuevos adaptadores de proveedor al SDK oficial de Vercel AI, mejorando la compatibilidad con edge-runtime.",
         "role": "Contribuidora open-source",
         "impact": "Redujo la latencia de streaming en ~30% en edge runtimes en todos los adaptadores de proveedor.",
         "technicalNotes": "## Lo que contribuí\n\nLa capa de streaming del Vercel AI SDK usaba `Readable` streams de Node.js internamente, que no están disponibles en edge runtimes (Cloudflare Workers, Vercel Edge). Refactoricé la abstracción de streaming central para usar la **Web Streams API** (`ReadableStream`) como interfaz primaria, con un shim de compatibilidad para Node.js.\n\n## Adaptador de proveedor\n\nAñadí un nuevo adaptador para la **API de Mensajes de Anthropic**, incluyendo soporte para streaming de tool-use y cabeceras de prompt caching."
       },
-      {
+      "radix-ui-primitives": {
         "description": "Corregí regresiones de accesibilidad en los componentes Dialog y Tooltip, añadí tests de especificación de navegación por teclado y mejoré el cumplimiento WAI-ARIA.",
         "role": "Corrección de bugs y a11y",
         "impact": "Resolvió 3 violaciones WCAG persistentes que afectaban a usuarios de lector de pantalla en todos los consumidores de Radix.",
         "technicalNotes": "## Bug de gestión del foco\n\nEn iOS Safari, `Dialog` no restauraba el foco al trigger después de cerrarse porque el comportamiento del foco del navegador difiere de la especificación. Lo corregí almacenando explícitamente la ref del trigger y llamando a `.focus()` en un callback `requestAnimationFrame` después de que se complete la animación de cierre.\n\n## Limpieza de ARIA\n\n`Tooltip` mantenía el atributo `aria-describedby` en el anchor incluso después de que el tooltip se desmontara, provocando que los lectores de pantalla hicieran referencia a un elemento inexistente. Añadí un efecto de limpieza vinculado al ciclo de vida del portal del tooltip."
       },
-      {
+      "internal-design-system": {
         "description": "Me uní a un equipo de sistema de diseño existente para lanzar una capa de tokens en modo oscuro y migrar 30+ componentes de patrones de clase a funcionales.",
         "role": "Ingeniería Frontend (contrato)",
         "impact": "Habilitó el modo oscuro en 4 superficies de producto en un único release, con cero regresiones en los consumidores existentes.",
         "technicalNotes": "## Capa de tokens\n\nEl sistema existente usaba valores hex codificados dispersos por los archivos de componentes. Introduje una capa de tokens semánticos con conmutación mediante atributo `data-theme` — los temas claro/oscuro se intercambian sin JavaScript cambiando un único atributo en `<html>`.\n\n## Estrategia de migración\n\nLos componentes de clase se migraron de forma incremental usando un enfoque codemods-first. Escribí una transformación AST personalizada con `jscodeshift` para automatizar la conversión del código repetitivo, luego revisé manualmente los métodos de ciclo de vida de cada componente."
       }
-    ],
-    "research": [
-      {
+    },
+    "research": {
+      "cartographer": {
         "description": "Toolkit interactivo de visualización de datos para dashboards geoespaciales — explorando los límites de renderizado D3 + WebGL.",
         "findings": [
           "El canvas WebGL supera a SVG 10× con 50k+ puntos de datos",
@@ -350,7 +350,7 @@
         ],
         "technicalNotes": "## Objetivo\n\nDeterminar el techo práctico de renderizado para dashboards geoespaciales en el navegador e identificar el mejor punto de integración D3/WebGL.\n\n## Enfoque\n\nConstruí una serie de visualizaciones progresivamente complejas — coropleta → nube de puntos → líneas de flujo animadas — y perfilé cada una en Chrome DevTools. Comparé el renderizado SVG, Canvas 2D y WebGL para cada caso.\n\n## Conclusión\n\nPara dashboards con < 5k features, SVG + D3 es la elección correcta (depuración sencilla, accesibilidad). A partir de ahí, Canvas 2D o WebGL es necesario. La combinación `deck.gl` + Mapbox ofrece la mejor ergonomía para uso en producción."
       },
-      {
+      "inbox-zero": {
         "description": "Prototipo de asistente de triaje de emails con IA y resumen inteligente usando pipelines de function-calling.",
         "findings": [
           "Los pipelines de function-calling superan la clasificación solo con prompts para extracción estructurada",
@@ -359,7 +359,7 @@
         ],
         "technicalNotes": "## Diseño del pipeline\n\nCada email pasa por un pipeline de function-calling de 3 pasos:\n1. **Clasificar** — etiqueta (acción/info/promo/spam) + puntuación de urgencia\n2. **Resumir** — extraer asunto, intención del remitente y acción requerida\n3. **Borrador** — borrador de respuesta opcional con un clic\n\nTodos los pasos se ejecutan en Vercel Edge Functions con streaming para que la UI se actualice progresivamente.\n\n## Análisis de costes\n\nCon los precios de GPT-4o-mini, procesar 100 emails/día cuesta ~$0,02. Aceptable para uso personal; la producción necesitaría batching + caché para remitentes repetidos."
       },
-      {
+      "ledger-cli": {
         "description": "Una herramienta de línea de comandos rápida y scriptable para contabilidad en texto plano. Estudio en patrones de diseño CLI con Go.",
         "findings": [
           "La stdlib de Go es suficiente para la mayoría de herramientas CLI — cobra añade ergonomía, no capacidad",
@@ -368,7 +368,7 @@
         ],
         "technicalNotes": "## Motivación\n\nEstudié patrones de arquitectura CLI en Go construyendo una herramienta real que uso — un CLI de contabilidad en texto plano compatible con el formato hledger.\n\n## Decisiones de diseño\n\n- **cobra** para enrutamiento de comandos y parsing de flags\n- **SQLite** (via `modernc.org/sqlite`) para el índice interno — sin dependencia de CGo\n- **bubbletea** para el visor interactivo de informes TUI\n\n## Aprendizajes\n\nEl enfoque de Go para herramientas CLI es refrescantemente pragmático. La mayor lección fue sobre el manejo de errores — Go te obliga a gestionar los errores explícitamente, lo que resulta en herramientas CLI mucho más resilientes que los scripts equivalentes en Node.js."
       },
-      {
+      "react-server-components": {
         "description": "Exploración práctica de la arquitectura RSC: streaming, límites de Suspense y los compromisos de la hidratación parcial.",
         "findings": [
           "RSC elimina los waterfalls de obtención de datos en el cliente para árboles de componentes profundamente anidados",
@@ -378,7 +378,7 @@
         ],
         "technicalNotes": "## Alcance\n\nConstruí una serie de demos de Next.js App Router progresivamente complejas para poner a prueba los límites RSC, el comportamiento del streaming y la interoperabilidad entre componentes de servidor y cliente.\n\n## Experimentos clave\n\n**Experimento 1 — Eliminación del waterfall de streaming**: Reemplacé un árbol de componentes profundamente anidado que tenía 4 fetches secuenciales con `useEffect` por RSC `async/await`. Resultado: 0 waterfalls en el cliente, ~40% de reducción en TTI.\n\n**Experimento 2 — Ubicación de Suspense**: Probé 3 configuraciones diferentes de límites de Suspense para la misma UI. Descubrí que los límites de grano grueso (uno por segmento de ruta) superan en práctica a los de grano fino porque reducen los layout shifts.\n\n**Experimento 3 — Tamaño de la isla cliente**: Medí el tamaño del bundle JS a medida que los límites `use client` se movían progresivamente hacia las hojas. Cada nivel hacia abajo reducía el JS hidratado en ~15–20%.\n\n## En curso\n\nSigo explorando el modelo de invalidación de caché (`revalidatePath` vs `revalidateTag`) y su interacción con el caché a nivel CDN."
       }
-    ],
+    },
     "coverAlt": "Vista previa de {title}",
     "detail": {
       "back": "Volver a los proyectos",
@@ -570,21 +570,21 @@
     "backToTop": "Volver arriba"
   },
   "chatbot": {
-    "emptyTitle": "Pregúntame sobre Adrian",
-    "emptyDescription": "Puedo contarte sobre su experiencia, proyectos, habilidades, docencia y servicios.",
+    "emptyTitle": "Pregúntame sobre {name}",
+    "emptyDescription": "Puedo contarte sobre su experiencia, proyectos, habilidades y servicios.",
     "suggestions": [
-      "¿Cuál es el stack de Adrian?",
+      "¿Cuál es su stack tecnológico?",
       "Háblame de sus proyectos",
       "¿Cuál es su experiencia laboral?",
-      "¿Está abierto a nuevas oportunidades?"
+      "¿Está disponible para nuevas oportunidades?"
     ],
-    "inputPlaceholder": "Pregunta sobre Adrian...",
+    "inputPlaceholder": "Pregunta sobre {name}...",
     "messageInput": "Entrada de mensaje",
     "stopGenerating": "Detener generación",
     "sendMessage": "Enviar mensaje",
     "inputHint": "Enter para enviar · Shift+Enter para nueva línea",
-    "dialogLabel": "Asistente IA — Pregunta sobre Adrian",
-    "defaultTitle": "Pregunta sobre Adrian",
+    "dialogLabel": "Asistente IA — Pregunta sobre {name}",
+    "defaultTitle": "Pregunta sobre {name}",
     "toggleHistory": "Mostrar historial",
     "newChat": "Nuevo chat",
     "closeAssistant": "Cerrar asistente",
@@ -598,7 +598,9 @@
     "justNow": "Ahora mismo",
     "minutesAgo": "Hace {count} min",
     "hoursAgo": "Hace {count} h",
-    "daysAgo": "Hace {count} d"
+    "daysAgo": "Hace {count} d",
+    "requestError": "Algo salió mal. Inténtalo de nuevo.",
+    "messagesLabel": "Mensajes del chat"
   },
   "common": {
     "close": "Cerrar"

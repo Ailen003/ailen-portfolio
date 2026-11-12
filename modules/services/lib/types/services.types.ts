@@ -17,3 +17,12 @@ export interface ProcessStep {
   label: string
   description: string
 }
+
+export interface ServicesData {
+  services: Service[]
+  processSteps: ProcessStep[]
+}
+
+export type ServicesDataResult =
+  | { ok: true; data: ServicesData }
+  | { ok: false; error: string }

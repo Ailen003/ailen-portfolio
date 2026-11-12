@@ -286,8 +286,8 @@
       "completed": "Completed",
       "supporting": "Active support"
     },
-    "endToEnd": [
-      {
+    "endToEnd": {
+      "finflow": {
         "tagline": "Personal finance, reimagined",
         "description": "A full-stack budgeting platform serving 40k+ users. I led the frontend architecture and design system, cut initial load time by 60%, and shipped real-time syncing across devices with optimistic UI.",
         "highlights": [
@@ -298,7 +298,7 @@
         ],
         "technicalNotes": "## Architecture\n\nThe frontend is built on **Next.js App Router** with a strict separation between server and client components. Data fetching happens on the server via **tRPC** procedures, keeping the client bundle lean.\n\n## Key decisions\n\n- **Optimistic UI**: All mutations update local state immediately and roll back on error, making the app feel instantaneous even on slow connections.\n- **Edge caching**: Static routes are cached at the CDN edge; dynamic user data is served from a regional PostgreSQL read replica.\n- **Design system**: Built on Radix UI primitives with a custom token layer — supports light/dark mode and meets WCAG AA contrast ratios throughout.\n\n## Challenges\n\nThe biggest challenge was real-time budget reconciliation across browser tabs. Solved this using a `BroadcastChannel` + server-sent events fallback for environments that don't support it."
       },
-      {
+      "pulse": {
         "tagline": "Metrics at the speed of thought",
         "description": "Real-time analytics for developer teams. Streaming metrics, anomaly alerts, and a query builder built for speed.",
         "highlights": [
@@ -308,7 +308,7 @@
         ],
         "technicalNotes": "## Streaming pipeline\n\nMetrics are ingested by a **Go** backend into **Redis Streams**, then fanned out to connected browser clients via WebSocket. The Go service handles backpressure automatically — slow clients get a compressed snapshot instead of a raw stream.\n\n## Query builder\n\nThe query builder generates a subset of PromQL. The AST is built client-side in React, serialized to JSON, and interpreted server-side. This keeps the UI completely decoupled from the query language internals.\n\n## Anomaly detection\n\nUses a sliding window Z-score algorithm — simple but effective for developer dashboards where spikes are the main concern."
       },
-      {
+      "atlas-ui": {
         "tagline": "Design systems done right",
         "description": "An open-source, accessible component library and design system adopted across multiple product teams.",
         "highlights": [
@@ -319,29 +319,29 @@
         ],
         "technicalNotes": "## Design tokens\n\nAll design decisions are encoded as CSS custom properties following the W3C Design Token spec draft. This allows teams to theme the library without forking it.\n\n## Accessibility first\n\nEvery interactive component is built on **Radix UI** primitives, which handle focus management, keyboard navigation, and ARIA attributes. Tests run `axe-core` in jsdom on every CI push.\n\n## Bundle size\n\nThe library is built with **tsup** to produce both ESM and CJS outputs. Each component is a separate entry point, so teams only ship what they use."
       }
-    ],
-    "contributions": [
-      {
+    },
+    "contributions": {
+      "vercel-ai-sdk": {
         "description": "Contributed streaming improvements and new provider adapters to the official Vercel AI SDK, improving edge-runtime compatibility.",
         "role": "Open-source contributor",
         "impact": "Reduced streaming latency by ~30% on edge runtimes across all provider adapters.",
         "technicalNotes": "## What I contributed\n\nThe Vercel AI SDK's streaming layer used Node.js `Readable` streams internally, which aren't available on edge runtimes (Cloudflare Workers, Vercel Edge). I refactored the core streaming abstraction to use the **Web Streams API** (`ReadableStream`) as the primary interface, with a Node.js compatibility shim.\n\n## Provider adapter\n\nAdded a new adapter for **Anthropic's Messages API**, including support for tool-use streaming and prompt caching headers."
       },
-      {
+      "radix-ui-primitives": {
         "description": "Fixed accessibility regressions in Dialog and Tooltip components, added keyboard-navigation spec tests, and improved WAI-ARIA compliance.",
         "role": "Bug fixes & a11y",
         "impact": "Resolved 3 long-standing WCAG violations affecting screen reader users across all Radix consumers.",
         "technicalNotes": "## Focus management bug\n\nOn iOS Safari, `Dialog` was not restoring focus to the trigger after close because the browser's focus behavior differs from the spec. Fixed by explicitly storing the trigger ref and calling `.focus()` in a `requestAnimationFrame` callback after the close animation completes.\n\n## ARIA cleanup\n\n`Tooltip` was keeping the `aria-describedby` attribute on the anchor even after the tooltip unmounted, causing screen readers to reference a non-existent element. Added a cleanup effect tied to the tooltip's portal lifecycle."
       },
-      {
+      "internal-design-system": {
         "description": "Joined an existing design-system team to ship a dark-mode token layer and migrate 30+ components from class-based to functional patterns.",
         "role": "Frontend Engineer (contract)",
         "impact": "Enabled dark mode across 4 product surfaces in a single release, zero regression on existing consumers.",
         "technicalNotes": "## Token layer\n\nThe existing system used hardcoded hex values scattered across component files. Introduced a semantic token layer with `data-theme` attribute switching — light/dark themes are swapped without JavaScript by toggling a single attribute on `<html>`.\n\n## Migration strategy\n\nClass-based components were migrated incrementally using a codemods-first approach. Wrote a custom AST transform with `jscodeshift` to automate the boilerplate conversion, then manually reviewed each component's lifecycle methods."
       }
-    ],
-    "research": [
-      {
+    },
+    "research": {
+      "cartographer": {
         "description": "Interactive data-viz toolkit for geospatial dashboards — exploring D3 + WebGL rendering boundaries.",
         "findings": [
           "WebGL canvas outperforms SVG by 10× at 50k+ data points",
@@ -350,7 +350,7 @@
         ],
         "technicalNotes": "## Goal\n\nDetermine the practical rendering ceiling for browser-based geospatial dashboards and identify the best D3/WebGL integration point.\n\n## Approach\n\nBuilt a series of progressively complex visualizations — choropleth → point cloud → animated flow lines — and profiled each in Chrome DevTools. Compared SVG, Canvas 2D, and WebGL rendering for each case.\n\n## Conclusion\n\nFor dashboards with < 5k features, SVG + D3 is the right choice (easy debugging, accessibility). Beyond that, Canvas 2D or WebGL is necessary. The `deck.gl` + Mapbox combination offers the best ergonomics for production use."
       },
-      {
+      "inbox-zero": {
         "description": "Prototype AI email triage assistant with smart summarization using function-calling pipelines.",
         "findings": [
           "Function-calling pipelines outperform prompt-only classification for structured extraction",
@@ -359,7 +359,7 @@
         ],
         "technicalNotes": "## Pipeline design\n\nEach email passes through a 3-step function-calling pipeline:\n1. **Classify** — label (action/info/promo/spam) + urgency score\n2. **Summarize** — extract subject, sender intent, and required action\n3. **Draft** — optional one-click reply draft\n\nAll steps run on Vercel Edge Functions with streaming so the UI updates progressively.\n\n## Cost analysis\n\nAt GPT-4o-mini pricing, processing 100 emails/day costs ~$0.02. Acceptable for personal use; production would need batching + caching for repeated senders."
       },
-      {
+      "ledger-cli": {
         "description": "A fast, scriptable command-line tool for plain-text accounting. Study in Go CLI design patterns.",
         "findings": [
           "Go's stdlib is sufficient for most CLI tooling — cobra adds ergonomics, not capability",
@@ -368,7 +368,7 @@
         ],
         "technicalNotes": "## Motivation\n\nStudied Go CLI architecture patterns by building a real tool I actually use — a plain-text accounting CLI compatible with the hledger format.\n\n## Design decisions\n\n- **cobra** for command routing and flag parsing\n- **SQLite** (via `modernc.org/sqlite`) for the internal index — no CGo dependency\n- **bubbletea** for the interactive TUI report viewer\n\n## Learnings\n\nGo's approach to CLI tooling is refreshingly pragmatic. The biggest lesson was around error handling — Go forces you to handle errors explicitly, which results in much more resilient CLI tools than equivalent Node.js scripts."
       },
-      {
+      "react-server-components": {
         "description": "Hands-on exploration of RSC architecture: streaming, Suspense boundaries, and partial hydration tradeoffs.",
         "findings": [
           "RSC eliminates client-side data-fetching waterfalls for deeply nested component trees",
@@ -378,7 +378,7 @@
         ],
         "technicalNotes": "## Scope\n\nBuilt a series of increasingly complex Next.js App Router demos to stress-test RSC boundaries, streaming behavior, and the interop between server and client components.\n\n## Key experiments\n\n**Experiment 1 — Streaming waterfall elimination**: Replaced a deeply nested component tree that had 4 sequential `useEffect` fetches with RSC `async/await`. Result: 0 client-side waterfalls, ~40% reduction in TTI.\n\n**Experiment 2 — Suspense placement**: Tested 3 different Suspense boundary configurations for the same UI. Found that coarse-grained boundaries (one per route segment) outperform fine-grained ones in practice because they reduce layout shifts.\n\n**Experiment 3 — Client island size**: Measured JS bundle size as `use client` boundaries moved progressively closer to the leaves. Every level down reduced the hydrated JS by ~15–20%.\n\n## Ongoing\n\nStill exploring the cache invalidation model (`revalidatePath` vs `revalidateTag`) and its interaction with CDN-level caching."
       }
-    ],
+    },
     "coverAlt": "Preview of {title}",
     "detail": {
       "back": "Back to projects",
@@ -570,21 +570,21 @@
     "backToTop": "Back to top"
   },
   "chatbot": {
-    "emptyTitle": "Ask me anything about Adrian",
-    "emptyDescription": "I can tell you about his experience, projects, skills, teaching work, and services.",
+    "emptyTitle": "Ask me anything about {name}",
+    "emptyDescription": "I can tell you about her experience, projects, skills, and services.",
     "suggestions": [
-      "What's Adrian's tech stack?",
-      "Tell me about his projects",
-      "What's his work experience?",
-      "Is he open to new opportunities?"
+      "What is her tech stack?",
+      "Tell me about her projects",
+      "What is her work experience?",
+      "Is she open to new opportunities?"
     ],
-    "inputPlaceholder": "Ask about Adrian...",
+    "inputPlaceholder": "Ask about {name}...",
     "messageInput": "Message input",
     "stopGenerating": "Stop generating",
     "sendMessage": "Send message",
     "inputHint": "Enter to send · Shift+Enter for new line",
-    "dialogLabel": "AI assistant — Ask about Adrian",
-    "defaultTitle": "Ask about Adrian",
+    "dialogLabel": "AI assistant — Ask about {name}",
+    "defaultTitle": "Ask about {name}",
     "toggleHistory": "Toggle chat history",
     "newChat": "New chat",
     "closeAssistant": "Close assistant",
@@ -598,7 +598,9 @@
     "justNow": "Just now",
     "minutesAgo": "{count}m ago",
     "hoursAgo": "{count}h ago",
-    "daysAgo": "{count}d ago"
+    "daysAgo": "{count}d ago",
+    "requestError": "Something went wrong. Please try again.",
+    "messagesLabel": "Chat messages"
   },
   "common": {
     "close": "Close"

@@ -26,7 +26,7 @@ NEXT_PUBLIC_SITE_URL=https://your-domain.com
 
 `NEXT_PUBLIC_SITE_URL` drives all SEO absolute URLs: `metadataBase`, canonical
 tags, hreflang alternates, `sitemap.xml`, `robots.txt`, and Open Graph image
-URLs. If unset, it falls back to `http://localhost:3000` for local development.
+URLs. If unset, it falls back to the production origin in `lib/seo/site-config.ts`.
 
 ## SEO
 
@@ -100,3 +100,11 @@ Production builds enforce TypeScript checks.
 Validation: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`.
 Contact and assistant API contracts are unchanged. The contact CTA remains available
 while no CV file is configured. No project detail routes or hosting changes are added.
+
+Project translations in `messages/*.json` are keyed by permanent slug (end-to-end)
+or `translationKey` (contributions and research), independently of array order.
+Missing translations fail explicitly. Services use the same data/service/action
+layers as the other sections. The chatbot reads its interface copy from next-intl
+inside the localized provider; suggested prompts and relative dates follow the
+selected language. Social preview images are generated per locale and use the
+autumn palette. Run `pnpm check` for lint, types, tests and the production build.

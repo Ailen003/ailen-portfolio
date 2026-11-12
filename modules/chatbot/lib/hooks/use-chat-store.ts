@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
+import { useTranslations } from "next-intl"
 import { CHATBOT_STORAGE_KEY, MAX_CHATS } from "../config/chatbot.config"
 import type { ChatSession, ChatStore } from "../types/chatbot.types"
 
@@ -31,6 +32,7 @@ function purgeOldest(sessions: ChatSession[]): ChatSession[] {
 }
 
 export function useChatStore() {
+  const t = useTranslations("chatbot")
   const [store, setStore] = useState<ChatStore>({ sessions: [], activeChatId: null })
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export function useChatStore() {
   const createSession = useCallback((): ChatSession => {
     const session: ChatSession = {
       id: crypto.randomUUID(),
-      title: "New chat",
+      title: t("newChat"),
       createdAt: Date.now(),
       updatedAt: Date.now(),
       messages: [],
@@ -58,7 +60,7 @@ export function useChatStore() {
       return next
     })
     return session
-  }, [])
+  }, [t])
 
   const deleteSession = useCallback(
     (id: string) => {

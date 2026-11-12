@@ -1,6 +1,8 @@
 "use client"
 
 import { useRef, useState, useCallback, type KeyboardEvent, type ChangeEvent } from "react"
+import { useTranslations } from "next-intl"
+import { portfolioIdentity } from "@/modules/portfolio/lib/data/identity.data"
 import { Send, Square } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -12,6 +14,7 @@ interface ChatInputProps {
 }
 
 export function ChatInput({ onSend, onStop, isStreaming, disabled }: ChatInputProps) {
+  const t = useTranslations("chatbot")
   const [value, setValue] = useState("")
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
@@ -52,10 +55,10 @@ export function ChatInput({ onSend, onStop, isStreaming, disabled }: ChatInputPr
           value={value}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          placeholder="Ask about Elena…"
+          placeholder={t("inputPlaceholder", { name: portfolioIdentity.firstName })}
           disabled={disabled}
           rows={1}
-          aria-label="Message input"
+          aria-label={t("messageInput")}
           className={cn(
             "flex-1 resize-none bg-transparent text-sm text-foreground placeholder:text-muted-foreground",
             "outline-none scrollbar-thin max-h-[140px] min-h-[22px] py-0.5",
@@ -66,7 +69,7 @@ export function ChatInput({ onSend, onStop, isStreaming, disabled }: ChatInputPr
           type="button"
           onClick={isStreaming ? onStop : handleSubmit}
           disabled={!isStreaming && (!value.trim() || disabled)}
-          aria-label={isStreaming ? "Stop generating" : "Send message"}
+          aria-label={isStreaming ? t("stopGenerating") : t("sendMessage")}
           className={cn(
             "flex size-7 shrink-0 items-center justify-center rounded-lg transition-all",
             isStreaming
@@ -78,7 +81,7 @@ export function ChatInput({ onSend, onStop, isStreaming, disabled }: ChatInputPr
         </button>
       </div>
       <p className="mt-1.5 text-center text-[10px] text-muted-foreground">
-        Enter to send · Shift+Enter for new line
+        {t("inputHint")}
       </p>
     </div>
   )

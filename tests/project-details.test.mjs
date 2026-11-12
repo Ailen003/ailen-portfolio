@@ -28,6 +28,63 @@ const { buildProjectSchema, buildProjectsItemList } = requireTs("../lib/seo/stru
 const { CaseStudyNavigation } = requireTs("../modules/projects/components/case-study-navigation.tsx")
 const sitemap = requireTs("../app/sitemap.ts").default
 
+test("project translations remain attached to identifiers after reordering", () => {
+  const { localizeProjects, getProjectCopy } = requireTs("../modules/projects/lib/data/projects.data.ts")
+  for (const locale of ["en", "es"]) {
+    const copy = requireTs(`../messages/${locale}.json`).projects
+    const reordered = { ...copy }
+    for (const group of ["endToEnd", "contributions", "research"]) {
+      reordered[group] = Object.fromEntries(Object.entries(copy[group]).reverse())
+    }
+    assert.deepEqual(localizeProjects(reordered), getProjectsData(locale))
+    for (const project of getProjectsData(locale).endToEnd) {
+      assert.equal(project.description, copy.endToEnd[project.slug].description)
+    }
+  }
+  assert.throws(() => getProjectCopy({}, "missing-project"), /Missing project translation/)
+  assert.throws(() => getProjectCopy({}, "__proto__"), /Missing project translation/)
+})
+
+test("services expose complete localized data and safe locale fallback", () => {
+  const { getServicesData } = requireTs("../modules/services/lib/services/services.service.ts")
+  for (const locale of ["en", "es"]) {
+    const data = getServicesData(locale)
+    const copy = requireTs(`../messages/${locale}.json`).services
+    assert.equal(data.services.length, Object.keys(copy.items).length)
+    for (const service of data.services) {
+      assert.equal(service.title, copy.items[service.key].title)
+      assert.ok(service.bullets.length)
+    }
+    assert.deepEqual(data.processSteps.map(({ label }) => label), copy.process.map(({ label }) => label))
+  }
+  for (const locale of ["unknown", "__proto__", "constructor"]) {
+    assert.equal(getServicesData(locale), getServicesData("en"))
+  }
+})
+
+test("chatbot renders translated interface and the portfolio identity in both languages", () => {
+  const { NextIntlClientProvider } = requireTs("next-intl")
+  const { ChatEmpty } = requireTs("../modules/chatbot/components/chat-empty.tsx")
+  const { ChatInput } = requireTs("../modules/chatbot/components/chat-input.tsx")
+  const { ChatFab } = requireTs("../modules/chatbot/components/chat-fab.tsx")
+  const { portfolioIdentity } = requireTs("../modules/portfolio/lib/data/identity.data.ts")
+  for (const locale of ["en", "es"]) {
+    const messages = requireTs(`../messages/${locale}.json`)
+    const render = (component, props) => renderToStaticMarkup(createElement(NextIntlClientProvider, {
+      locale, messages, timeZone: "UTC",
+    }, createElement(component, props)))
+    const empty = render(ChatEmpty, { onSuggest() {} })
+    assert.ok(empty.includes(portfolioIdentity.firstName))
+    assert.ok(!empty.includes("Adrian"))
+    for (const suggestion of messages.chatbot.suggestions) assert.ok(empty.includes(suggestion))
+    const input = render(ChatInput, { onSend() {}, onStop() {}, isStreaming: false })
+    assert.ok(input.includes(`aria-label="${messages.chatbot.messageInput}"`))
+    assert.ok(input.includes(messages.chatbot.inputHint))
+    const fab = render(ChatFab, { isOpen: false, onClick() {} })
+    assert.ok(fab.includes(`aria-label="${messages.chatbot.openAssistant}"`))
+  }
+})
+
 test("permanent project URLs resolve in both languages, including current examples", () => {
   const en = getProjectsData("en").endToEnd
   const es = getProjectsData("es").endToEnd
