@@ -226,7 +226,7 @@
   .case-hero-geometry { display: none; position: absolute; z-index: -1; right: 0; top: -2rem; width: 18rem; opacity: 0.2; }
   .case-title { max-width: 21ch; font-size: clamp(2.25rem, 4.6vw, 4.5rem); font-weight: 500; letter-spacing: -0.06em; line-height: 1.12; overflow-wrap: anywhere; }
   .case-hero .case-title { max-width: 22ch; font-size: clamp(1.875rem, 3vw, 3rem); line-height: 1.1; }
-  .case-cover { width: 100%; aspect-ratio: 16 / 9; border-radius: 0.75rem; background-color: var(--secondary); background-image: radial-gradient(ellipse at 100% 100%, var(--surface-deep), transparent 70%), radial-gradient(ellipse at 10% 0%, color-mix(in srgb, var(--surface-warm) 55%, transparent), transparent 75%); }
+  .case-cover { width: 100%; aspect-ratio: 16 / 9; border-radius: 0.75rem; background-color: var(--secondary); background-image: linear-gradient(135deg, transparent 68%, color-mix(in srgb, var(--surface-mineral) 65%, var(--secondary)) 68%), radial-gradient(ellipse at 10% 0%, color-mix(in srgb, var(--surface-warm) 55%, transparent), transparent 75%); }
   .case-metadata dd { overflow-wrap: anywhere; }
   .case-index { margin-top: 2rem; }
   .case-index-links { display: grid; gap: 0.25rem; padding-bottom: 0.75rem; }

@@ -77,7 +77,7 @@ export async function ProjectDetail({ project, locale }: ProjectDetailProps) {
         </div>
 
         <Reveal className="case-cover paper-card relative min-w-0 overflow-hidden">
-          <Image src={project.image || "/placeholder.svg"} alt={t("coverAlt", { title: project.title })} fill preload sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, (min-width: 768px) 70vw, 100vw" className="object-contain p-3 sm:p-5" />
+          <Image src={project.image || "/placeholder.svg"} alt={t("coverAlt", { title: project.title })} fill preload sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, (min-width: 768px) 70vw, 100vw" className="object-contain object-center p-3 sm:p-5" />
         </Reveal>
       </header>
 
