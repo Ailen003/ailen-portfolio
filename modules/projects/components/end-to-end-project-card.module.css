@@ -23,6 +23,24 @@
     linear-gradient(145deg, var(--surface-mineral), var(--secondary));
 }
 
+.cover.coverWithImage {
+  padding: 0;
+}
+
+.coverWithImage::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(180deg, rgb(0 0 0 / 0.22), transparent 45%);
+}
+
+.coverWithImage .number,
+.coverWithImage .featured {
+  color: #fff;
+  text-shadow: 0 1px 6px rgb(0 0 0 / 0.35);
+}
+
 .coverHeader {
   position: absolute;
   inset: 1.25rem 1.25rem auto;
@@ -114,19 +132,6 @@
   font-family: var(--font-mono);
   font-size: 0.625rem;
   letter-spacing: 0.08em;
-}
-
-.imageFrame {
-  position: relative;
-  align-self: center;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  background: var(--card);
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--foreground) 8%, transparent);
-  transition: transform 350ms var(--ease-out);
 }
 
 .copy {
@@ -367,15 +372,13 @@
     color: var(--primary-foreground);
   }
 
-  .card:hover .monogram,
-  .card:hover .imageFrame {
+  .card:hover .monogram {
     transform: translateY(-3px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .monogram,
-  .imageFrame {
+  .monogram {
     transform: none !important;
   }
 }

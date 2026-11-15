@@ -27,7 +27,7 @@ export function EndToEndProjectCard({ project, index = 0 }: {
   return (
     <Reveal className="project-reveal min-w-0">
       <article className={`surface-card ${styles.card}`}>
-        <div className={styles.cover}>
+        <div className={`${styles.cover} ${hasCover ? styles.coverWithImage : ""}`}>
           <div className={styles.coverHeader}>
             <span className={styles.number} aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
             {project.featured && (
@@ -36,15 +36,13 @@ export function EndToEndProjectCard({ project, index = 0 }: {
           </div>
 
           {hasCover ? (
-            <div className={styles.imageFrame}>
-              <Image
-                src={project.image}
-                alt={t("coverAlt", { title: project.title })}
-                fill
-                sizes="(min-width: 1280px) 360px, (min-width: 768px) 32vw, 90vw"
-                className="object-contain"
-              />
-            </div>
+            <Image
+              src={project.image}
+              alt={t("coverAlt", { title: project.title })}
+              fill
+              sizes="(min-width: 1280px) 400px, (min-width: 768px) 32vw, 100vw"
+              className="object-cover"
+            />
           ) : (
             <div className={styles.artwork} aria-hidden="true">
               <DesignGeometry className={styles.geometry} />
