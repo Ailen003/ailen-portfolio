@@ -8,7 +8,7 @@ export const endToEndProjects: EndToEndProject[] = [
     slug: "fleet-control",
     title: "Fleet Control",
     ...en.projects.endToEnd["fleet-control"],
-    image: "/placeholder.svg",
+    image: "/elena-portrait.png",
     images: [],
     tags: [
       "Next.js", "React", "TypeScript", "PostgreSQL", "Prisma", "Docker",

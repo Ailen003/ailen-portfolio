@@ -112,7 +112,7 @@ export function ProjectsListPresentational({
           />
         }
       >
-        <div className="project-gallery grid grid-cols-1 gap-8 md:gap-12 lg:gap-16">
+        <div className="project-gallery grid grid-cols-1 gap-5 sm:gap-6">
           {filteredEndToEnd.map((p, i) => (
             <EndToEndProjectCard
               key={p.slug}
