@@ -57,7 +57,7 @@ export function EndToEndProjectCard({ project, index = 0 }: {
             <div className={styles.origin}>
               {project.company ? (
                 <>
-                  <Image src={project.company.logo} alt="" width={24} height={24} className={styles.companyLogo} />
+                  <Image src={project.company.logo} alt="" width={32} height={32} className={styles.companyLogo} />
                   <span>{t("company.builtAt")} <strong>{project.company.name}</strong></span>
                 </>
               ) : project.engagement ? <span>{t(`engagementLabels.${project.engagement}`)}</span> : null}
