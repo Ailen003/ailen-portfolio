@@ -3,107 +3,26 @@ import es from "@/messages/es.json"
 import type { EndToEndProject, ContributionProject, ResearchProject } from "../types/project.types"
 import type { ProjectsData } from "../types/projects.types"
 
-const rawEndToEndProjects: EndToEndProject[] = [
+export const endToEndProjects: EndToEndProject[] = [
   {
-    slug: "finflow",
-    title: "FinFlow",
-    tagline: "Personal finance, reimagined",
-    description:
-      "A full-stack budgeting platform serving 40k+ users. I led the frontend architecture and design system, cut initial load time by 60%, and shipped real-time syncing across devices with optimistic UI.",
-    image: "/project-finflow.png",
-    images: ["/project-finflow.png", ],
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "tRPC", "Tailwind"],
-    categories: ["fullstack", "frontend"],
-    demo: "https://example.com",
-    source: "https://github.com",
+    slug: "fleet-control",
+    title: "Fleet Control",
+    ...en.projects.endToEnd["fleet-control"],
+    image: "/placeholder.svg",
+    images: [],
+    tags: [
+      "Next.js", "React", "TypeScript", "PostgreSQL", "Prisma", "Docker",
+      "Portainer", "Nextcloud", "GitLab CI/CD", "Nexus", "Docker Swarm", "Better Auth",
+    ],
+    categories: ["fullstack", "frontend", "backend", "devtools"],
+    demo: "",
+    source: "",
+    company: { name: "ETI", logo: "/images/experiences/eti-logo.jpg" },
+    engagement: "employee",
     featured: true,
-    status: "live",
-    year: 2024,
-    teamSize: "Solo",
-    highlights: [
-      "Serves 40k+ active users with 99.9% uptime",
-      "Cut initial load time by 60% via code-splitting and edge caching",
-      "Real-time sync across devices using optimistic UI and WebSockets",
-      "Custom design system with 30+ accessible components",
-    ],
-    technicalNotes: `## Architecture
-
-The frontend is built on **Next.js App Router** with a strict separation between server and client components. Data fetching happens on the server via **tRPC** procedures, keeping the client bundle lean.
-
-## Key decisions
-
-- **Optimistic UI**: All mutations update local state immediately and roll back on error, making the app feel instantaneous even on slow connections.
-- **Edge caching**: Static routes are cached at the CDN edge; dynamic user data is served from a regional PostgreSQL read replica.
-- **Design system**: Built on Radix UI primitives with a custom token layer — supports light/dark mode and meets WCAG AA contrast ratios throughout.
-
-## Challenges
-
-The biggest challenge was real-time budget reconciliation across browser tabs. Solved this using a \`BroadcastChannel\` + server-sent events fallback for environments that don't support it.`,
-  },
-  {
-    slug: "pulse",
-    title: "Pulse",
-    tagline: "Metrics at the speed of thought",
-    description:
-      "Real-time analytics for developer teams. Streaming metrics, anomaly alerts, and a query builder built for speed.",
-    image: "/project-pulse.png",
-    images: ["/project-pulse.png", ],
-    tags: ["React", "Go", "Redis", "WebSockets"],
-    categories: ["fullstack", "devtools"],
-    demo: "https://example.com",
-    source: "https://github.com",
-    status: "live",
-    year: 2023,
-    teamSize: "2-person",
-    highlights: [
-      "Sub-100ms latency for metric streaming via Redis Pub/Sub",
-      "Anomaly detection engine processing 10k+ events/sec",
-      "Visual query builder with zero SQL knowledge required",
-    ],
-    technicalNotes: `## Streaming pipeline
-
-Metrics are ingested by a **Go** backend into **Redis Streams**, then fanned out to connected browser clients via WebSocket. The Go service handles backpressure automatically — slow clients get a compressed snapshot instead of a raw stream.
-
-## Query builder
-
-The query builder generates a subset of PromQL. The AST is built client-side in React, serialized to JSON, and interpreted server-side. This keeps the UI completely decoupled from the query language internals.
-
-## Anomaly detection
-
-Uses a sliding window Z-score algorithm — simple but effective for developer dashboards where spikes are the main concern.`,
-  },
-  {
-    slug: "atlas-ui",
-    title: "Atlas UI",
-    tagline: "Design systems done right",
-    description:
-      "An open-source, accessible component library and design system adopted across multiple product teams.",
-    image: "/project-atlas.png",
-    images: ["/project-atlas.png", ],
-    tags: ["React", "TypeScript", "Storybook", "a11y"],
-    categories: ["frontend", "ux"],
-    demo: "https://example.com",
-    source: "https://github.com",
-    status: "live",
-    year: 2023,
-    teamSize: "Solo",
-    highlights: [
-      "40+ accessible components used across 3 product teams",
-      "Full WCAG AA compliance verified with automated axe-core tests",
-      "Comprehensive Storybook docs with interaction tests",
-      "Tree-shakeable ESM build — zero runtime dependencies",
-    ],
-    technicalNotes: `## Design tokens
-
-All design decisions are encoded as CSS custom properties following the W3C Design Token spec draft. This allows teams to theme the library without forking it.
-
-## Accessibility first
-
-Every interactive component is built on **Radix UI** primitives, which handle focus management, keyboard navigation, and ARIA attributes. Tests run \`axe-core\` in jsdom on every CI push.
-
-## Bundle size
-
-The library is built with **tsup** to produce both ESM and CJS outputs. Each component is a separate entry point, so teams only ship what they use.`,
+    isExample: false,
+    status: "supporting",
+    year: 2026,
   },
 ]
 
@@ -321,12 +240,6 @@ Still exploring the cache invalidation model (\`revalidatePath\` vs \`revalidate
   },
 ]
 
-const eti = { name: "ETI", logo: "/images/experiences/eti-logo.jpg" }
-export const endToEndProjects: EndToEndProject[] = rawEndToEndProjects.map(project => ({
-  ...project, isExample: true,
-  engagement: project.title === "Pulse" ? "freelance" : "employee",
-  company: project.title === "Pulse" ? undefined : eti,
-}))
 export const contributionProjects: ContributionProject[] = rawContributionProjects.map(project => ({
   ...project, engagement: "freelance", isExample: true,
 }))

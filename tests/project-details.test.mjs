@@ -85,22 +85,33 @@ test("chatbot renders translated interface and the portfolio identity in both la
   }
 })
 
-test("permanent project URLs resolve in both languages, including current examples", () => {
+test("permanent project URLs resolve in both languages", () => {
   const en = getProjectsData("en").endToEnd
   const es = getProjectsData("es").endToEnd
+  assert.deepEqual(en.map(({ slug }) => slug), ["fleet-control"])
   assert.deepEqual(en.map(({ slug }) => slug), es.map(({ slug }) => slug))
   assert.equal(new Set(en.map(({ slug }) => slug)).size, en.length)
   for (const project of en) {
     assert.match(project.slug, /^[a-z0-9]+(?:-[a-z0-9]+)*$/)
     for (const locale of ["en", "es"]) {
-      assert.equal(getEndToEndProjectBySlug(locale, project.slug)?.slug, project.slug)
+      const localized = getEndToEndProjectBySlug(locale, project.slug)
+      assert.equal(localized?.slug, project.slug)
+      assert.equal(localized.company.name, "ETI")
+      assert.equal(localized.engagement, "employee")
+      assert.equal(localized.status, "supporting")
+      assert.equal(localized.year, 2026)
+      assert.equal(localized.isExample, false)
+      assert.equal(localized.demo, "")
+      assert.equal(localized.source, "")
+      assert.equal(localized.image, "/placeholder.svg")
+      assert.deepEqual(localized.images, [])
     }
   }
-  assert.notEqual(getEndToEndProjectBySlug("en", "finflow").description, getEndToEndProjectBySlug("es", "finflow").description)
+  assert.notEqual(getEndToEndProjectBySlug("en", "fleet-control").description, getEndToEndProjectBySlug("es", "fleet-control").description)
 })
 
 test("unknown slugs never resolve and unknown locale keys safely fall back", () => {
-  for (const slug of ["missing", "__proto__", "constructor", "vercel-ai-sdk"]) {
+  for (const slug of ["missing", "__proto__", "constructor", "vercel-ai-sdk", "finflow", "pulse", "atlas-ui"]) {
     assert.equal(getEndToEndProjectBySlug("es", slug), undefined)
   }
   for (const locale of ["unknown", "__proto__", "constructor"]) {
@@ -120,9 +131,9 @@ test("detail metadata labels exist for every project's context and status", () =
 
 test("structured data points at the localized case study instead of its demo", () => {
   for (const locale of ["en", "es"]) {
-    const project = getEndToEndProjectBySlug(locale, "finflow")
+    const project = getEndToEndProjectBySlug(locale, "fleet-control")
     const schema = buildProjectSchema(project, locale)
-    assert.equal(new URL(schema.url).pathname, `/${locale}/projects/finflow`)
+    assert.equal(new URL(schema.url).pathname, `/${locale}/projects/fleet-control`)
     assert.equal(schema.inLanguage, locale)
     assert.equal(schema.codeRepository, undefined)
     for (const entry of buildProjectsItemList({ locale }).itemListElement) {
@@ -139,14 +150,16 @@ test("sitemap excludes examples and includes published projects with language al
       assert.equal(listed, !project.isExample)
     }
   }
-  const project = getEndToEndProjectBySlug("en", "finflow")
+  const project = getEndToEndProjectBySlug("en", "fleet-control")
   const wasExample = project.isExample
   try {
+    project.isExample = true
+    assert.ok(!sitemap().some(({ url }) => new URL(url).pathname === "/en/projects/fleet-control"))
     project.isExample = false
-    const entry = sitemap().find(({ url }) => new URL(url).pathname === "/en/projects/finflow")
+    const entry = sitemap().find(({ url }) => new URL(url).pathname === "/en/projects/fleet-control")
     assert.ok(entry)
-    assert.equal(new URL(entry.alternates.languages.es).pathname, "/es/projects/finflow")
-    assert.equal(new URL(entry.alternates.languages["x-default"]).pathname, "/en/projects/finflow")
+    assert.equal(new URL(entry.alternates.languages.es).pathname, "/es/projects/fleet-control")
+    assert.equal(new URL(entry.alternates.languages["x-default"]).pathname, "/en/projects/fleet-control")
   } finally {
     project.isExample = wasExample
   }
