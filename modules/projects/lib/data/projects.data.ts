@@ -44,6 +44,27 @@ export const endToEndProjects: EndToEndProject[] = [
     status: "supporting",
     year: 2025,
   },
+  {
+    slug: "sicom",
+    title: "SICOM",
+    ...en.projects.endToEnd.sicom,
+    image: "/placeholder.svg",
+    images: [],
+    tags: [
+      "Next.js", "React", "TypeScript", "NestJS", "PostgreSQL", "SQL Server",
+      "TypeORM", "JOSE/JWE", "Argon2id", "Nodemailer", "ExcelJS", "Docker",
+      "GitLab CI/CD", "Nexus", "Docker Swarm",
+    ],
+    categories: ["fullstack", "frontend", "backend", "devtools"],
+    demo: "",
+    source: "",
+    company: { name: "ETI", logo: "/images/experiences/eti-logo.jpg" },
+    engagement: "employee",
+    featured: true,
+    isExample: false,
+    status: "supporting",
+    year: 2025,
+  },
 ]
 
 const rawContributionProjects: ContributionProject[] = [

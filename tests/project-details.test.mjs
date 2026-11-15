@@ -89,6 +89,7 @@ test("permanent project URLs resolve in both languages", () => {
   const expectedProjects = {
     "fleet-control": { year: 2026, image: "/elena-portrait.png" },
     gestionvc: { year: 2025, image: "/placeholder.svg" },
+    sicom: { year: 2025, image: "/placeholder.svg" },
   }
   const en = getProjectsData("en").endToEnd
   const es = getProjectsData("es").endToEnd
