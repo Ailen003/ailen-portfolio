@@ -86,9 +86,13 @@ test("chatbot renders translated interface and the portfolio identity in both la
 })
 
 test("permanent project URLs resolve in both languages", () => {
+  const expectedProjects = {
+    "fleet-control": { year: 2026, image: "/elena-portrait.png" },
+    gestionvc: { year: 2025, image: "/placeholder.svg" },
+  }
   const en = getProjectsData("en").endToEnd
   const es = getProjectsData("es").endToEnd
-  assert.deepEqual(en.map(({ slug }) => slug), ["fleet-control"])
+  assert.deepEqual(en.map(({ slug }) => slug), Object.keys(expectedProjects))
   assert.deepEqual(en.map(({ slug }) => slug), es.map(({ slug }) => slug))
   assert.equal(new Set(en.map(({ slug }) => slug)).size, en.length)
   for (const project of en) {
@@ -99,15 +103,17 @@ test("permanent project URLs resolve in both languages", () => {
       assert.equal(localized.company.name, "ETI")
       assert.equal(localized.engagement, "employee")
       assert.equal(localized.status, "supporting")
-      assert.equal(localized.year, 2026)
+      assert.equal(localized.year, expectedProjects[project.slug].year)
+      assert.equal(localized.featured, true)
       assert.equal(localized.isExample, false)
       assert.equal(localized.demo, "")
       assert.equal(localized.source, "")
-      assert.equal(localized.image, "/placeholder.svg")
+      assert.equal(localized.image, expectedProjects[project.slug].image)
       assert.deepEqual(localized.images, [])
     }
+    assert.notEqual(getEndToEndProjectBySlug("en", project.slug).description, getEndToEndProjectBySlug("es", project.slug).description)
+    assert.notEqual(getEndToEndProjectBySlug("en", project.slug).technicalNotes, getEndToEndProjectBySlug("es", project.slug).technicalNotes)
   }
-  assert.notEqual(getEndToEndProjectBySlug("en", "fleet-control").description, getEndToEndProjectBySlug("es", "fleet-control").description)
 })
 
 test("unknown slugs never resolve and unknown locale keys safely fall back", () => {
@@ -131,11 +137,13 @@ test("detail metadata labels exist for every project's context and status", () =
 
 test("structured data points at the localized case study instead of its demo", () => {
   for (const locale of ["en", "es"]) {
-    const project = getEndToEndProjectBySlug(locale, "fleet-control")
-    const schema = buildProjectSchema(project, locale)
-    assert.equal(new URL(schema.url).pathname, `/${locale}/projects/fleet-control`)
-    assert.equal(schema.inLanguage, locale)
-    assert.equal(schema.codeRepository, undefined)
+    for (const project of getProjectsData(locale).endToEnd) {
+      const schema = buildProjectSchema(project, locale)
+      assert.equal(new URL(schema.url).pathname, `/${locale}/projects/${project.slug}`)
+      assert.equal(schema.inLanguage, locale)
+      assert.equal(schema.dateCreated, String(project.year))
+      assert.equal(schema.codeRepository, undefined)
+    }
     for (const entry of buildProjectsItemList({ locale }).itemListElement) {
       assert.match(new URL(entry.item.url).pathname, new RegExp(`^/${locale}/projects/`))
     }

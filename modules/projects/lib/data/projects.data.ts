@@ -24,6 +24,26 @@ export const endToEndProjects: EndToEndProject[] = [
     status: "supporting",
     year: 2026,
   },
+  {
+    slug: "gestionvc",
+    title: "GestionVC",
+    ...en.projects.endToEnd.gestionvc,
+    image: "/placeholder.svg",
+    images: [],
+    tags: [
+      "Next.js", "React", "TypeScript", "NestJS", "PostgreSQL", "Redis",
+      "TypeORM", "TrueConf API", "Docker", "GitLab CI/CD", "Nexus", "Docker Swarm",
+    ],
+    categories: ["fullstack", "frontend", "backend", "devtools"],
+    demo: "",
+    source: "",
+    company: { name: "ETI", logo: "/images/experiences/eti-logo.jpg" },
+    engagement: "employee",
+    featured: true,
+    isExample: false,
+    status: "supporting",
+    year: 2025,
+  },
 ]
 
 const rawContributionProjects: ContributionProject[] = [
