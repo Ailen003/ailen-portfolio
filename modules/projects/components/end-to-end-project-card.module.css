@@ -206,7 +206,6 @@
 }
 
 .description {
-  max-width: 68ch;
   margin-top: 0.875rem;
   color: var(--muted-foreground);
   font-size: var(--text-card);
