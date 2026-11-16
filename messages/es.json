@@ -257,6 +257,11 @@
       "companyWebsite": "Sitio de la empresa",
       "reference": "Referencia del proyecto"
     },
+    "cardActions": {
+      "repository": "Repositorio",
+      "demo": "Ver demo",
+      "resource": "Ver recurso"
+    },
     "ariaLabels": {
       "sourceCode": "Código fuente",
       "preview": "Vista previa de {title}",
