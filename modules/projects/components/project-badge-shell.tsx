@@ -27,7 +27,7 @@ export function ProjectBadgeShell({
 }: ProjectBadgeShellProps) {
   const content = (
     <>
-      <span className="paper-label border border-border/50 bg-background/80 px-1.5 py-px text-[8px] font-semibold text-muted-foreground backdrop-blur-sm">
+      <span className="paper-label border border-border/50 bg-background/80 px-1.5 py-px text-xs font-medium text-muted-foreground backdrop-blur-sm">
         {captionText}
       </span>
       {pillContent}
@@ -86,7 +86,7 @@ export function ProjectBadgePill({ isImageOverlay, leading, leadingClassName, la
         {leading}
       </span>
       {!isImageOverlay && label && (
-        <span className="max-w-36 truncate text-xs font-semibold leading-none text-foreground">
+        <span className="max-w-36 truncate text-xs font-medium leading-none text-foreground">
           {label}
         </span>
       )}

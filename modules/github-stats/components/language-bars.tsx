@@ -40,7 +40,7 @@ export function LanguageBars({ languages }: LanguageBarsProps) {
               />
               <span className="text-sm font-medium text-foreground">{lang.name}</span>
             </div>
-            <span className="font-mono text-xs text-muted-foreground">{lang.percentage.toFixed(1)}%</span>
+            <span className="tabular-nums text-xs text-muted-foreground">{lang.percentage.toFixed(1)}%</span>
           </div>
           <div className="h-2 overflow-hidden rounded-full bg-secondary">
             <div

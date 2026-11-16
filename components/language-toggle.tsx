@@ -40,7 +40,7 @@ export function LanguageToggle({ className }: { className?: string }) {
           )}
         >
           <Languages className="h-4 w-4" />
-          <span className="font-mono text-xs uppercase tracking-wide">{locale}</span>
+          <span className="text-xs font-medium uppercase tracking-wide">{locale}</span>
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-36">

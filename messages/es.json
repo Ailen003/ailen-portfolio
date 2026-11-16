@@ -18,6 +18,8 @@
     "keywords": "Elena Vargas, ingeniera de software, desarrolladora full-stack, desarrolladora frontend, React, Next.js, TypeScript, Node.js, rendimiento web, accesibilidad, sistemas de diseño, portfolio"
   },
   "hero": {
+    "headline": { "start": "Ideas que toman", "end": "forma." },
+    "specialtiesLabel": "Especialidades",
     "badge": "Disponible para nuevos proyectos",
     "greeting": "Hola, me llamo",
     "roles": {

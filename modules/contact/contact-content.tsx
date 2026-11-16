@@ -1,7 +1,8 @@
 import { portfolioIdentity } from "@/modules/portfolio/lib/data/identity.data"
 import { getLocale } from "next-intl/server"
 import { getTranslations } from "next-intl/server"
-import { SectionHeading } from "@/components/section-heading"
+import { EditorialHeading } from "@/components/editorial-heading"
+import styles from "@/components/portfolio-continuity.module.css"
 import { Reveal } from "@/components/reveal"
 import { contactChannels, contactSocials } from "./lib/data/contact.data"
 import { ContactFormContainer } from "./form/contact-form-container"
@@ -18,11 +19,11 @@ export async function Contact() {
   const channels = contactChannels.map(channel => channel.label === "Location" ? { ...channel, value: portfolioIdentity.location[locale === "es" ? "es" : "en"] } : channel)
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="relative overflow-hidden border-t border-border contact-section section-space">
+    <section id="contact" aria-labelledby="contact-heading" className={`section-space ${styles.contact}`}>
 
 
       <div className="site-container relative">
-        <SectionHeading
+        <EditorialHeading
           index="08"
           title={t("title")}
           subtitle={t("subtitle")}
@@ -39,14 +40,14 @@ export async function Contact() {
               {channels.map((c) => {
                 const content = (
                   <div className="paper-card flex items-center gap-4 border border-border p-4 transition-colors">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-accent text-primary">
+                    <span className={styles.channelIcon}>
                       <c.icon className="h-5 w-5" />
                     </span>
                     <div className="contact-channel-copy">
-                      <p className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+                      <p className="text-xs text-muted-foreground">
                         {t(`channels.${c.label.toLowerCase()}.label`)}
                       </p>
-                      <p className="font-medium text-foreground">{c.value}</p>
+                      <p className="text-sm font-medium text-foreground">{c.value}</p>
                     </div>
                   </div>
                 )

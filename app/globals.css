@@ -31,6 +31,14 @@
   --contour-line: rgb(173 75 33 / 0.13);
   --surface-glint: rgb(255 253 248 / 0.85);
   --tag-color-weight: 45%;
+  /* Shared typography for global styles and independently compiled CSS modules. */
+  --font-editorial: Georgia, 'Times New Roman', serif;
+  --text-copy: 0.9375rem;
+  --text-card: 0.875rem;
+  --text-ui: 0.875rem;
+  --text-meta: 0.75rem;
+  --leading-copy: 1.75;
+  --leading-card: 1.7;
   --radius: 0.75rem;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --shadow-card: 0 4px 24px rgb(53 39 31 / 0.045), inset 0 1px 0 var(--surface-glint);
@@ -138,13 +146,13 @@
 @layer components {
   .site-container { width: 100%; max-width: 80rem; margin-inline: auto; padding-inline: 1.25rem; }
   .section-space { padding-block: clamp(4.5rem, 8vw, 7rem); }
-  .section-copy { font-size: 1rem; line-height: 1.75; }
+  .section-copy { font-size: var(--text-copy); line-height: var(--leading-copy); }
   .eyebrow { color: var(--muted-foreground); font-family: var(--font-body), Arial, sans-serif; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
   .masthead { border-bottom: 1px solid var(--border); background: color-mix(in srgb, var(--background) 92%, transparent); backdrop-filter: blur(18px); }
   .nav-link { position: relative; display: inline-flex; min-height: 2.75rem; align-items: center; padding: 0.5rem 0.8rem; border-radius: 0.5rem; color: var(--muted-foreground); font-size: 0.8125rem; font-weight: 500; transition: background 180ms ease, color 180ms ease; }
   .nav-link:hover, .nav-link.is-active { background: var(--secondary); color: var(--foreground); }
   .nav-link.is-active { color: var(--primary); }
-  .button-primary, .button-secondary, .editorial-button { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; gap: 0.6rem; border: 1px solid transparent; border-radius: 0.5rem; padding: 0.8rem 1.25rem; background: var(--primary); color: var(--primary-foreground); font-size: 0.8125rem; font-weight: 600; line-height: 1.4; transition: background 180ms ease, border-color 180ms ease, transform 180ms ease; }
+  .button-primary, .button-secondary, .editorial-button { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; gap: 0.6rem; border: 1px solid transparent; border-radius: 0.5rem; padding: 0.8rem 1.25rem; background: var(--primary); color: var(--primary-foreground); font-size: var(--text-ui); font-weight: 600; line-height: 1.4; transition: background 180ms ease, border-color 180ms ease, transform 180ms ease; }
   .button-primary:hover, .editorial-button:not(:disabled):hover { background: color-mix(in srgb, var(--primary) 88%, var(--foreground)); }
   .button-secondary, .editorial-button--quiet { border-color: var(--border); background: var(--card); color: var(--foreground); }
   .button-secondary:hover, .editorial-button--quiet:hover { border-color: var(--input); background: var(--secondary); color: var(--foreground); }
@@ -152,8 +160,8 @@
   .icon-button:hover { background: var(--secondary); color: var(--primary); }
   .surface-card, .paper-card { border: 1px solid var(--border); border-radius: 0.75rem; background: var(--card); box-shadow: var(--shadow-card); }
   .quiet-card { border: 1px solid var(--border); border-radius: 0.75rem; background: var(--card); }
-  .tag, .paper-label { display: inline-flex; align-items: center; gap: 0.375rem; border: 1px solid var(--border); border-radius: 0.375rem; padding: 0.3rem 0.55rem; background: var(--secondary); color: var(--muted-foreground); font-size: 0.6875rem; font-weight: 500; line-height: 1.4; }
-  .section-title { font-family: var(--font-heading), Arial, sans-serif; font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 500; letter-spacing: -0.055em; line-height: 1.16; }
+  .tag, .paper-label { display: inline-flex; align-items: center; gap: 0.375rem; border: 1px solid var(--border); border-radius: 0.375rem; padding: 0.3rem 0.55rem; background: var(--secondary); color: var(--muted-foreground); font-size: var(--text-meta); font-weight: 500; line-height: 1.4; }
+  .section-title { font-family: var(--font-heading), Arial, sans-serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.2; }
   .section-index { color: var(--primary); font-family: ui-monospace, Consolas, monospace; font-size: 0.6875rem; letter-spacing: 0.05em; }
   .section-rule { height: 1px; width: clamp(3rem, 8vw, 7rem); background: var(--border); }
   .section-corner { width: 0.65rem; height: 0.65rem; margin-left: auto; border-top: 1px solid var(--signal); border-right: 1px solid var(--signal); border-top-right-radius: 100%; opacity: 0.9; }
@@ -224,7 +232,7 @@
 
   .case-hero { display: grid; align-items: center; gap: 1.25rem; padding-bottom: 1.5rem; }
   .case-hero-geometry { display: none; position: absolute; z-index: -1; right: 0; top: -2rem; width: 18rem; opacity: 0.2; }
-  .case-title { max-width: 21ch; font-size: clamp(2.25rem, 4.6vw, 4.5rem); font-weight: 500; letter-spacing: -0.06em; line-height: 1.12; overflow-wrap: anywhere; }
+  .case-title { max-width: 21ch; font-size: clamp(2.25rem, 4.6vw, 4.5rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.2; overflow-wrap: break-word; }
   .case-hero .case-title { max-width: 22ch; font-size: clamp(1.875rem, 3vw, 3rem); line-height: 1.1; }
   .case-cover { width: 100%; aspect-ratio: 16 / 9; border-radius: 0.75rem; background-color: var(--secondary); background-image: linear-gradient(135deg, transparent 68%, color-mix(in srgb, var(--surface-mineral) 65%, var(--secondary)) 68%), radial-gradient(ellipse at 10% 0%, color-mix(in srgb, var(--surface-warm) 55%, transparent), transparent 75%); }
   .case-metadata dd { overflow-wrap: anywhere; }

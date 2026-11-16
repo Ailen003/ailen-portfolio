@@ -38,24 +38,24 @@ export function ResearchProjectCard({ project, index = 0, onOpenDetail }: Resear
   return (
     <Reveal delay={index * 60} className="min-w-0">
       <article
-        className="paper-card portfolio-project-card group relative flex h-full flex-col overflow-hidden border border-border transition-all hover:-translate-y-1 cursor-pointer"
+        className="paper-card portfolio-project-card group relative flex h-full flex-col overflow-hidden border border-border transition-all hover:-translate-y-0.5 cursor-pointer"
       >
         <div className="flex min-h-11 items-center justify-between gap-2 border-b border-border px-4 py-2.5">
           <div className="flex min-w-0 items-center gap-2">
             <span className="flex shrink-0 items-center justify-center text-primary">
               <TypeIcon className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
             </span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-foreground">
+            <span className="text-xs font-semibold uppercase tracking-wider text-foreground">
               {t(`researchTypes.${researchTypeKey(project.researchType)}`)}
             </span>
           </div>
-          {project.year && <span className="shrink-0 font-mono text-[11px] text-muted-foreground">{project.year}</span>}
+          {project.year && <span className="shrink-0 text-xs text-muted-foreground">{project.year}</span>}
         </div>
 
         <div className="flex flex-1 flex-col p-4">
-          <h3 className="text-base font-bold leading-snug tracking-tight"><button type="button" className="project-details-button line-clamp-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring" aria-haspopup="dialog" onClick={onOpenDetail}>{project.title}</button></h3>
+          <h3 className="text-base font-medium leading-snug tracking-tight"><button type="button" className="project-details-button line-clamp-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring" aria-haspopup="dialog" onClick={onOpenDetail}>{project.title}</button></h3>
           <p
-            className="mt-2 line-clamp-5 shrink-0 text-sm leading-relaxed text-muted-foreground"
+            className="mt-2 line-clamp-5 shrink-0 text-sm leading-[1.75] text-muted-foreground"
             title={project.description}
           >
             {project.description}
@@ -68,7 +68,7 @@ export function ResearchProjectCard({ project, index = 0, onOpenDetail }: Resear
                 return (
                   <span
                     key={cat}
-                    className="paper-label inline-flex items-center gap-1 px-2 py-0.5 text-[10px]"
+                    className="paper-label inline-flex items-center gap-1 px-2 py-0.5 text-xs"
                     style={{
                       backgroundColor: `${meta.color}12`,
                       color: `color-mix(in srgb, ${meta.color} var(--tag-color-weight), var(--foreground))`,
@@ -86,12 +86,12 @@ export function ResearchProjectCard({ project, index = 0, onOpenDetail }: Resear
             </div>
             <ul className="flex flex-wrap items-center gap-1.5">
               {visibleTags.map((tag) => (
-                <li key={tag} className="max-w-full rounded bg-secondary/60 px-1.5 py-0.5 font-mono text-[11px] leading-relaxed wrap-anywhere text-muted-foreground">
+                <li key={tag} className="max-w-full rounded bg-secondary/60 px-1.5 py-0.5 text-xs leading-relaxed wrap-anywhere text-muted-foreground">
                   {tag}
                 </li>
               ))}
               {remainingTags > 0 && (
-                <li className="px-1 py-0.5 font-mono text-[11px] font-semibold text-primary">
+                <li className="px-1 py-0.5 text-xs font-semibold text-primary">
                   {t("tagsMore", { count: remainingTags })}
                 </li>
               )}

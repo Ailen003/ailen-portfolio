@@ -1,5 +1,6 @@
 import type { ReactNode } from "react"
 import { Reveal } from "@/components/reveal"
+import styles from "@/components/portfolio-continuity.module.css"
 
 interface ProjectLevelSectionProps {
   number: string
@@ -25,14 +26,14 @@ export function ProjectLevelSection({
       <Reveal>
         <div className="mb-4 flex items-start gap-4">
           <div className="flex shrink-0 flex-col items-center">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/30 bg-primary/8 font-mono text-sm font-bold text-primary">
+            <span className={styles.projectNumber}>
               {number}
             </span>
             <div className="mt-2 h-full w-px bg-border" />
           </div>
           <div className="pb-2 pt-1">
-            <h3 className="text-xl font-bold tracking-tight">{title}</h3>
-            <p className="mt-1 max-w-xl text-sm text-muted-foreground">{description}</p>
+            <h3 className="text-lg font-medium tracking-tight">{title}</h3>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">{description}</p>
           </div>
         </div>
       </Reveal>

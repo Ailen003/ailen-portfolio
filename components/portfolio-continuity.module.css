@@ -1,0 +1,32 @@
+﻿/* Light-touch refinements: preserve card layouts and scope styling to the home sections. */
+.projects, .experience, .github, .contact { position: relative; isolation: isolate; }
+.projects { background: var(--background); }
+.experience { border-block: 1px solid var(--border); background: color-mix(in srgb, var(--surface-mineral) 14%, var(--background)); }
+.github { border-block: 1px solid var(--border); background: color-mix(in srgb, var(--surface-mineral) 23%, var(--background)); }
+.contact { border-top: 1px solid var(--border); background: var(--background); }
+.contact::before { content: ''; position: absolute; z-index: -1; pointer-events: none; width: min(65vw, 780px); height: 360px; top: 4rem; right: 5%; border: 1px solid var(--contour-line); border-radius: 50%; transform: rotate(-15deg); }
+.projects :global(.portfolio-project-card), .experience :global(.paper-card), .github :global(.paper-card), .contact :global(.paper-card) { border-radius: 1.25rem; box-shadow: 0 3px 16px color-mix(in srgb, var(--foreground) 3%, transparent); }
+.projects :global(.portfolio-project-card) h3 { font-weight: 500; }
+.projects :global(.paper-label), .experience :global(.paper-label) { border-radius: 999px; }
+.projects :global(.project-level) + :global(.project-level) { border-top: 1px solid var(--border); padding-top: 2.75rem; }
+.projectNumber { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 2.3rem; height: 2rem; margin-block: 0.15rem; border: 1px solid var(--border); border-radius: 50%; color: var(--primary); font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 1rem; background: color-mix(in srgb, var(--surface-warm) 15%, transparent); }
+.experience :global(.paper-card) { background: var(--card); }
+.experience :global(.ink-dot) { border-width: 1px; width: 10px; height: 10px; }
+.statCard { height: 100%; }
+.statIcon { display: flex; align-items: center; justify-content: center; width: 3.25rem; height: 2.6rem; margin-bottom: 1.25rem; border: 1px solid var(--border); border-radius: 50%; background: color-mix(in srgb, var(--surface-warm) 20%, transparent); color: var(--primary); transform: rotate(-12deg); }
+.statIcon > svg { transform: rotate(12deg); }
+.channelIcon { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 3rem; height: 2.5rem; border: 1px solid var(--border); border-radius: 50%; background: color-mix(in srgb, var(--surface-warm) 20%, transparent); color: var(--primary); }
+.contact :global(.contact-form) { border-radius: 1.75rem 1.75rem 1.75rem 0.5rem; }
+.contact :global(.editorial-field) { border-radius: 0.75rem; }
+.contact :global(.editorial-button) { border-radius: 999px; }
+.contact :global(.icon-button), .backToTop { border-radius: 50%; }
+.footer { background: color-mix(in srgb, var(--surface-mineral) 15%, var(--background)); }
+.footer::before { content: ''; position: absolute; z-index: -1; pointer-events: none; width: 15rem; height: 7rem; top: -2rem; left: 45%; border: 1px solid var(--contour-line); border-radius: 50%; transform: rotate(-15deg); }
+@media (hover: hover) and (pointer: fine) {
+  .projects :global(.portfolio-project-card):hover, .experience :global(.paper-card):hover, .github :global(.paper-card):hover { border-color: var(--input); box-shadow: 0 8px 24px color-mix(in srgb, var(--foreground) 6%, transparent); }
+  .contact a:global(.contact-channel):hover :global(.paper-card) { border-color: var(--primary); }
+}
+@media (max-width: 639px) {
+  .contact::before { width: 80vw; height: 240px; right: 2%; }
+  .projects :global(.project-level) + :global(.project-level) { padding-top: 2rem; }
+}

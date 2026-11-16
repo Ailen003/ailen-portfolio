@@ -26,7 +26,7 @@ export function ContributionProjectCard({ project, index = 0, onOpenDetail }: Co
   return (
     <Reveal delay={index * 80}>
       <article
-        className="paper-card portfolio-project-card group relative flex h-full flex-col overflow-hidden border border-border transition-all hover:-translate-y-1 cursor-pointer"
+        className="paper-card portfolio-project-card group relative flex h-full flex-col overflow-hidden border border-border transition-all hover:-translate-y-0.5 cursor-pointer"
       >
         {project.image ? (
           <div className="project-preview-stage relative aspect-16/10 overflow-hidden">
@@ -99,7 +99,7 @@ export function ContributionProjectCard({ project, index = 0, onOpenDetail }: Co
           </div>
 
           <div className="mt-3 flex items-start justify-between gap-4">
-            <h3 className="line-clamp-1 text-base font-bold tracking-tight sm:text-lg" title={project.title}><button type="button" className="project-details-button" aria-haspopup="dialog" onClick={onOpenDetail}>{project.title}</button></h3>
+            <h3 className="line-clamp-1 text-base font-medium tracking-tight sm:text-lg" title={project.title}><button type="button" className="project-details-button" aria-haspopup="dialog" onClick={onOpenDetail}>{project.title}</button></h3>
             <div className="flex shrink-0 items-center gap-2">
               <a
                 href={project.source}
@@ -130,7 +130,7 @@ export function ContributionProjectCard({ project, index = 0, onOpenDetail }: Co
             <p className="mt-1 line-clamp-1 text-sm font-medium text-muted-foreground" title={project.tagline}>{project.tagline}</p>
           )}
 
-          <p className="mt-2 line-clamp-4 flex-1 text-sm leading-relaxed text-muted-foreground" title={project.description}>{project.description}</p>
+          <p className="mt-2 line-clamp-4 flex-1 text-sm leading-[1.75] text-muted-foreground" title={project.description}>{project.description}</p>
 
           <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
             <div className="flex flex-wrap gap-1.5">
@@ -139,7 +139,7 @@ export function ContributionProjectCard({ project, index = 0, onOpenDetail }: Co
                 return (
                   <span
                     key={cat}
-                    className="paper-label inline-flex items-center gap-1 px-2 py-0.5 text-[10px]"
+                    className="paper-label inline-flex items-center gap-1 px-2 py-0.5 text-xs"
                     style={{
                       backgroundColor: `${meta.color}15`,
                       color: `color-mix(in srgb, ${meta.color} var(--tag-color-weight), var(--foreground))`,
@@ -157,12 +157,12 @@ export function ContributionProjectCard({ project, index = 0, onOpenDetail }: Co
             </div>
             <ul className="flex flex-wrap gap-x-3 gap-y-1">
               {visibleTags.map((tag) => (
-                <li key={tag} className="font-mono text-xs text-muted-foreground">
+                <li key={tag} className="text-xs text-muted-foreground">
                   {tag}
                 </li>
               ))}
               {remainingCount > 0 && (
-                <li className="font-mono text-xs font-medium text-primary">
+                <li className="text-xs font-medium text-primary">
                   {t("tagsMore", { count: remainingCount })}
                 </li>
               )}

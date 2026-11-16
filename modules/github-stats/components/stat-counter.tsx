@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { GitFork, Star, Users, GitCommitHorizontal } from "lucide-react"
 import { cn } from "@/lib/utils"
+import styles from "@/components/portfolio-continuity.module.css"
 import type { LucideIcon } from "lucide-react"
 
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -78,17 +79,17 @@ export function StatCounter({ value, label, iconKey, suffix = "", delay = 0 }: S
       ref={ref}
       className={cn(
         "paper-card group relative overflow-hidden border border-border p-6 transition-all duration-300",
-        "hover:-translate-y-1",
+        styles.statCard,
       )}
     >
       <div
         aria-hidden
         className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/8 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
       />
-      <div className="mb-4 flex h-10 w-10 items-center justify-center border border-foreground bg-accent text-primary transition-colors group-hover:border-primary">
+      <div className={styles.statIcon}>
         <Icon className="h-5 w-5" aria-hidden />
       </div>
-      <p className="font-display text-4xl font-bold tabular-nums text-foreground">
+      <p className="font-display text-3xl font-medium tracking-tight tabular-nums text-foreground">
         {count.toLocaleString("en-US")}
         {suffix}
       </p>

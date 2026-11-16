@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server"
-import { SectionHeading } from "@/components/section-heading"
+import { EditorialHeading } from "@/components/editorial-heading"
+import styles from "@/components/portfolio-continuity.module.css"
 import { ProjectsListContainer } from "./list/projects-list-container"
 import { fetchProjectsData } from "./lib/actions/projects.action"
 
@@ -12,12 +13,12 @@ export async function Projects() {
   const { endToEnd, contributions, research } = result.data
 
   return (
-    <section id="projects" aria-labelledby="projects-heading" className="relative overflow-hidden projects-section section-space">
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-background/60 via-transparent to-background/60" />
+    <section id="projects" aria-labelledby="projects-heading" className={`section-space ${styles.projects}`}>
+
 
 
       <div className="site-container relative">
-        <SectionHeading
+        <EditorialHeading
           index="03"
           title={t("title")}
           subtitle={t("subtitle")}
