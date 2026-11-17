@@ -2,8 +2,8 @@
 .heading { margin-bottom: 2.75rem; }
 .sectionNumber { display: flex; align-items: center; gap: 0.75rem; color: var(--primary); font: 0.6875rem ui-monospace, monospace; margin-bottom: 1.5rem; }
 .sectionNumber > span { width: 2.5rem; height: 1px; background: var(--primary); opacity: 0.45; }
-.heading h2 { max-width: 24ch; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; text-wrap: balance; }
-.heading h2 em { color: var(--primary); font-family: var(--font-editorial); font-weight: 400; letter-spacing: -0.015em; }
+.heading h2 { max-width: 24ch; font-family: var(--font-editorial); font-size: clamp(2rem, 3.5vw, 3rem); font-style: italic; font-weight: 400; line-height: 1.2; letter-spacing: -0.015em; text-wrap: balance; }
+.heading h2 em { color: var(--primary); }
 .heading > p { max-width: 54ch; margin-top: 1.25rem; color: var(--muted-foreground); font-size: var(--text-copy); line-height: var(--leading-copy); text-wrap: pretty; }
 .aboutLayout { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: clamp(2rem, 7vw, 7rem); }
 .facts { max-width: 20rem; }
