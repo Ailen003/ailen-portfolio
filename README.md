@@ -16,6 +16,17 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Browser reviews with Playwright
+
+Agents can review the running portfolio through their existing Playwright MCP
+connection. Start `pnpm dev` from this checkout (or reuse its running server),
+then inspect the page, interactions, and screenshots with the agent's browser tools.
+Use the actual URL printed by Next.js to avoid opening another portfolio.
+
+See [the design review workflow](docs/playwright.md) and `AGENTS.md`. Screenshots
+and MCP logs go in this checkout's ignored `.playwright-mcp/` directory. This
+workflow does not add project dependencies, automated browser tests, or browser downloads.
+
 ## Environment variables
 
 Copy `.env.example` to `.env` and set the canonical site origin:
