@@ -1,0 +1,21 @@
+.title {
+  font-family: var(--font-editorial);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  overflow-wrap: break-word;
+}
+
+.detailsButton::after {
+  z-index: 1;
+}
+
+.detailsButton:focus-visible {
+  outline: none;
+}
+
+.detailsButton:focus-visible::after {
+  outline: 2px solid var(--ring);
+  outline-offset: -3px;
+  border-radius: var(--radius);
+}
