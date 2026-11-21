@@ -343,18 +343,21 @@
     },
     "contributions": {
       "vercel-ai-sdk": {
+        "tagline": "Streaming e integración de proveedores de IA para entornos edge",
         "description": "Contribuí mejoras de streaming y nuevos adaptadores de proveedor al SDK oficial de Vercel AI, mejorando la compatibilidad con edge-runtime.",
         "role": "Contribuidora open-source",
         "impact": "Redujo la latencia de streaming en ~30% en edge runtimes en todos los adaptadores de proveedor.",
         "technicalNotes": "## Lo que contribuí\n\nLa capa de streaming del Vercel AI SDK usaba `Readable` streams de Node.js internamente, que no están disponibles en edge runtimes (Cloudflare Workers, Vercel Edge). Refactoricé la abstracción de streaming central para usar la **Web Streams API** (`ReadableStream`) como interfaz primaria, con un shim de compatibilidad para Node.js.\n\n## Adaptador de proveedor\n\nAñadí un nuevo adaptador para la **API de Mensajes de Anthropic**, incluyendo soporte para streaming de tool-use y cabeceras de prompt caching."
       },
       "radix-ui-primitives": {
+        "tagline": "Mejoras de accesibilidad para navegación con teclado y lectores de pantalla",
         "description": "Corregí regresiones de accesibilidad en los componentes Dialog y Tooltip, añadí tests de especificación de navegación por teclado y mejoré el cumplimiento WAI-ARIA.",
         "role": "Corrección de bugs y a11y",
         "impact": "Resolvió 3 violaciones WCAG persistentes que afectaban a usuarios de lector de pantalla en todos los consumidores de Radix.",
         "technicalNotes": "## Bug de gestión del foco\n\nEn iOS Safari, `Dialog` no restauraba el foco al trigger después de cerrarse porque el comportamiento del foco del navegador difiere de la especificación. Lo corregí almacenando explícitamente la ref del trigger y llamando a `.focus()` en un callback `requestAnimationFrame` después de que se complete la animación de cierre.\n\n## Limpieza de ARIA\n\n`Tooltip` mantenía el atributo `aria-describedby` en el anchor incluso después de que el tooltip se desmontara, provocando que los lectores de pantalla hicieran referencia a un elemento inexistente. Añadí un efecto de limpieza vinculado al ciclo de vida del portal del tooltip."
       },
       "internal-design-system": {
+        "tagline": "Modo oscuro y componentes reutilizables para un sistema de diseño compartido",
         "description": "Me uní a un equipo de sistema de diseño existente para lanzar una capa de tokens en modo oscuro y migrar 30+ componentes de patrones de clase a funcionales.",
         "role": "Ingeniería Frontend (contrato)",
         "impact": "Habilitó el modo oscuro en 4 superficies de producto en un único release, con cero regresiones en los consumidores existentes.",

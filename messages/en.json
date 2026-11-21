@@ -343,18 +343,21 @@
     },
     "contributions": {
       "vercel-ai-sdk": {
+        "tagline": "Streaming and provider integrations for edge-ready AI applications",
         "description": "Contributed streaming improvements and new provider adapters to the official Vercel AI SDK, improving edge-runtime compatibility.",
         "role": "Open-source contributor",
         "impact": "Reduced streaming latency by ~30% on edge runtimes across all provider adapters.",
         "technicalNotes": "## What I contributed\n\nThe Vercel AI SDK's streaming layer used Node.js `Readable` streams internally, which aren't available on edge runtimes (Cloudflare Workers, Vercel Edge). I refactored the core streaming abstraction to use the **Web Streams API** (`ReadableStream`) as the primary interface, with a Node.js compatibility shim.\n\n## Provider adapter\n\nAdded a new adapter for **Anthropic's Messages API**, including support for tool-use streaming and prompt caching headers."
       },
       "radix-ui-primitives": {
+        "tagline": "Accessibility fixes for keyboard and screen reader users",
         "description": "Fixed accessibility regressions in Dialog and Tooltip components, added keyboard-navigation spec tests, and improved WAI-ARIA compliance.",
         "role": "Bug fixes & a11y",
         "impact": "Resolved 3 long-standing WCAG violations affecting screen reader users across all Radix consumers.",
         "technicalNotes": "## Focus management bug\n\nOn iOS Safari, `Dialog` was not restoring focus to the trigger after close because the browser's focus behavior differs from the spec. Fixed by explicitly storing the trigger ref and calling `.focus()` in a `requestAnimationFrame` callback after the close animation completes.\n\n## ARIA cleanup\n\n`Tooltip` was keeping the `aria-describedby` attribute on the anchor even after the tooltip unmounted, causing screen readers to reference a non-existent element. Added a cleanup effect tied to the tooltip's portal lifecycle."
       },
       "internal-design-system": {
+        "tagline": "Dark mode and reusable components for a shared design system",
         "description": "Joined an existing design-system team to ship a dark-mode token layer and migrate 30+ components from class-based to functional patterns.",
         "role": "Frontend Engineer (contract)",
         "impact": "Enabled dark mode across 4 product surfaces in a single release, zero regression on existing consumers.",

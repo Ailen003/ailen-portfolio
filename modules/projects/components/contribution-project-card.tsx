@@ -61,9 +61,7 @@ export function ContributionProjectCard({ project, index = 0, onOpenDetail }: Co
                 {project.title}
               </button>
             </h4>
-            {project.tagline && (
-              <p className="mt-0.5 line-clamp-3 text-sm font-medium text-primary">{project.tagline}</p>
-            )}
+            <p className="mt-0.5 line-clamp-3 text-sm font-medium text-primary">{project.tagline}</p>
           </div>
 
           <p className="mt-3 line-clamp-4 shrink-0 text-sm leading-relaxed text-muted-foreground" title={project.description}>{project.description}</p>

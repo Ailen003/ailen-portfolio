@@ -71,6 +71,7 @@ const rawContributionProjects: ContributionProject[] = [
   {
     translationKey: "vercel-ai-sdk",
     title: "Vercel AI SDK",
+    tagline: "Streaming and provider integrations for edge-ready AI applications",
     description:
       "Contributed streaming improvements and new provider adapters to the official Vercel AI SDK, improving edge-runtime compatibility.",
     image: "/project-finflow.png",
@@ -97,6 +98,7 @@ Added a new adapter for **Anthropic's Messages API**, including support for tool
   {
     translationKey: "radix-ui-primitives",
     title: "Radix UI Primitives",
+    tagline: "Accessibility fixes for keyboard and screen reader users",
     description:
       "Fixed accessibility regressions in Dialog and Tooltip components, added keyboard-navigation spec tests, and improved WAI-ARIA compliance.",
     image: "/project-finflow.png",
@@ -122,6 +124,7 @@ On iOS Safari, \`Dialog\` was not restoring focus to the trigger after close bec
   {
     translationKey: "internal-design-system",
     title: "Internal Design System @ Corp",
+    tagline: "Dark mode and reusable components for a shared design system",
     description:
       "Joined an existing design-system team to ship a dark-mode token layer and migrate 30+ components from class-based to functional patterns.",
     image: "/project-finflow.png",

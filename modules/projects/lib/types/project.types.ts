@@ -63,7 +63,8 @@ export interface EndToEndProject {
 export interface ContributionProject {
   /** Stable translation identifier, independent of the displayed title. */
   translationKey: string
-  tagline?: string
+  /** Short summary of the contribution, displayed below the project title. */
+  tagline: string
   images?: string[]
   highlights?: string[]
   status?: ProjectStatus
